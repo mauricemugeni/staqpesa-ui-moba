@@ -1,0 +1,23 @@
+Back-End Problems
+--------------------------------------------------------------------------------
+add_investor = dropdown - investor_type;
+update_investor = dropdown - investor_type;
+add_project  = dropdown - funding_type, financing_method;
+Undefined index: project in add_project_bid.php
+Undefined index: currency in add_project_bid.php
+Undefined variable: system_administrator in view_system_privileges.php
+Call to a member function getAllSystemPrivileges() on null in view_system_privileges.php
+Warning: Invalid argument supplied for foreach() in view_institutions.php on line 58 ('Wrong request type. Please contact support@staqpesa.com')
+Warning: Invalid argument supplied for foreach() in view_user_types.php on line 48 ('Wrong request type. Please contact support@staqpesa.com')
+
+
+UI problems
+--------------------------------------------------------------------------------
+
+?login....$_SESSION['institution_email'] value for username
+?login....$_SESSION['currency'] value
+Update main URL from ictinnovators.co.ug to ictinnovators-coop.com across the whole project
+?configs.ini....Check on the email SMTP configurations
+uploading membership_photo while creating chapter
+
+

@@ -1,0 +1,87 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Mar 30, 2017, 7:04:08 PM
+    Author     : Reflex Concepts LTD
+*/
+
+body::-webkit-scrollbar {
+        width: 1em;
+    }
+
+    body::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 2px rgba(0,0,0,0.3);
+    }
+
+    body::-webkit-scrollbar-thumb {
+        background-color: darkgrey;
+        outline: 1px solid slategrey;
+    }
+    .panel-default > .panel-heading {
+        color: #333;
+        background-color: #39435c;
+        border-color: #f00;
+    }
+    #title{
+        margin-left: 5px
+    }
+    .panel-default{
+        border-radius: 0; 
+        background-color: #283744
+    }
+    #collapseMenu{
+        border-radius: 0; 
+        background-color: #283744
+    }
+    .nav > li > a:hover, .nav > li > a:focus {
+        text-decoration: none;
+        background-color: #283000
+    }
+    .panel-group .panel + .panel {
+        margin-top: 0;
+    }
+    .sidebar{
+        height: 100%;
+        overflow-y: scroll;
+        overflow-style: marquee-line; 
+        max-height: 100vh;
+        z-index: 9999
+    }
+
+    /**Scroll bar**/
+    .sidebar {
+        overflow: auto;
+    }
+
+    .track3 {
+        width: 10px;
+        background: rgba(0, 0, 0, 0);
+        margin-right: 2px;
+        border-radius: 10px;
+        -webkit-transition: background 250ms linear;
+        transition: background 250ms linear;
+    }
+
+    .track3:hover,
+    .track3.dragging {
+        background: #d9d9d9; /* Browsers without rgba support */
+        background: rgba(0, 0, 0, 0.15);
+    }
+
+    .handle3 {
+        width: 7px;
+        right: 0;
+        background: #999;
+        background: rgba(0, 0, 0, 0.4);
+        border-radius: 7px;
+        -webkit-transition: width 250ms;
+        transition: width 250ms;
+    }
+
+    .track3:hover .handle3,
+    .track3.dragging .handle3 {
+        width: 10px;
+    }

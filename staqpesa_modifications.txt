@@ -1,0 +1,134 @@
+.............Main Table Element: financing_methods
+
+request_types {
+		+add_financing_method......
+		+view_financing_methods.....
+		+update_financing_method.....		
+}
+	name
+	description
+	createdby
+
+---------------------------------------------------------------------------------------
+
+
+.............Main Table Element: funding_types
+
+request_types {
+		+add_funding_type.....
+		+view_funding_types....
+		+update_funding_type.....	
+}
+	name
+	description
+	createdby	
+	
+---------------------------------------------------------------------------------------
+
+
+............Main Table Element: investors
+
+request_types {
+		+add_investor......
+		+view_investors.....
+		+update_investor....	
+}
+	firstname
+	middlename
+	lastname
+	gender
+	idnumber
+	birthdate
+	nationality
+	description
+	investor_type
+	createdby
+
+---------------------------------------------------------------------------------------
+
+	
+............Main Table Element: investor_types
+
+request_types {
+		+add_investor_type.....
+		+view_investor_types.....
+		+update_investor_type......	
+}
+	name
+	description
+	createdby
+
+---------------------------------------------------------------------------------------
+	
+		
+...........Main Table Element: projects
+
+request_types {
+		+add_project....
+		+view_projects....
+		+update_project.....
+}
+	owner
+	title
+	description
+	business_plan
+	funding_type
+	financing_method
+	investment_amount
+	createdby
+
+
+---------------------------------------------------------------------------------------
+
+...............Main Table Element: project_bids
+
+request_types {
+		+add_project_bid
+		+view_project_bids
+		+update_project_bid	
+}
+	project_id 
+	bidded_by [used instead of created by]
+	project_name [added this for speculation]
+	bid_amount
+	bid_balance
+	
+
+---------------------------------------------------------------------------------------	
+		
+		
+		
+		
+User Roles
+
+Main Table Element: system_privileges
+
+request_types {
+		+add_system_privilege
+		+view_system_privileges
+		+update_system_privilege	
+		+view_user_privileges
+		+update_role_user_privileges
+		+update_user_type_privilege
+}
+	name
+	component
+	createdby
+
+Main Table Element: system_components
+
+request_types {
+		+add_system_component
+		+view_system_components
+		+update_system_component	
+}
+	name
+	acronym
+	createdby
+
+	
+	
+		
+		
+		
+		
