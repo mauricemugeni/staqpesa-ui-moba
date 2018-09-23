@@ -32,8 +32,7 @@ modules/classes/Settings.php
 .vs/staqpesa_v2.0_ui/v15/.suo
 .vs/VSWorkspaceState.json
 modules/classes/Settings.php
-core/configs.ini
 release notes.txt
 release notes.txt
-core/configs.ini
 release notes.txt
+!/release notes.txt

@@ -1,0 +1,416 @@
+
+=============================================================================================================================================================================================
+
+*********************************************************************************************************************************************************************************************
+12 Dec, 2017 - Bellarmine
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Release notes[7th Dec, 2017]:
+1. Login, header and footer now indicate the country of use, using currency sessions.
+2. Dashboards now only include the top projects for all user. The following users [Staqpesa Staff/Admin, Institution Staff/Admin] can see the following overview:	
+	a. Deposits
+	b. Withdrawals
+	c. Loans
+	d. Accounts
+	e. Projects
+	f  Investors
+	**All the above are showing placeholder values. Expected count of respective rows, is the desired result. More information regarding the "Dashboard" to be decided upon, in line with business objectives, in relation to users interest and attention.
+3. Auto-hide functionality on forms[Awaiting full report on all forms missing functionality].
+
+*********************************************************************************************************************************************************************************************
+12 Dec, 2017 - Bellarmine
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+1. Dashboards update:
+	a. Staqpesa Admin: overview, top projects, staff overview, investors overview, [shares], guest users......
+	b. Staqpesa Staff: 
+	c. Investor: top projects, recent investments, [account balance, top-up account, total investments made].... 
+	d. Account Holder: account balance, my projects, money-in, money out, loan calculator, recent transactions....
+	e. Institution Admin: overview, top projects, staff overview, [investors overview, shares], guest users......
+	f. Institution Staff: 
+	g. Guest: top projects, [top investors], loan calculator.....
+2. Added currency setting to configs.ini.
+3. Added 'dashboard' folder for DASHBOARD elements.
+	a. loan_calculator.php
+4. Auto-hide form fields now work as expected.
+5. Added missing 'add_account_former' controller element in controller.php
+
+*********************************************************************************************************************************************************************************************
+23 Dec, 2017 - Bellarmine
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+1. Change of footer hover title particulars.
+
+*********************************************************************************************************************************************************************************************
+1 Jan, 2018 - Maurice
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Summary1. Worked on the content population of the various dashboards-related elements: 
+        a) investor_overview
+        b) new guest overview
+        c) recent investments
+        d) recent transactions
+        e) staff overview
+        f) top projects
+2. Did some code cleaning in view_projects file
+
+ - Affected elements/components/pages:  
+    API    
+        -> api/modules/index.php
+	-> api/modules/classes/Users.php
+	-> api/modules/classes/Reports.php
+
+    Admin Site
+	-> admin_panel/modules/classes/Users.php
+	-> admin_panel/modules/classes/Reports.php
+	-> admin_panel/modules/dashboard/investor_overview.php
+	-> admin_panel/modules/dashboard/new_guest_overview.php
+	-> admin_panel/modules/dashboard/recent_investments.php
+	-> admin_panel/modules/dashboard/recent_transactions.php
+	-> admin_panel/modules/dashboard/staff_overview.php
+	-> admin_panel/modules/dashboard/top_projects.php
+	-> admin_panel/modules/read/view_projects.php
+
+*********************************************************************************************************************************************************************************************
+23 Dec, 2017 - Maurice
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Summary
+1.  Change of [Logo(Branding)/Footer/Page Controller Titles/Call for Action] to reflect ICT Innovators Cooperative,(UG/KE/NG/ZA).
+2.  Inclusion of 'currency' config in 'configs.ini'
+
+*********************************************************************************************************************************************************************************************
+1 March, 2018 - Maurice
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Summary
+1. Effected PDF generation of statements across key elements of the solution using TCPDF
+2. Changed loan_balances(Loan Balances) to loan_repayments(Loan Repayments) both in DB, UI and API
+
+    DB    
+        -> Changed table name from loan_balances to loan_repayments
+
+    API    
+        -> api/modules/index.php
+	-> api/modules/classes/Loans.php
+
+    Admin Site
+        -> admin_panel/modules/menus/main_sidebar
+        -> admin_panel/modules/menus/sub-sub-menu-buttons
+        -> admin_panel/modules/menus/sub_menu_loans
+        -> admin_panel/modules/menus/sub_menu_loans_former
+        -> admin_panel/modules/classes/Loans
+	-> admin_panel/modules/read/generatepdf
+	-> admin_panel/modules/read/view_account_holders
+	-> admin_panel/modules/read/view_account_to_account_transfers
+	-> admin_panel/modules/read/view_accounts
+	-> admin_panel/modules/read/view_deposits
+	-> admin_panel/modules/read/view_guest_users
+	-> admin_panel/modules/read/view_inbox_messages
+	-> admin_panel/modules/read/view_institutions
+	-> admin_panel/modules/read/view_investors
+	-> admin_panel/modules/read/view_job_advertisements
+	-> admin_panel/modules/read/view_job_applications
+	-> admin_panel/modules/read/view_loan_balances (changed to -> admin_panel/modules/read/view_loan_repayments)
+	-> admin_panel/modules/read/view_loan_business_data
+	-> admin_panel/modules/read/view_loan_guarantors
+	-> admin_panel/modules/read/view_loans
+	-> admin_panel/modules/read/view_next_of_kins
+	-> admin_panel/modules/read/view_project_bids
+	-> admin_panel/modules/read/view_projects
+	-> admin_panel/modules/read/view_responses
+	-> admin_panel/modules/read/view_shares
+	-> admin_panel/modules/read/view_staff
+	-> admin_panel/modules/read/view_statuses
+	-> admin_panel/modules/read/view_system_administrators
+	-> admin_panel/modules/read/view_system_components
+	-> admin_panel/modules/read/view_system_privileges
+	-> admin_panel/modules/read/view_transactions
+	-> admin_panel/modules/read/view_withdrawals
+        -> admin_panel/modules/update/update_loan_balance
+        -> admin_panel/modules/update/update_loan_balance_next
+        -> admin_panel/modules/tcpdf
+        -> admin_panel/controller
+
+*********************************************************************************************************************************************************************************************
+27 March, 2018 - Maurice
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Summary
+1. Included landing page to the website to manage the various country chapters.
+2. Added elements to the DB to manage the various country chapters.
+3. Made the chapter-specific elements dynamic across the website.
+4. Made the '?teams' elements dynamic ie. managed from the DB and not code-based. 
+
+*********************************************************************************************************************************************************************************************
+29 May, 2018 - Maurice
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Summary
+1. Worked on resolving issues highlighted by Linus
+------------------------------------------------
+Website
+------------------------------------------------
+
+Edited files:
+
+1. core/configs.ini
+2. core/template/header.php
+3. index.php
+
+Added files:
+Null
+
+Deleted files:
+1. release notes.txt
+
+------------------------------------------------
+Admin Portal
+------------------------------------------------
+Edited files:
+
+1. core/configs.ini
+2. core/template/footer.php
+3. core/template/header.php
+4. core/template/layout.php
+5. index.php
+6. modules/classes/Users.php
+7. modules/dashboard/top_projects.php
+8. modules/login.php
+9. problems.txt
+
+Added files:
+1. img/branding/chapter_logos (folder)
+
+Deleted files:
+1. index.html
+2. index_123.html
+
+------------------------------------------------
+API
+------------------------------------------------
+
+Edited files:
+
+1. core/configs.ini
+
+Added files:
+Null
+
+Deleted files:
+Null
+
+*********************************************************************************************************************************************************************************************
+10 June, 2018 - Maurice
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Summary
+1. Worked on resolving issues highlighted by Linus in readiness for regression testing
+------------------------------------------------
+Website
+------------------------------------------------
+
+Edited files:
+
+1. core/configs.ini
+2. core/template/header.php
+3. core/template/layout.php
+4. index.php
+5. modules/require/landing/links.php
+
+Added files:
+1. modules/classes/Transactions.php
+
+Deleted files:
+Null
+
+------------------------------------------------
+Admin Portal
+------------------------------------------------
+Edited files:
+
+1. controller.php
+2. core/configs.ini
+4. core/template/layout.php
+5. index.php
+6. modules/classes/Transactions.php
+8. modules/login.php
+
+Added files:
+1. modules/payments (folder)
+
+Deleted files:
+Null
+
+------------------------------------------------
+API
+------------------------------------------------
+
+Edited files:
+
+1. core/configs.ini
+
+Added files:
+Null
+
+Deleted files:
+Null
+
+*********************************************************************************************************************************************************************************************
+12 June, 2018 - Maurice
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Summary
+1. Sorted issue of linking website to admin portal module.
+------------------------------------------------
+Website
+------------------------------------------------
+
+Edited files:
+
+1. core/configs.ini
+2. core/template/header.php
+
+Added files:
+Null
+
+Deleted files:
+Null
+
+------------------------------------------------
+Admin Portal
+------------------------------------------------
+Edited files:
+
+1. core/configs.ini
+2. modules/login.php
+
+Added files:
+Null
+
+Deleted files:
+Null
+
+------------------------------------------------
+API
+------------------------------------------------
+
+Edited files:
+Null
+
+Added files:
+Null
+
+Deleted files:
+Null
+
+*********************************************************************************************************************************************************************************************
+25 August, 2018 - Maurice
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Summary
+1. Worked on resolving some of the issues highlighted by Eugean during his regression testing 
+2. Updated the membership packages to rhyme with the Kenyan chapter packages as requested by Linus
+------------------------------------------------
+Website
+------------------------------------------------
+
+Edited files:
+
+1. controller.php
+2. core/template/header.php
+3. modules/become-mem.php
+4. modules/bosa.php
+5. modules/careers.php
+6. modules/classes/Users.php
+7. modules/fosa.php
+8. modules/job_vacancies.php
+9. modules/micro_lending.php
+10. modules/require/forms/investor.php
+11. modules/require/forms/mentor.php
+12. modules/require/forms/mentor_registration.php
+13. modules/require/home/contact_info.php
+14. modules/require/home/fact_counter.php
+15. modules/require/jobs/job_application.php
+16. modules/require/landing/links.php
+17. modules/sectors_individual.php
+18. modules/support.php
+19. modules/team.php
+
+Added files:
+1. modules/classes/Reports.php
+2. modules/require/jobs/resumes (folder)
+
+Deleted files:
+1. modules/engage_loan_calculator.php
+2. modules/require/become-mem/member.php
+3. modules/require/bosa/member.php
+4. modules/require/fosa/member.php
+5. modules/require/loan/main_column.php
+6. modules/require/loan/service1_sidebar_left.php
+7. modules/require/micro_lending/main_column.php
+8. modules/require/micro_lending/service1_sidebar_left.php
+9. modules/require/team_profiles/dixon.php
+10. modules/require/team_profiles/ernest.php
+11. modules/require/team_profiles/genevieve.php
+12. modules/require/team_profiles/hope.php
+13. modules/require/team_profiles/linus.php
+
+------------------------------------------------
+Admin Portal
+------------------------------------------------
+Edited files:
+
+1. modules/add/add_deposit.php
+2. modules/add/add_loan_guarantor.php
+3. modules/add/add_loan_next.php
+4. modules/add/add_shares.php
+5. modules/add/add_withdrawal.php
+6. modules/add/engage_loan_calculator.php
+7. modules/classes/Settings.php
+8. modules/dashboard/account_overview.php
+9. modules/dashboard/loan_calculator.php
+10. modules/menus/sub-sub-menu-buttons.php
+11. modules/menus/sub_menu_account.php
+12. modules/menus/sub_menu_funding.php
+13. modules/menus/sub_menu_loans.php
+14. modules/menus/sub_menu_transactions.php
+15. modules/read/view_account_holders_individual_account.php
+16. modules/read/view_account_to_account_transfers.php
+17. modules/read/view_bids_on_project.php
+18. modules/read/view_contacts_individual.php
+19. modules/read/view_deposits.php
+20. modules/read/view_investors_individual.php
+21. modules/read/view_loans.php
+22. modules/read/view_loans_individual.php
+23. modules/read/view_loan_business_data.php
+24. modules/read/view_loan_guarantors.php
+25. modules/read/view_loan_repayments.php
+26. modules/read/view_next_of_kins_individual.php
+27. modules/read/view_projects.php
+28. modules/read/view_projects_individual.php
+29. modules/read/view_project_bids.php
+30. modules/read/view_project_bids_individual.php
+31. modules/read/view_shares.php
+32. modules/read/view_transactions.php
+33. modules/read/view_unbidded_projects.php
+34. modules/read/view_withdrawals.php
+35. modules/update/update_account.php
+36. modules/update/update_investor_type.php
+37. modules/update/update_signature.php
+
+Added files:
+1. modules/images/customers/signatures (folder)
+
+Deleted files:
+Null
+
+------------------------------------------------
+API
+------------------------------------------------
+
+Edited files:
+
+1. core/configs.ini
+2. modules/classes/Reports.php
+3. modules/classes/Settings.php
+4. modules/classes/Users.php
+5. modules/index.php
+
+Added files:
+Null
+
+Deleted files:
+Null
+
+*********************************************************************************************************************************************************************************************
