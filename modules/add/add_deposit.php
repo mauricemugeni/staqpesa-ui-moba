@@ -29,20 +29,21 @@ if (!empty($_POST)) {
         <section class="content">
             <?php require_once('modules/menus/sub_menu_transactions.php'); ?>
             <div class="row">
-                <div class="col-lg-6">
-                    <section class="panel">
-                        <header class="panel-heading">
-                            Customer Deposit
-                            <?php
-                            if (isset($_SESSION['add_fail'])) {
-                                echo $_SESSION['add_record_fail'];
-                                unset($_SESSION['feedback_message']);
-                                unset($_SESSION['add_fail']);
-                            }
-                            ?>
-                        </header>
-                        <div class="panel-body">
-                            <form role="form" method="POST">
+                <form role="form" method="POST">
+                    <div class="col-lg-9">
+                        <section class="panel">
+                            <header class="panel-heading">
+                                Customer Deposit
+                                <?php
+                                if (isset($_SESSION['add_fail'])) {
+                                    echo $_SESSION['add_record_fail'];
+                                    unset($_SESSION['feedback_message']);
+                                    unset($_SESSION['add_fail']);
+                                }
+                                ?>
+                            </header>
+                            <div class="panel-body">
+
                                 <input type="hidden" name="action" value="add_deposit"/>
                                 <input type="hidden" name="createdby" value="<?php echo $_SESSION['userid']; ?>"/>
                                 <input type="hidden" name="transaction_type" value="DEPOSIT"/>
@@ -112,12 +113,49 @@ if (!empty($_POST)) {
                                 </div>
 
                                 <button type="submit" class="btn btn-info">Submit</button>
-                            </form>
 
-                        </div>
-                    </section>
-                </div>        
-            </div><!--row1-->
+
+                            </div>
+                        </section>
+                    </div>     
+                    <div class="col-lg-3">
+                        <section class="panel">
+                            <header class="panel-heading">
+                                <i class="fa fa-money"></i> Payment
+                            </header>
+                            <div class="panel-body" style="background-color: #39435c;">
+                                <div class="payment_box payment_method_mpesa">
+                                    <ol style="color: #ffffff;">         
+                                        <li>Go to Mpesa on your phone</li>
+                                        <li>Select Lipa na Mpesa</li>
+                                        <li>Select Buy Goods and Services</li>
+                                        <li>Enter Till Number: <?php echo $_SESSION['till_number']; ?></li>
+                                        <?php if (isset($_SESSION["cart_item"])) { ?>
+                                            <li>Enter Amount: <?php echo $_SESSION["cart_total_cost"]; ?></li>
+                                        <?php } else { ?>
+                                            <li>Enter Amount: 0</li>
+                                        <?php } ?>
+
+                                        <li>Enter your Mpesa PIN and send</li>
+                                        <li>Once you receive a successful reply from Mpesa, click the submit button below</li>
+                                    </ol>
+                                </div>
+                                <br />
+                                <div class="form-group">
+                                    <label for="mpesa_reference" style="color: #ffffff;">Transaction Reference </label>
+                                    <input type="text" class="form-control " name="transaction_ref_number" placeholder="E.g. MX***********" <?php
+                                           if (isset($_SESSION["transaction_ref_number"])) {
+                                               echo "value='{$_SESSION["transaction_ref_number"]}'";
+                                           }
+                                           ?> required="">
+                                </div>
+
+
+
+                            </div>
+                        </section>
+                    </div><!--row1-->
+                </form>
         </section><!-- /.content -->
     </aside><!-- /.right-side -->
 </div>
