@@ -192,6 +192,26 @@ class Notifications extends Database {
         return $info;
     }
 
+    public function accountHolderOccupationsNotifications() {
+        $data['request_type'] = 'count_account_holder_notifications_notifications';
+        $data['userid'] = $_SESSION['userid'];
+        $data_string = http_build_query($data);
+        $process_request = $this->sendHttpRequestPost($data_string);
+        $decoded_response = json_decode($process_request, true);
+        $info = $decoded_response['message'];
+        return $info;
+    }
+
+    public function accountNomineesNotifications() {
+        $data['request_type'] = 'count_account_nominees_notifications';
+        $data['userid'] = $_SESSION['userid'];
+        $data_string = http_build_query($data);
+        $process_request = $this->sendHttpRequestPost($data_string);
+        $decoded_response = json_decode($process_request, true);
+        $info = $decoded_response['message'];
+        return $info;
+    }
+
     public function accountTypesNotifications() {
         $data['request_type'] = 'count_account_types_notifications';
         $data['userid'] = $_SESSION['userid'];

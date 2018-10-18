@@ -16,7 +16,13 @@ unset($_SESSION['search']);
     <aside class="right-side">
         <!-- Main content -->
         <section class="content">
-            <?php require_once('modules/menus/sub_menu_transactions.php'); ?>
+            <?php
+            if ($_SESSION['logged_in_user_type_details']['name'] == "ACCOUNT HOLDER") {
+                require_once('modules/menus/sub_menu_transactions_account_holder.php');
+            } else {
+                require_once('modules/menus/sub_menu_transactions.php');
+            }
+            ?>
             <div class="row">
                 <div class="col-lg-12">
                     <div class="panel">

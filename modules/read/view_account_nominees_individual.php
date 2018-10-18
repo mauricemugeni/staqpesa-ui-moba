@@ -5,8 +5,8 @@ require_once WPATH . "modules/classes/Users.php";
 $users = new Users();
 $code = $_GET['code'];
 $_SESSION['next_of_kin'] = $code;
-$details = $users->fetchNextOfKinDetails($code);
-$user_type_details = $users->fetchUserTypeDetails($details['ref_type']);
+$details = $users->fetchAccountNomineeDetails($code);
+$staff_details_lastmodifiedby = $users->fetchStaffDetails($details['lastmodifiedby']);
 if ($details['status'] == 1000) {
     $status = "DELETED";
 } else if ($details['status'] == 1001 OR $details['status'] == 1032) {
@@ -27,46 +27,36 @@ if ($details['status'] == 1000) {
     <aside class="right-side">
         <!-- Main content -->
         <section class="content">
-            <?php require_once('modules/menus/sub_menu_system_users.php'); ?>
+            <?php // require_once('modules/menus/sub_menu_system_users.php'); ?>
             <div class="row">
                 <div class="col-lg-6">
                     <div class="panel">
                         <header class="panel-heading">
-                            Next of Kin Details
+                            <strong>ACCOUNT NOMINEE DETAILS</strong>
                         </header>
                         <div class="panel-body">
                             <div class="action">
                                 <?php if ($details['lastmodifiedby'] != $_SESSION['userid'] AND $details['status'] == 1032) { ?>
-                                    <a class="edit-individual" href="?update_next_of_kin&update_type=accept_approval&code=" <?php echo $code; ?> >
+                                    <a class="edit-individual" href="?update_account_nominee&update_type=accept_approval&code=" <?php echo $code; ?> >
                                         Accept Approval
                                     </a>
-                                    <a class="edit-individual-warning" href="?update_next_of_kin&update_type=reject_approval&code=" <?php echo $code; ?> >
+                                    <a class="edit-individual-warning" href="?update_account_nominee&update_type=reject_approval&code=" <?php echo $code; ?> >
                                         Reject Approval
                                     </a>
                                     <?php
                                 }
                                 if ($details['status'] != 1032) {
                                     ?>
-                                    <a class="edit-individual" href="?update_next_of_kin&update_type=edit&ref_type=" <?php echo $code; ?> >
+                                    <a class="edit-individual" href="?update_account_nominee&update_type=edit&ref_type=" <?php echo $code; ?> >
                                         Edit
                                     </a>                    
                                 <?php } ?>
                             </div>
 
                             <div id="status-element">
-                                <!--                                <div class="form-group"> 
-                                                                    <label for="ref_id">Reference ID:</label>
-                                                                    <span class="form-control"><?php // echo $details['ref_id'];  ?></span>
-                                                                </div>
-                                                                <div class="form-group"> 
-                                                                    <label for="ref_type">Reference Type:</label>
-                                                                    <span class="form-control"><?php // echo $user_type_details['name'];  ?></span> 
-                                                                </div>-->
-
-
-                                <div class="form-group"> 
-                                    <label for="ref_type">Reference Details:</label>
-                                    <span class="form-control"><?php echo $user_type_details['name'] . " : " . $details['ref_id']; ?></span> 
+                                <div class="form-group">  
+                                    <label for="account_number">Account Number:</label>
+                                    <span class="form-control"><?php echo $details['account_number']; ?></span>
                                 </div>
                                 <div class="form-group">  
                                     <label for="firstname">First Name:</label>
@@ -79,6 +69,10 @@ if ($details['status'] == 1000) {
                                 <div class="form-group">  
                                     <label for="lastname">Last Name:</label>
                                     <span class="form-control"><?php echo $details['lastname']; ?></span>
+                                </div>
+                                <div class="form-group">  
+                                    <label for="idnumber">ID Number:</label>
+                                    <span class="form-control"><?php echo $details['idnumber']; ?></span>
                                 </div>
                                 <div class="form-group"> 
                                     <label for="relationship">Relationship:</label>
@@ -96,17 +90,39 @@ if ($details['status'] == 1000) {
                                     <label for="postal_address">Postal Address:</label>
                                     <span class="form-control"><?php echo $details['postal_address']; ?></span> 
                                 </div>
-                                <?php if (isset($details['status'])) { ?>
-                                    <div class="form-group"> 
-                                        <label for="status">Status:</label>
-                                        <span class="form-control"><?php echo $status; ?></span> 
+                                <div class="form-group"> 
+                                    <label for="percentage">Percentage:</label>
+                                    <span class="form-control"><?php echo $details['percentage']; ?></span> 
+                                </div>
+                                <div class="form-group"> 
+                                    <label for="status">Status:</label>
+                                    <span class="form-control"><?php echo $status; ?></span>
+                                </div>     
+                                <div class="form-group">
+                                        <label for="lastmodifiedat">Last Modified At:</label>
+                                        <span class="form-control"><?php echo date("Y-m-d H:i:s", $details['lastmodifiedat']); ?></span>
                                     </div>
-                                <?php } else { ?>
-                                    <div class="form-group"> 
-                                        <label for="status">Status:</label>
-                                        <span class="form-control"><?php echo $details['status']; ?></span> 
+
+                                    <div class="form-group">
+                                        <label for="lastmodifiedby">Last Modified By:</label>
+                                        <span class="form-control"><?php echo $staff_details_lastmodifiedby['firstname'] . " " . $staff_details_lastmodifiedby['middlename'] . " " . $staff_details_lastmodifiedby['lastname']; ?></span>
                                     </div>
-                                <?php } ?>                  
+                                <?php
+                                if ($details['lastauthorizedat'] != NULL AND $details['lastauthorizedat'] != NULL) {                                    
+                                    $staff_details_lastauthorizedby = $users->fetchStaffDetails($details['lastauthorizedby']);
+                                    ?>
+                                    <div class="form-group">
+                                        <label for="lastauthorizedat">Last Authorized At:</label>
+                                        <span class="form-control"><?php echo date("Y-m-d H:i:s", $details['lastauthorizedat']); ?></span>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="lastauthorizedby">Last Authorized By:</label>
+                                        <span class="form-control"><?php echo $staff_details_lastauthorizedby['firstname'] . " " . $staff_details_lastauthorizedby['middlename'] . " " . $staff_details_lastauthorizedby['lastname']; ?></span>
+                                    </div>
+
+                                <?php } ?>
+                                
                             </div>
                         </div><!-- /.panel-body -->
                     </div><!-- /.panel -->

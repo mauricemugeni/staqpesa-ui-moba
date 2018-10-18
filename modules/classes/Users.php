@@ -619,6 +619,26 @@ class Users extends Database {
         return $info;
     }
 
+    public function getAllAccountHolderOccupationNotifications() {
+        $data['request_type'] = 'get_all_account_holder_occupation_notifications';
+        $data['userid'] = $_SESSION['userid'];
+        $data_string = http_build_query($data);
+        $process_request = $this->sendHttpRequestPost($data_string);
+        $decoded_response = json_decode($process_request, true);
+        $info = $decoded_response['message'];
+        return $info;
+    }
+
+    public function getAllAccountNomineeNotifications() {
+        $data['request_type'] = 'get_all_account_nominee_notifications';
+        $data['userid'] = $_SESSION['userid'];
+        $data_string = http_build_query($data);
+        $process_request = $this->sendHttpRequestPost($data_string);
+        $decoded_response = json_decode($process_request, true);
+        $info = $decoded_response['message'];
+        return $info;
+    }
+
     public function getAllRolePrivileges($role) {
         $data['request_type'] = 'get_all_role_privileges';
         $data['role'] = $role;
@@ -640,6 +660,24 @@ class Users extends Database {
 
     public function getAllAccountHolders() {
         $data['request_type'] = 'get_all_account_holders';
+        $data_string = http_build_query($data);
+        $process_request = $this->sendHttpRequestPost($data_string);
+        $decoded_response = json_decode($process_request, true);
+        $info = $decoded_response['message'];
+        return $info;
+    }
+
+    public function getAllAccountHolderOccupations() {
+        $data['request_type'] = 'get_all_account_holder_occupations';
+        $data_string = http_build_query($data);
+        $process_request = $this->sendHttpRequestPost($data_string);
+        $decoded_response = json_decode($process_request, true);
+        $info = $decoded_response['message'];
+        return $info;
+    }
+
+    public function getAllAccountNominees() {
+        $data['request_type'] = 'get_all_account_nominees';
         $data_string = http_build_query($data);
         $process_request = $this->sendHttpRequestPost($data_string);
         $decoded_response = json_decode($process_request, true);
@@ -1205,6 +1243,26 @@ class Users extends Database {
 
     public function fetchAccountHolderDetails($code) {
         $data['request_type'] = 'fetch_account_holder_details';
+        $data['code'] = $code;
+        $data_string = http_build_query($data);
+        $process_request = $this->sendHttpRequestPost($data_string);
+        $decoded_response = json_decode($process_request, true);
+        $info = $decoded_response['message'];
+        return $info;
+    }
+
+    public function fetchAccountHolderOccupationDetails($code) {
+        $data['request_type'] = 'fetch_account_holder_occupation_details';
+        $data['code'] = $code;
+        $data_string = http_build_query($data);
+        $process_request = $this->sendHttpRequestPost($data_string);
+        $decoded_response = json_decode($process_request, true);
+        $info = $decoded_response['message'];
+        return $info;
+    }
+
+    public function fetchAccountNomineeDetails($code) {
+        $data['request_type'] = 'fetch_account_nominee_details';
         $data['code'] = $code;
         $data_string = http_build_query($data);
         $process_request = $this->sendHttpRequestPost($data_string);

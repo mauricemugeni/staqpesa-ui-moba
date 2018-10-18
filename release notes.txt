@@ -414,3 +414,69 @@ Deleted files:
 Null
 
 *********************************************************************************************************************************************************************************************
+18 October, 2018 - Maurice
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Summary
+1. Rebranded the UI module to be generally acceptable across organizations/clients.....the case study here is MOBA sacco
+------------------------------------------------
+Website
+------------------------------------------------
+
+Edited files:
+
+Null
+
+Added files:
+Null
+
+Deleted files:
+Null
+
+------------------------------------------------
+Admin Portal
+------------------------------------------------
+Edited files:
+
+1. controller.php
+2. modules/add/add_withdrawal.php
+3. modules/classes/Notifications.php
+4. modules/classes/Users.php
+5. modules/menus/sub-sub-menu-buttons.php
+6. modules/menus/sub_menu_account.php
+7. modules/read/view_accounts.php
+8. modules/read/view_accounts_individual.php
+9. modules/read/view_account_holders.php
+10. modules/read/view_account_holders_individual.php
+11. modules/read/view_account_to_account_transfers.php
+12. modules/read/view_next_of_kins_individual.php
+
+Added files:
+1. modules/menus/sub_menu_transactions_account_holder.php
+2. modules/menus/sub_menu_view_account.php
+3. modules/read/view_account_holder_occupations.php
+4. modules/read/view_account_holder_occupations_individual.php
+5. modules/read/view_account_nominees.php
+6. modules/read/view_account_nominees_individual.php
+7. modules/update/update_account_holder_occupation.php
+8. modules/update/update_account_nominee.php
+
+Deleted files:
+Null
+
+------------------------------------------------
+API
+------------------------------------------------
+
+Edited files:
+
+1. modules/classes/Notifications.php
+2. modules/classes/Users.php
+3. modules/index.php
+
+Added files:
+Null
+
+Deleted files:
+Null
+
+*********************************************************************************************************************************************************************************************

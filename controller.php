@@ -1726,6 +1726,30 @@ else if ( is_menu_set('add_account_nominee') != ""){
     set_title("ICT Innovators Hub Cooperative | Add Account Nominee");
 }
 
+// Component 286
+else if ( is_menu_set('view_account_nominees') != ""){
+    $currentPage = WPATH . "modules/read/view_account_nominees.php";
+    set_title("ICT Innovators Hub Cooperative | Account Nominees");
+}
+
+// Component 287
+else if ( is_menu_set('view_account_holder_occupations') != ""){
+    $currentPage = WPATH . "modules/read/view_account_holder_occupations.php";
+    set_title("ICT Innovators Hub Cooperative | Account Holder Occupations");
+}
+
+// Component 287
+else if ( is_menu_set('view_account_nominees_individual') != ""){
+    $currentPage = WPATH . "modules/read/view_account_nominees_individual.php";
+    set_title("ICT Innovators Hub Cooperative | Account Nominee Details");
+}
+
+// Component 288
+else if ( is_menu_set('view_account_holder_occupations_individual') != ""){
+    $currentPage = WPATH . "modules/read/view_account_holder_occupations_individual.php";
+    set_title("ICT Innovators Hub Cooperative | Account Holder Occupation Details");
+}
+
 // Mpesa
 else if (is_menu_set('saf_validation') != "") {
     $currentPage = WPATH . "modules/payments/saf_validation.php";

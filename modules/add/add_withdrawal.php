@@ -73,7 +73,7 @@ if (!empty($_POST)) {
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="account_name">Account Balance <?php echo '(' . $_SESSION['chapter_details']['currency'] . ')'; ?></label>
+                                    <label for="account_balance">Account Balance <?php echo '(' . $_SESSION['chapter_details']['currency'] . ')'; ?></label>
                                     <input type="text" class="form-control" id="account_balance" name="account_balance" placeholder="Account Balance" value="<?php echo "KES. " . $ledger_balance; ?>" readonly="true" />
                                 </div>
 

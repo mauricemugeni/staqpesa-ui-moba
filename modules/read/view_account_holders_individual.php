@@ -5,8 +5,17 @@ require_once WPATH . "modules/classes/Users.php";
 require_once WPATH . "modules/classes/Settings.php";
 $settings = new Settings();
 $users = new Users();
-$code = $_GET['code'];
-$_SESSION['account_holder'] = $code;
+
+
+if (isset($_GET['code'])) {
+    $code = $_GET['code'];
+    $_SESSION['account_holder'] = $code;
+} 
+
+//else if (isset($_SESSION['account'])) {
+//    $_SESSION['account_holder'] = $code;
+//}
+
 $details = $users->fetchAccountHolderDetails($code);
 $_SESSION['holder_id'] = $details['id'];
 $staff_details_createdby = $users->fetchStaffDetails($details['createdby']);
@@ -43,12 +52,12 @@ if ($details['status'] == 1000) {
     <aside class="right-side">
         <!-- Main content -->
         <section class="content">
-            <?php require_once('modules/menus/sub_menu_account.php'); ?>
+            <?php // require_once('modules/menus/sub_menu_account.php'); ?>
             <div class="row">
                 <div class="col-lg-6">
                     <div class="panel">
                         <header class="panel-heading">
-                            Account Holder Details
+                            <strong>ACCOUNT HOLDER DETAILS</strong>
                         </header>
                         <div class="panel-body">
                             <div class="action">

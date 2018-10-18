@@ -87,6 +87,12 @@ if (is_menu_set('?') != "") {
 } else if ((is_menu_set('view_account_holders') != "") OR ( is_menu_set('view_account_holders_notifications') != "")) {
     $request_url = "#";
     $action_holder = "Account Holders";
+} else if ((is_menu_set('view_account_nominees') != "") OR ( is_menu_set('view_account_nominees_notifications') != "")) {
+    $request_url = "#";
+    $action_holder = "Account Nominees";
+} else if ((is_menu_set('view_account_holder_occupations') != "") OR ( is_menu_set('view_account_holder_occupations_notifications') != "")) {
+    $request_url = "#";
+    $action_holder = "Account Holder Occupations";
 } else if (is_menu_set('view_account_holders_individual_account') != "") {
     if (isset($_SESSION['can_add_accountholder']) AND $_SESSION['can_add_accountholder'] == true) {
         $request_url = "?add_account_holder";
@@ -168,12 +174,22 @@ if (is_menu_set('?') != "") {
 //    $action_holder2 = "View Privileges";
 } else if ((is_menu_set('view_withdrawals') != "") OR ( is_menu_set('view_withdrawals_notifications') != "")) {
     $statement_type = "WITHDRAWAL";
-    $request_url = "#";
-    $action_holder = "Withdrawals";
+    if (isset($_SESSION['account'])) {
+        $request_url = "?add_withdrawal";
+        $action_holder = "Withdraw Cash";
+    } else {
+        $request_url = "#";
+        $action_holder = "Withdrawals";
+    }
 } else if ((is_menu_set('view_deposits') != "") OR ( is_menu_set('view_deposits_notifications') != "")) {
     $statement_type = "DEPOSIT";
-    $request_url = "#";
-    $action_holder = "Deposits";
+    if (isset($_SESSION['account'])) {
+        $request_url = "?add_deposit";
+        $action_holder = "Add Deposit";
+    } else {
+        $request_url = "#";
+        $action_holder = "Deposits";
+    }
 } else if ((is_menu_set('view_shares') != "") OR ( is_menu_set('view_shares_notifications') != "")) {
     $statement_type = "SHARES DEPOSIT";
     if (isset($_SESSION['account'])) {
@@ -185,8 +201,13 @@ if (is_menu_set('?') != "") {
     }
 } else if ((is_menu_set('view_account_to_account_transfers') != "") OR ( is_menu_set('view_account_to_account_transfers_notifications') != "")) {
     $statement_type = "ACCOUNT TO ACCOUNT TRANSFER";
-    $request_url = "#";
-    $action_holder = "Account to Account Transfers";
+    if (isset($_SESSION['account'])) {
+        $request_url = "?add_account_to_account_transfer";
+        $action_holder = "Transfer to Another Account";
+    } else {
+        $request_url = "#";
+        $action_holder = "Account to Account Transfers";
+    }
 } else if ((is_menu_set('view_transactions') != "") OR ( is_menu_set('view_transactions_notifications') != "")) {
     $statement_type = "ALL";
     $request_url = "#";
@@ -226,7 +247,7 @@ else if ((is_menu_set('view_account_types') != "") OR ( is_menu_set('view_accoun
 if (is_menu_set('view_inbox_messages') != "" OR is_menu_set('view_job_advertisements') != "" OR is_menu_set('view_job_applications') != "" OR is_menu_set('view_accounts') != ""
         OR is_menu_set('view_loan_guarantors') != "" OR is_menu_set('view_account_loan_guarantors') != "" OR is_menu_set('view_loan_business_data') != "" OR is_menu_set('view_loans') != ""
         OR is_menu_set('view_account_loans') != "" OR is_menu_set('view_investors') != "" OR is_menu_set('view_institutions') != "" OR is_menu_set('view_account_holders') != ""
-        OR is_menu_set('view_projects') != "" OR is_menu_set('view_investor_projects') != "" OR is_menu_set('view_member_projects') != "" OR is_menu_set('view_project_bids') != "" 
+        OR is_menu_set('view_projects') != "" OR is_menu_set('view_investor_projects') != "" OR is_menu_set('view_member_projects') != "" OR is_menu_set('view_project_bids') != ""
         OR is_menu_set('view_bids_on_project') != "" OR is_menu_set('view_staff') != ""
         OR is_menu_set('view_statuses') != "" OR is_menu_set('view_system_components') != "" OR is_menu_set('view_system_privileges') != "" OR is_menu_set('view_next_of_kins') != ""
         OR is_menu_set('view_guest_users') != "" OR is_menu_set('view_system_administrators') != "" OR is_menu_set('view_transactions') != "" OR is_menu_set('view_withdrawals') != "" OR is_menu_set('view_deposits') != ""

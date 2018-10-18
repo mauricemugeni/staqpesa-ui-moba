@@ -20,7 +20,7 @@ unset($_SESSION['search']);
                 <div class="col-lg-12">
                     <div class="panel">
                         <header class="panel-heading">
-                            Accounts
+                            <strong>ACCOUNTS</strong>
                             <?php
                             require_once('modules/menus/sub-sub-menu-buttons.php');
                             if (isset($_SESSION['add_success'])) {
@@ -42,7 +42,7 @@ unset($_SESSION['search']);
                                     <th>Status</th>
                                 </tr>                               
                                 <?php
-                                if (!empty($_POST) AND !isset($_POST['create_pdf'])) {
+                                if (!empty($_POST) AND ! isset($_POST['create_pdf'])) {
                                     $info = $users->execute();
                                 } else if (is_menu_set('view_accounts_notifications') != "") {
                                     $info = $users->getAllAccountNotifications();
@@ -91,7 +91,6 @@ unset($_SESSION['search']);
                                         $account_type = $settings->fetchAccountTypeDetails($data['account_type']);
 
                                         echo '<tr>';
-
                                         if (is_menu_set('transitional_view_accounts')) {
                                             echo "<td> <a href='?transitional_view_accounts_individual&code=" . $data['account_number'] . "'>" . $data['account_number'] . '</td>';
                                         } else {

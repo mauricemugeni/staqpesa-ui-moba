@@ -5,14 +5,19 @@ require_once WPATH . "modules/classes/Users.php";
 require_once WPATH . "modules/classes/Settings.php";
 $users = new Users();
 $settings = new Settings();
-$code = $_GET['code'];
-$_SESSION['account'] = $code;
-$details = $users->fetchAccountDetails($code);
-$account_holders = $users->accountHoldersPerAccount($code);
+if (isset($_GET['code'])) {
+    $code = $_GET['code'];
+    $_SESSION['account'] = $code;
+} else if (isset($_SESSION['account'])) {
+    $_SESSION['account'] = $_SESSION['account'];
+}
+
+$details = $users->fetchAccountDetails($_SESSION['account']);
+$account_holders = $users->accountHoldersPerAccount($_SESSION['account']);
 $account_type_details = $settings->fetchAccountTypeDetails($details['account_type']);
 $branch_details = $settings->fetchBranchDetails($details['branch']);
 $staff_details_createdby = $users->fetchStaffDetails($details['createdby']);
-$details2 = $users->fetchIndividualAccountHolderDetails($code);
+$details2 = $users->fetchIndividualAccountHolderDetails($_SESSION['account']);
 
 if (count($details2) == 0 OR $account_type_details['name'] == "GROUP/JOINT ACCOUNT") {
     $_SESSION['can_add_accountholder'] = true;
@@ -38,20 +43,20 @@ if ($details['status'] == 1000) {
     <aside class="right-side">
         <!-- Main content -->
         <section class="content">
-            <?php require_once('modules/menus/sub_menu_account.php'); ?>
+            <?php require_once('modules/menus/sub_menu_view_account.php'); ?>
             <div class="row">
                 <div class="col-lg-6">
                     <div class="panel">
                         <header class="panel-heading">
-                            Account Details
+                            <strong>ACCOUNT DETAILS</strong>
                         </header>
                         <div class="panel-body">
                             <div class="action">
                                 <?php if (($details['createdby'] != $_SESSION['userid'] AND $details['status'] == 1001) OR ( $details['lastmodifiedby'] != $_SESSION['userid'] AND $details['status'] == 1032)) { ?>
-                                    <a class="edit-individual" href="?update_account&update_type=accept_approval&code=" <?php echo $code; ?> >
+                                    <a class="edit-individual" href="?update_account&update_type=accept_approval&code=" <?php echo $_SESSION['account']; ?> >
                                         Accept Approval
                                     </a>
-                                    <a class="edit-individual-warning" href="?update_account&update_type=reject_approval&code=" <?php echo $code; ?> >
+                                    <a class="edit-individual-warning" href="?update_account&update_type=reject_approval&code=" <?php echo $_SESSION['account']; ?> >
                                         Reject Approval
                                     </a>
                                     <?php
@@ -59,15 +64,15 @@ if ($details['status'] == 1000) {
                                 if ($details['status'] != 1001) {
                                     if ($details['status'] == 1020) {
                                         ?>
-                                        <a class="edit-individual" href="?update_account&update_type=activate&code=" <?php echo $code; ?> >
+                                        <a class="edit-individual" href="?update_account&update_type=activate&code=" <?php echo $_SESSION['account']; ?> >
                                             Activate
                                         </a>
                                     <?php } if ($details['status'] == 1021) { ?>
-                                        <a class="edit-individual-warning" href="?update_account&update_type=deactivate&code=" <?php echo $code; ?> >
+                                        <a class="edit-individual-warning" href="?update_account&update_type=deactivate&code=" <?php echo $_SESSION['account']; ?> >
                                             Deactivate
                                         </a>
                                     <?php } if ($details['status'] != 1000) { ?>
-                                        <a class="edit-individual-warning" href="?update_account&update_type=delete&code=" <?php echo $code; ?> >
+                                        <a class="edit-individual-warning" href="?update_account&update_type=delete&code=" <?php echo $_SESSION['account']; ?> >
                                             Delete
                                         </a>
                                         <?php
@@ -75,7 +80,7 @@ if ($details['status'] == 1000) {
 
                                     if ($details['status'] != 1032 AND $details['status'] != 1000 AND $details['status'] != 1020) {
                                         ?>
-                                        <a class="edit-individual" href="?update_account&update_type=edit&code=<?php echo $code; ?>" >
+                                        <a class="edit-individual" href="?update_account&update_type=edit&code=<?php echo $_SESSION['account']; ?>" >
                                             Edit
                                         </a> 
                                         <?php

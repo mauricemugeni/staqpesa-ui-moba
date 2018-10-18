@@ -65,6 +65,16 @@ if (is_menu_set('?') != "") {
 else if (is_menu_set('add_account_former') != "") {
     $request_type = "search_account_holders";
     $action_place_holder = "Search Account Holders";
+} else if ((is_menu_set('view_account_nominees') != "") OR ( is_menu_set('view_account_nominees_notifications') != "")) {
+    $request_type = "search_account_nominees";
+    $action_place_holder = "Search Account Nominees";
+    $notifications_count = $notifications->accountNomineesNotifications();
+    $notification_url = "?view_account_nominees_notifications";
+} else if ((is_menu_set('view_account_holder_occupations') != "") OR ( is_menu_set('view_account_holder_occupations_notifications') != "")) {
+    $request_type = "search_account_holder_occupations";
+    $action_place_holder = "Search Account Holder Occupations";
+    $notifications_count = $notifications->accountHolderOccupationsNotifications();
+    $notification_url = "?view_account_holder_occupations_notifications";
 }
 ?>
 
@@ -88,6 +98,16 @@ else if (is_menu_set('add_account_former') != "") {
             <i class="fa fa-user-md"></i>Account Holders 
         </a>
     </li>
+    <li role="presentation" <?php if (is_menu_set('view_account_holder_occupations') || is_menu_set('view_account_holder_occupations_individual') || is_menu_set('update_account_holder_occupation') != "") { ?> class="active" <?php } ?>>
+        <a class="dropdown-toggle" href="?view_account_holder_occupations" role="button" aria-haspopup="true" aria-expanded="false">
+            <i class="fa fa-user-md"></i>Account Holder Occupations
+        </a>
+    </li>
+    <li role="presentation" <?php if (is_menu_set('view_account_nominees') || is_menu_set('add_account_nominee') || is_menu_set('view_account_nominees_individual') || is_menu_set('update_account_nominee') != "") { ?> class="active" <?php } ?>>
+        <a class="dropdown-toggle" href="?view_account_nominees" role="button" aria-haspopup="true" aria-expanded="false">
+            <i class="fa fa-user-md"></i>Account Nominees
+        </a>
+    </li>
 <?php } else if (isset($_SESSION['institution_admin']) AND $_SESSION['institution_admin'] == true) {?>
     <li role="presentation" <?php if (is_menu_set('view_accounts') || is_menu_set('add_account') || is_menu_set('view_accounts_individual') || is_menu_set('update_account') != "") { ?> class="active" <?php } ?>>
         <a class="dropdown-toggle" href="?view_accounts" role="button" aria-haspopup="true" aria-expanded="false">
@@ -97,6 +117,16 @@ else if (is_menu_set('add_account_former') != "") {
     <li role="presentation" <?php if (is_menu_set('view_account_holders') || is_menu_set('add_account_holder') || is_menu_set('view_account_holders_individual') || is_menu_set('update_account_holder') != "") { ?> class="active" <?php } ?>>
         <a class="dropdown-toggle" href="?view_account_holders" role="button" aria-haspopup="true" aria-expanded="false">
             <i class="fa fa-user-md"></i>Account Holders 
+        </a>
+    </li>
+    <li role="presentation" <?php if (is_menu_set('view_account_holder_occupations') || is_menu_set('view_account_holder_occupations_individual') || is_menu_set('update_account_holder_occupation') != "") { ?> class="active" <?php } ?>>
+        <a class="dropdown-toggle" href="?view_account_holder_occupations" role="button" aria-haspopup="true" aria-expanded="false">
+            <i class="fa fa-user-md"></i>Account Holder Occupations
+        </a>
+    </li>
+    <li role="presentation" <?php if (is_menu_set('view_account_nominees') || is_menu_set('add_account_nominee') || is_menu_set('view_account_nominees_individual') || is_menu_set('update_account_nominee') != "") { ?> class="active" <?php } ?>>
+        <a class="dropdown-toggle" href="?view_account_nominees" role="button" aria-haspopup="true" aria-expanded="false">
+            <i class="fa fa-user-md"></i>Account Nominees
         </a>
     </li>
 <?php } else if (isset($_SESSION['staqpesa_staff']) AND $_SESSION['staqpesa_staff'] == true) {?>
@@ -115,6 +145,16 @@ else if (is_menu_set('add_account_former') != "") {
             <i class="fa fa-user-md"></i>Account Holders 
         </a>
     </li>
+    <li role="presentation" <?php if (is_menu_set('view_account_holder_occupations') || is_menu_set('view_account_holder_occupations_individual') || is_menu_set('update_account_holder_occupation') != "") { ?> class="active" <?php } ?>>
+        <a class="dropdown-toggle" href="?view_account_holder_occupations" role="button" aria-haspopup="true" aria-expanded="false">
+            <i class="fa fa-user-md"></i>Account Holder Occupations
+        </a>
+    </li>
+    <li role="presentation" <?php if (is_menu_set('view_account_nominees') || is_menu_set('add_account_nominee') || is_menu_set('view_account_nominees_individual') || is_menu_set('update_account_nominee') != "") { ?> class="active" <?php } ?>>
+        <a class="dropdown-toggle" href="?view_account_nominees" role="button" aria-haspopup="true" aria-expanded="false">
+            <i class="fa fa-user-md"></i>Account Nominees
+        </a>
+    </li>
 <?php } else if (isset($_SESSION['institution_staff']) AND $_SESSION['institution_staff'] == true) {?>
     <li role="presentation" <?php if (is_menu_set('view_accounts') || is_menu_set('add_account') || is_menu_set('view_accounts_individual') || is_menu_set('update_account') != "") { ?> class="active" <?php } ?>>
         <a class="dropdown-toggle" href="?view_accounts" role="button" aria-haspopup="true" aria-expanded="false">
@@ -124,6 +164,16 @@ else if (is_menu_set('add_account_former') != "") {
     <li role="presentation" <?php if (is_menu_set('view_account_holders') || is_menu_set('add_account_holder') || is_menu_set('view_account_holders_individual') || is_menu_set('update_account_holder') != "") { ?> class="active" <?php } ?>>
         <a class="dropdown-toggle" href="?view_account_holders" role="button" aria-haspopup="true" aria-expanded="false">
             <i class="fa fa-user-md"></i>Account Holders 
+        </a>
+    </li>
+    <li role="presentation" <?php if (is_menu_set('view_account_holder_occupations') || is_menu_set('view_account_holder_occupations_individual') || is_menu_set('update_account_holder_occupation') != "") { ?> class="active" <?php } ?>>
+        <a class="dropdown-toggle" href="?view_account_holder_occupations" role="button" aria-haspopup="true" aria-expanded="false">
+            <i class="fa fa-user-md"></i>Account Holder Occupations
+        </a>
+    </li>
+    <li role="presentation" <?php if (is_menu_set('view_account_nominees') || is_menu_set('add_account_nominee') || is_menu_set('view_account_nominees_individual') || is_menu_set('update_account_nominee') != "") { ?> class="active" <?php } ?>>
+        <a class="dropdown-toggle" href="?view_account_nominees" role="button" aria-haspopup="true" aria-expanded="false">
+            <i class="fa fa-user-md"></i>Account Nominees
         </a>
     </li>    
     <?php
