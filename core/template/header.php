@@ -6,7 +6,7 @@ $users = new Users();
 <!-- header logo: style can be found in header.less -->
 <header class="header">
     <a href="?dashboard" class="logo">
-        <img style="margin-top: 0px;" src="img/branding/chapter_logos/<?php echo $_SESSION['chapter_details']['membership_photo']; ?>" width="160">
+        <img style="margin-top: 0px;" src="img/branding/svg/moba.svg" width="160">
     </a>
 
     <!-- Header Navbar: style can be found in header.less -->
