@@ -492,7 +492,7 @@ Null
 21 October, 2018 - Maurice
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Summary
-1. Cntinued with the rebranding of the UI module to be generally acceptable across organizations/clients.....the case study here is MOBA sacco. Finalized on the account-holder section of the module for first draft review.
+1. Continued with the re-branding of the UI module to be generally acceptable across organizations/clients.....the case study here is MOBA sacco. Finalized on the account-holder section of the module for first draft review.
 ------------------------------------------------
 Website
 ------------------------------------------------
