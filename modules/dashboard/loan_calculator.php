@@ -25,6 +25,12 @@ if (!empty($_POST)) {
         } else {
             $_SESSION['loan_check_fail'] = true;
             $_SESSION['feedback_message'] = "<strong>Error!</strong> There was an error with the loan calculation. Please try again.";
+            $_SESSION['add_record_fail'] = "<div class='alert alert-block alert-danger'>
+                                        <button data-dismiss='alert' class='close close-sm' type='button'>
+                                            <i class='fa fa-times'></i>
+                                        </button>"
+                    . $_SESSION['feedback_message']
+                    . "</div>";
         }
         $_SESSION['loan_qualification'] = true;
     } else if ($loan_qualification_status == false) {
@@ -56,10 +62,10 @@ if (!empty($_POST)) {
                 <div class="form-group">
                     <label for="principal_amount">Loan Amount <?php echo '(' . $_SESSION['chapter_details']['currency'] . ')'; ?></label>
                     <input type="number" class="form-control" id="principal_amount" name="principal_amount" value="<?php
-                    if (!empty($_POST['principal_amount'])) {
-                        echo $_POST['principal_amount'];
-                    }
-                    ?>" placeholder="eg. 500000" required="true"/>
+                        if (!empty($_POST['principal_amount'])) {
+                            echo $_POST['principal_amount'];
+                        }
+                        ?>" placeholder="eg. 500000" required="true"/>
                 </div>
                 <div class="form-group">
                     <label for="duration">Repayment Period (Months)</label>
@@ -67,32 +73,32 @@ if (!empty($_POST)) {
                     if (!empty($_POST['duration'])) {
                         echo $_POST['duration'];
                     }
-                    ?>" placeholder="eg. 12" required="true"/>
+                        ?>" placeholder="eg. 12" required="true"/>
                 </div>
                 <?php if (isset($_SESSION['loan_check_success'])) { ?>
                     <div class="form-group">
                         <label for="total_interest">Total Interest <?php echo '(' . $_SESSION['chapter_details']['currency'] . ')'; ?></label>
                         <input type="text" class="form-control" id="total_interest" name="total_interest" placeholder="0" value="<?php
-                        if (!empty($_POST)) {
-                            echo $success['interest'];
-                        }
-                        ?>" readonly="true" />
+                    if (!empty($_POST)) {
+                        echo $success['interest'];
+                    }
+                    ?>" readonly="true" />
                     </div>
                     <div class="form-group">
                         <label for="total_repayment">Total Repayable Amount <?php echo '(' . $_SESSION['chapter_details']['currency'] . ')'; ?></label>
                         <input type="text" class="form-control" id="total_repayment" name="total_repayment" placeholder="0" value="<?php
-                        if (!empty($_POST)) {
-                            echo $success['total_repayable_amount'];
-                        }
-                        ?>" readonly="true" />
+                    if (!empty($_POST)) {
+                        echo $success['total_repayable_amount'];
+                    }
+                    ?>" readonly="true" />
                     </div>
                     <div class="form-group">
                         <label for="monthly_repayment">Monthly Repayment <?php echo '(' . $_SESSION['chapter_details']['currency'] . ')'; ?></label>
                         <input type="text" class="form-control" id="monthly_repayment" name="monthly_repayment" placeholder="0" value="<?php
-                        if (!empty($_POST)) {
-                            echo $success['monthly_repayment'];
-                        }
-                        ?>" readonly="true" />
+                    if (!empty($_POST)) {
+                        echo $success['monthly_repayment'];
+                    }
+                    ?>" readonly="true" />
                     </div>
                     <?php
                     unset($_SESSION['loan_check_success']);

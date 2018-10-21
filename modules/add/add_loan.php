@@ -9,6 +9,7 @@ $transactions = new Transactions();
 $users = new Users();
 $loans = new Loans();
 $account_details = $users->fetchAccountDetails($_SESSION['account']);
+unset($_SESSION["guarantors_list"]);
 
 if (!empty($_POST)) {
     $loan_type_details = $loans->fetchLoanTypeDetails($_POST['loan_type']);

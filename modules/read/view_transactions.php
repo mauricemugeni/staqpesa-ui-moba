@@ -40,7 +40,7 @@ $transaction_type = "ALL";
                                     <th>Date</th>
                                     <th>Amount <?php echo '(' . $_SESSION['chapter_details']['currency'] . ')'; ?></th>
                                     <?php
-                                    if (is_menu_set('view_transactions_individual_account') != "") {
+                                    if (is_menu_set('view_transactions_individual_account') != "" OR $_SESSION['logged_in_user_type_details']['name'] == "ACCOUNT HOLDER") {
                                         echo "<th>Ledger Balance</th>";
                                     } else {
                                         echo "<th>Account Number</th>";
@@ -107,7 +107,7 @@ $transaction_type = "ALL";
                                         echo '<td>' . $details['name'] . '</td>';
                                         echo '<td>' . date("Y-m-d H:i:s", $data['createdat']) . '</td>';
                                         echo '<td>' . number_format($data['amount'], 2) . '</td>';
-                                        if (is_menu_set('view_transactions_individual_account') != "") {
+                                        if (is_menu_set('view_transactions_individual_account') != "" OR $_SESSION['logged_in_user_type_details']['name'] == "ACCOUNT HOLDER") {
                                             echo '<td>' . number_format($data['ledger_balance'], 2) . '</td>';
                                         } else {
                                             echo '<td>' . $data['account_number'] . '</td>';

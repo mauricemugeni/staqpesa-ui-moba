@@ -108,6 +108,7 @@ class Users extends Database {
         if ($status == 200) {
             $_SESSION['userid'] = App::cleanText($info['userid']);
             $_SESSION['login_user_type'] = $info['user_type'];
+        //    $_SESSION['login_user_type_ref_id'] = $info['user_type_ref_id'];
             $_SESSION['username'] = App::cleanText($info['userid']);
             $_SESSION['user'] = $data['username'];
             $_SESSION['logged_in_user_type_details'] = $this->fetchUserTypeDetails($_SESSION['login_user_type']);
@@ -188,6 +189,36 @@ class Users extends Database {
     public function confirmIfAccountExists($account_number) {
         $data['request_type'] = 'confirm_if_account_exists';
         $data['account_number'] = $account_number;
+        $data_string = http_build_query($data);
+        $process_request = $this->sendHttpRequestPost($data_string);
+        $decoded_response = json_decode($process_request, true);
+        $status = $decoded_response['status'];
+        $info = $decoded_response['message'];
+        if ($status == 200) {
+            return true;
+        } else if ($status == 500) {
+            return false;
+        }
+    }
+
+    public function checkIfAccountHasKin() {
+        $data['request_type'] = 'check_if_account_has_kin';
+        $data['account_number'] = $_SESSION['account'];
+        $data_string = http_build_query($data);
+        $process_request = $this->sendHttpRequestPost($data_string);
+        $decoded_response = json_decode($process_request, true);
+        $status = $decoded_response['status'];
+        $info = $decoded_response['message'];
+        if ($status == 200) {
+            return true;
+        } else if ($status == 500) {
+            return false;
+        }
+    }
+
+    public function checkIfAccountHasBankingDetails() {
+        $data['request_type'] = 'check_if_account_has_banking_details';
+        $data['account_number'] = $_SESSION['account'];
         $data_string = http_build_query($data);
         $process_request = $this->sendHttpRequestPost($data_string);
         $decoded_response = json_decode($process_request, true);
@@ -684,6 +715,16 @@ class Users extends Database {
         $info = $decoded_response['message'];
         return $info;
     }
+    
+    public function getAllAccountNomineesIndividualAccount() {
+        $data['request_type'] = 'get_all_account_nominees_individual_account';
+        $data['account'] = $_SESSION['account'];
+        $data_string = http_build_query($data);
+        $process_request = $this->sendHttpRequestPost($data_string);
+        $decoded_response = json_decode($process_request, true);
+        $info = $decoded_response['message'];
+        return $info;
+    }
 
     public function getAllNextOfKins() {
         $data['request_type'] = 'get_all_next_of_kins';
@@ -1050,6 +1091,16 @@ class Users extends Database {
         $data['userid'] = $_SESSION['userid'];
         $data_string = http_build_query($data);
         $process_request = $this->sendHttpRequestPut($data_string);
+        $decoded_response = json_decode($process_request, true);
+        $info = $decoded_response['message'];
+        return $info;
+    }
+
+    public function fetchAccountBankingDtlDetails() {
+        $data['request_type'] = 'fetch_account_banking_dtl_details';
+        $data['account_number'] = $_SESSION['account'];
+        $data_string = http_build_query($data);
+        $process_request = $this->sendHttpRequestPost($data_string);
         $decoded_response = json_decode($process_request, true);
         $info = $decoded_response['message'];
         return $info;
@@ -1499,6 +1550,71 @@ class Users extends Database {
 //        }
 //        return $response;
 //    }
+
+    public function addAccountBankingDetails() {
+        $data['request_type'] = 'add_account_banking_details';
+        $data['account_number'] = $_SESSION['account'];
+        
+        if($_POST['mobile_service_provider'] == "") {
+            $data['mobile_service_provider'] = 'N/A';
+        } else {
+            $data['mobile_service_provider'] = $_POST['mobile_service_provider'];
+        }
+        
+        if($_POST['mobile_number'] == "") {
+            $data['mobile_number'] = 'N/A';
+        } else {
+            $data['mobile_number'] = $_POST['mobile_number'];
+        }
+        
+        if($_POST['bank_account_number'] == "") {
+            $data['bank_account_number'] = 'N/A';
+        } else {
+            $data['bank_account_number'] = $_POST['bank_account_number'];
+        }
+        
+        if($_POST['bank_name'] == "") {
+            $data['bank_name'] = 'N/A';
+        } else {
+            $data['bank_name'] = $_POST['bank_name'];
+        }
+        
+        if($_POST['bank_code'] == "") {
+            $data['bank_code'] = 'N/A';
+        } else {
+            $data['bank_code'] = $_POST['bank_code'];
+        }
+        
+        if($_POST['bank_branch_name'] == "") {
+            $data['bank_branch_name'] = 'N/A';
+        } else {
+            $data['bank_branch_name'] = $_POST['bank_branch_name'];
+        }
+        
+        if($_POST['bank_branch_code'] == "") {
+            $data['bank_branch_code'] = 'N/A';
+        } else {
+            $data['bank_branch_code'] = $_POST['bank_branch_code'];
+        }
+        
+        $data_string = http_build_query($data);
+        
+        if (!empty($data['request_type']) && !empty($data['account_number']) && !empty($data['mobile_number'])) {
+            $process_request = $this->sendHttpRequestPost($data_string);
+            if ($process_request) {
+                $decoded_response = json_decode($process_request, true);
+                $response['status'] = $decoded_response['status'];
+                $response['message'] = $decoded_response['message'];
+            } else {
+                $response['status'] = 400;
+                $response['message'] = "Sorry: There was an error processing the request. Please try again later";
+            }
+        } else {
+            $response['status'] = 400;
+            $response['message'] = "Error: Missing Values in Request";
+        }
+        return $response;
+    }
 
     private function addPosition() {
         $data['request_type'] = $_POST['action'];

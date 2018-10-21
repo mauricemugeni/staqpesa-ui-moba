@@ -70,8 +70,8 @@ if ($details['status'] == 1000) {
                                 <?php } ?>
                             </div>
 
-                            <div id="status-element">
-                                <?php if ($_SESSION['logged_in_user_type_details']['name'] != "INVESTOR") { ?>
+                            <div id="status-element"><P />
+                                <?php if ($_SESSION['logged_in_user_type_details']['name'] != "INVESTOR" AND $_SESSION['logged_in_user_type_details']['name'] != "ACCOUNT HOLDER") { ?>
                                     <div class="form-group"> 
                                         <label for="ref_type">Reference Type:</label>
                                         <span class="form-control"><?php echo $details['ref_type']; ?> </span>

@@ -118,36 +118,40 @@ if ($loan_status_details['account_status'] == 1000) {
                             ?>
                             <div class="action">
 
-                                <?php if ($loan_status_details['credit_status'] == 1001) { ?>
-                                    <a class="edit-individual" href="?update_loan&update_type=accept_approval&field=credit_status&code=" <?php echo $_SESSION['loan']; ?> >
-                                        Accept Approval
-                                    </a>
-                                    <a class="edit-individual-warning" href="?update_loan&update_type=reject_approval&field=credit_status&code=" <?php echo $_SESSION['loan']; ?> >
-                                        Reject Approval
-                                    </a>
-                                    <?php
-                                    if ($loan_status_details['status'] == 1001 AND $loan_status_details['account_status'] == 1001) {
+                                <?php
+                                if (isset($_SESSION['institution_staff'])) {
+                                    if ($loan_status_details['credit_status'] == 1001) {
                                         ?>
-                                        <a class="edit-individual" href="?update_loan&update_type=edit&code=" <?php echo $_SESSION['loan']; ?> >
-                                            Edit
-                                        </a> <p />
+                                        <a class="edit-individual" href="?update_loan&update_type=accept_approval&field=credit_status&code=" <?php echo $_SESSION['loan']; ?> >
+                                            Accept Approval
+                                        </a>
+                                        <a class="edit-individual-warning" href="?update_loan&update_type=reject_approval&field=credit_status&code=" <?php echo $_SESSION['loan']; ?> >
+                                            Reject Approval
+                                        </a>
                                         <?php
-                                    }
-                                }
-
-                                if ($loan_status_details['creditedby'] != $_SESSION['userid']) {
-
-                                    if ($loan_status_details['credit_status'] != 1010 AND $loan_status_details['credit_status'] != 1001) {
-                                        ?>
-
-                                        <?php if ($loan_status_details['account_status'] == 1001) { ?>
-                                            <a class="edit-individual" href="?update_loan&update_type=accept_approval&field=account_status&code=" <?php echo $_SESSION['loan']; ?> >
-                                                Accept Approval
-                                            </a>
-                                            <a class="edit-individual-warning" href="?update_loan&update_type=reject_approval&field=account_status&code=" <?php echo $_SESSION['loan']; ?> >
-                                                Reject Approval
-                                            </a>
+                                        if ($loan_status_details['status'] == 1001 AND $loan_status_details['account_status'] == 1001) {
+                                            ?>
+                                            <a class="edit-individual" href="?update_loan&update_type=edit&code=" <?php echo $_SESSION['loan']; ?> >
+                                                Edit
+                                            </a> <p />
                                             <?php
+                                        }
+                                    }
+
+                                    if ($loan_status_details['creditedby'] != $_SESSION['userid']) {
+
+                                        if ($loan_status_details['credit_status'] != 1010 AND $loan_status_details['credit_status'] != 1001) {
+                                            ?>
+
+                                            <?php if ($loan_status_details['account_status'] == 1001) { ?>
+                                                <a class="edit-individual" href="?update_loan&update_type=accept_approval&field=account_status&code=" <?php echo $_SESSION['loan']; ?> >
+                                                    Accept Approval
+                                                </a>
+                                                <a class="edit-individual-warning" href="?update_loan&update_type=reject_approval&field=account_status&code=" <?php echo $_SESSION['loan']; ?> >
+                                                    Reject Approval
+                                                </a>
+                                                <?php
+                                            }
                                         }
                                     }
                                 }
@@ -169,15 +173,15 @@ if ($loan_status_details['account_status'] == 1000) {
                                 </div>
                                 <div class="form-group">
                                     <label for="principal_amount">Principal Amount <?php echo '(' . $_SESSION['chapter_details']['currency'] . ')'; ?>:</label>
-                                    <span class="form-control"><?php echo $_SESSION['chapter_details']['currency']. " ." . number_format($loan_principal_amount, 2); ?></span>
+                                    <span class="form-control"><?php echo $_SESSION['chapter_details']['currency'] . " ." . number_format($loan_principal_amount, 2); ?></span>
                                 </div>
                                 <div class="form-group">
                                     <label for="interest">Cumulative Interest <?php echo '(' . $_SESSION['chapter_details']['currency'] . ')'; ?>:</label>
-                                    <span class="form-control"><?php echo $_SESSION['chapter_details']['currency']. " ." .number_format( $loan_details['interest'], 2); ?></span> 
+                                    <span class="form-control"><?php echo $_SESSION['chapter_details']['currency'] . " ." . number_format($loan_details['interest'], 2); ?></span> 
                                 </div>
                                 <div class="form-group">
                                     <label for="repayable_amount">Total Repayable Amount <?php echo '(' . $_SESSION['chapter_details']['currency'] . ')'; ?>:</label>
-                                    <span class="form-control"><?php echo $_SESSION['chapter_details']['currency']. " ." . number_format($repayable_amount, 2); ?></span> 
+                                    <span class="form-control"><?php echo $_SESSION['chapter_details']['currency'] . " ." . number_format($repayable_amount, 2); ?></span> 
                                 </div>
                                 <div class="form-group">
                                     <label for="duration">Duration:</label>
@@ -189,7 +193,7 @@ if ($loan_status_details['account_status'] == 1000) {
                                 </div>
                                 <div class="form-group">
                                     <label for="instalment_amount">Instalment Amount <?php echo '(' . $_SESSION['chapter_details']['currency'] . ')'; ?>:</label>
-                                    <span class="form-control"><?php echo $_SESSION['chapter_details']['currency']. " ." . number_format($loan_details['instalment_amount'], 2); ?></span> 
+                                    <span class="form-control"><?php echo $_SESSION['chapter_details']['currency'] . " ." . number_format($loan_details['instalment_amount'], 2); ?></span> 
                                 </div>
                                 <div class="form-group">
                                     <label for="createdat">Created At:</label>
@@ -262,8 +266,8 @@ if ($loan_status_details['account_status'] == 1000) {
                                         <label for="lastmodifiedby">Last Modified By:</label>
                                         <span class="form-control"><?php echo $lastmodifiedby['firstname'] . " " . $lastmodifiedby['middlename'] . " " . $lastmodifiedby['lastname']; ?></span>
                                     </div>
-                                
-                                <?php
+
+                                    <?php
                                 }
                                 if ($loan_details['lastauthorizedat'] != NULL AND $loan_details['lastauthorizedat'] != NULL) {
                                     $lastauthorizedby = $users->fetchStaffDetails($loan_details['lastauthorizedby']);

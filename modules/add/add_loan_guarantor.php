@@ -27,30 +27,26 @@ if (!empty($_POST)) {
 
             App::redirectTo("?add_loan_guarantor");
         } else {
-            echo '<script>$.notify("Warning: Guarantor does not exist. Try again!", "warn");</script>';
-            echo '<script>alert("Account doesnt exits");</script>';
+            $_SESSION['account_does_not_exist'] = true;
+            $_SESSION['feedback_message'] = "<strong>Ooops:</strong> The entered Identification number does not relate with any of the existing members. Please check and try again.";
+
+            App::redirectTo("?add_loan_guarantor");
         }
-    } else {
-        if (isset($_SESSION['transitional_data'])) {
-            $success = $transitional_data->execute();
-            if ($success['status'] == 200) {
-                $_SESSION['add_success'] = true;
-                $_SESSION['feedback_message'] = "<strong>Successful:</strong> The loan application has been submitted successfully. You shall be notified once the approval has been finalized.";
-                App::redirectTo("?view_loans");
-            } else {
-                $_SESSION['add_fail'] = true;
-                $_SESSION['feedback_message'] = "<strong>Error!</strong> There was an error submitting your loan application. Please try applying again.";
+    } else if ($_POST['action'] == "proceed") {
+        $checkIfAccountHasKin = $users->checkIfAccountHasKin();
+        
+        if ($checkIfAccountHasKin == true) {
+            $checkIfAccountHasBankingDetails = $users->checkIfAccountHasBankingDetails();
+
+            if ($checkIfAccountHasBankingDetails == true) {
+                $_SESSION['has_banking_details'] = true;
+            } else if ($checkIfAccountHasBankingDetails == false) {
+                $_SESSION['has_banking_details'] = false;
             }
-        } else {
-            $success = $loans->execute();
-            if ($success['status'] == 200) {
-                $_SESSION['add_success'] = true;
-                $_SESSION['feedback_message'] = "<strong>Successful:</strong> The loan application has been submitted successfully. You shall be notified once the approval has been finalized.";
-                App::redirectTo("?view_loans");
-            } else {
-                $_SESSION['add_fail'] = true;
-                $_SESSION['feedback_message'] = "<strong>Error!</strong> There was an error submitting your loan application. Please try applying again.";
-            }
+            
+            App::redirectTo("?add_account_banking");
+        } else if ($checkIfAccountHasKin == false) {
+            App::redirectTo("?add_next_of_kin");
         }
     }
 }
@@ -70,7 +66,19 @@ if (!empty($_POST)) {
                             <br /><br />
                             <?php
                             require_once('modules/menus/sub-sub-menu-buttons.php');
-                            if (isset($_SESSION['add_success'])) {
+                            if (isset($_SESSION['account_does_not_exist'])) {
+
+                                $_SESSION['add_record_fail'] = "<div class='alert alert-block alert-danger'>
+                                        <button data-dismiss='alert' class='close close-sm' type='button'>
+                                            <i class='fa fa-times'></i>
+                                        </button>"
+                                        . $_SESSION['feedback_message']
+                                        . "</div>";
+
+                                echo $_SESSION['add_record_fail'];
+                                unset($_SESSION['feedback_message']);
+                                unset($_SESSION['account_does_not_exist']);
+                            } else if (isset($_SESSION['add_success'])) {
                                 echo $_SESSION['add_record_success'];
                                 unset($_SESSION['feedback_message']);
                                 unset($_SESSION['add_success']);
@@ -127,13 +135,9 @@ if (!empty($_POST)) {
                             if ($outstanding_balance < 1) {
                                 ?>
                                 <form role="form" method="POST">
-                                    <?php if (isset($_SESSION['transitional_data'])) { ?>
-                                        <input type="hidden" name="action" value="transitional_add_loan_guarantor"/>
-                                        <input type="hidden" name="createdby" value="<?php echo $_SESSION['userid']; ?>"/>
-                                    <?php } else { ?>                        
-                                        <input type="hidden" name="action" value="add_loan">
-                                    <?php } ?>
-                                    <button type="submit" class="btn btn-info">Submit</button>
+                                    <input type="hidden" name="action" value="proceed"/>
+                                    <p /><p />
+                                    <button type="submit" class="btn btn-info">Next</button>
                                 </form>
                             <?php } ?>
                         </div>

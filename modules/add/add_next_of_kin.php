@@ -7,7 +7,7 @@ require_once WPATH . "modules/classes/Settings.php";
 $settings = new Settings();
 $users = new Users();
 $loans = new Loans();
-$ref_type = $_GET['ref_type'];
+//$ref_type = $_GET['ref_type'];
 
 if (!empty($_POST)) {
     $_SESSION['next_of_kin_firstname'] = $_POST['firstname'];
@@ -20,17 +20,14 @@ if (!empty($_POST)) {
     $_SESSION['next_of_kin_workplace'] = $_POST['workplace'];
     $_SESSION['next_of_kin_physical_address'] = $_POST['physical_address'];
 
-    if ($_SESSION['user_type'] == "ACCOUNT HOLDER") {
-        $success = $users->execute();
-        if ($success['status'] == 200) {
-            $_SESSION['add_success'] = true;
-            $_SESSION['feedback_message'] = "<strong>Successful:</strong> The account has been created successfully.";
-            App::redirectTo("?add_account_holder&account_number=" . $_SESSION['account']);
-        } else {
-            $_SESSION['add_fail'] = true;
-            $_SESSION['feedback_message'] = "<strong>Error!</strong> There was an error creating the account. Please try again.";
-            App::redirectTo("?add_account");
+    if ($_SESSION['account']) {
+        $checkIfAccountHasBankingDetails = $users->checkIfAccountHasBankingDetails();
+        if ($checkIfAccountHasBankingDetails == true) {
+            $_SESSION['has_banking_details'] == true;
+        } else if ($checkIfAccountHasBankingDetails == false) {
+            $_SESSION['has_banking_details'] == false;
         }
+        App::redirectTo("?add_account_banking");
     }
 }
 ?>

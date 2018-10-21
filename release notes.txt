@@ -489,3 +489,74 @@ Deleted files:
 Null
 
 *********************************************************************************************************************************************************************************************
+21 October, 2018 - Maurice
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Summary
+1. Cntinued with the rebranding of the UI module to be generally acceptable across organizations/clients.....the case study here is MOBA sacco. Finalized on the account-holder section of the module for first draft review.
+------------------------------------------------
+Website
+------------------------------------------------
+Edited files:
+Null
+
+Added files:
+Null
+
+Deleted files:
+Null
+
+------------------------------------------------
+Admin Portal
+------------------------------------------------
+Edited files:
+
+1. controller.php
+2. core/configs.ini
+3. core/template/footer.php
+4. modules/add/add_account_banking.php
+5. modules/add/add_deposit.php
+6. modules/add/add_loan.php
+7. modules/add/add_loan_guarantor.php
+8. modules/add/add_loan_next.php
+9. RENAMED 'modules/add/add_next_of_kins.php' TO 'modules/add/add_next_of_kin.php'
+10. modules/classes/Loans.php
+11. modules/classes/Users.php
+12. modules/dashboard/loan_calculator.php
+13. modules/login.php
+14. modules/menus/main_sidebar.php
+15. modules/menus/sub-sub-menu-buttons.php
+16. modules/menus/sub_menu_account.php
+17. modules/read/view_account_nominees.php
+18. modules/read/view_account_to_account_transfers.php
+19. modules/read/view_contacts_individual.php
+20. modules/read/view_deposits.php
+21. modules/read/view_loans_individual.php
+22. modules/read/view_shares.php
+23. modules/read/view_transactions.php
+24. modules/read/view_withdrawals.php
+25. modules/read/view_withdrawals_individual.php
+
+Added files:
+Null
+
+Deleted files:
+Null
+
+------------------------------------------------
+API
+------------------------------------------------
+
+Edited files:
+
+1. core/configs_moba.ini
+2. modules/classes/Loans.php
+3. modules/classes/Users.php
+4. modules/index.php
+
+Added files:
+Null
+
+Deleted files:
+Null
+
+*********************************************************************************************************************************************************************************************

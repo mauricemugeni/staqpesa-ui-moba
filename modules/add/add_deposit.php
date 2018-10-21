@@ -30,7 +30,7 @@ if (!empty($_POST)) {
             <?php require_once('modules/menus/sub_menu_transactions.php'); ?>
             <div class="row">
                 <form role="form" method="POST">
-                    <div class="col-lg-9">
+                    <div class="col-lg-7">
                         <section class="panel">
                             <header class="panel-heading">
                                 Customer Deposit
@@ -47,6 +47,7 @@ if (!empty($_POST)) {
                                 <input type="hidden" name="action" value="add_deposit"/>
                                 <input type="hidden" name="createdby" value="<?php echo $_SESSION['userid']; ?>"/>
                                 <input type="hidden" name="transaction_type" value="DEPOSIT"/>
+                                <input type="hidden" name="transactedby" value="<?php echo $_SESSION['user_details']['firstname'] . " " . $_SESSION['user_details']['lastname']; ?>"/>
                                 <div class="form-group">
                                     <label for="account_name">Account Number</label>
                                     <input type="text" class="form-control" id="account_number" name="account_number" placeholder="Account Number" value="<?php echo $_SESSION['account']; ?>" readonly="true" />
@@ -94,18 +95,19 @@ if (!empty($_POST)) {
                                 <div class="form-group">
                                     <label for="payment_method">Payment Method</label>
                                     <select name="payment_method" class="form-control">          
-                                        <option value="Bank Deposit">Bank Deposit</option>
-                                        <option value="Mobile Money">Mobile Money</option>
+                                        <!--<option value="Bank Deposit">Bank Deposit</option>-->
+                                        <!--                                        <option value="Mobile Money">Mobile Money</option>-->
+                                        <option value="Mobile Money">M-Pesa (Follow steps on the right)</option>
                                     </select> 
                                 </div>
                                 <div class="form-group">
                                     <label for="payment_ref_number">Payment Reference Number</label>
                                     <input type="text" class="form-control" id="payment_ref_number" name="payment_ref_number" placeholder="Payment Reference Number" required="true" />
                                 </div>
-                                <div class="form-group">
+<!--                                <div class="form-group">
                                     <label for="transactedby">Transacted By</label>
                                     <input type="text" class="form-control" id="transactedby" name="transactedby" placeholder="Deposited By" required="true"/>
-                                </div>
+                                </div>-->
                                 <div class="form-group checkbox">
                                     <label>
                                         <input type="checkbox" name="terms_and_conditions" value="" required="true"> I accept <?php echo $_SESSION['chapter_details']['chapter_name']; ?> <a href="?website_tac">terms and conditions</a>
@@ -118,7 +120,7 @@ if (!empty($_POST)) {
                             </div>
                         </section>
                     </div>     
-                    <div class="col-lg-3">
+                    <div class="col-lg-5">
                         <section class="panel">
                             <header class="panel-heading">
                                 <i class="fa fa-money"></i> Payment
@@ -128,27 +130,23 @@ if (!empty($_POST)) {
                                     <ol style="color: #ffffff;">         
                                         <li>Go to Mpesa on your phone</li>
                                         <li>Select Lipa na Mpesa</li>
-                                        <li>Select Buy Goods and Services</li>
-                                        <li>Enter Till Number: <?php echo $_SESSION['till_number']; ?></li>
-                                        <?php if (isset($_SESSION["cart_item"])) { ?>
-                                            <li>Enter Amount: <?php echo $_SESSION["cart_total_cost"]; ?></li>
-                                        <?php } else { ?>
-                                            <li>Enter Amount: 0</li>
-                                        <?php } ?>
-
+                                        <li>Select Pay Bill</li>
+                                        <li>Enter Business Number: <?php echo $_SESSION['institution_paybill_number']; ?></li>
+                                        <li>Enter Account Number: <?php echo $_SESSION['account']; ?></li>
+                                        <li>Enter Amount: <?php // echo $_POST["amount"];   ?></li>
                                         <li>Enter your Mpesa PIN and send</li>
-                                        <li>Once you receive a successful reply from Mpesa, click the submit button below</li>
+                                        <li>Once you receive a successful reply from Mpesa, fill out the 'Payment Reference Number' field on the left then proceed to submit the form.</li>
                                     </ol>
                                 </div>
                                 <br />
-                                <div class="form-group">
-                                    <label for="mpesa_reference" style="color: #ffffff;">Transaction Reference </label>
-                                    <input type="text" class="form-control " name="transaction_ref_number" placeholder="E.g. MX***********" <?php
-                                           if (isset($_SESSION["transaction_ref_number"])) {
-                                               echo "value='{$_SESSION["transaction_ref_number"]}'";
-                                           }
-                                           ?> required="">
-                                </div>
+                                <!--                                <div class="form-group">
+                                                                    <label for="payment_ref_number" style="color: #ffffff;">Payment Reference Number </label>
+                                                                    <input type="text" class="form-control " name="payment_ref_number" placeholder="E.g. MX***********" <?php
+//                                           if (isset($_SESSION["payment_ref_number"])) {
+//                                               echo "value='{$_SESSION["payment_ref_number"]}'";
+//                                           }
+                                ?> required="true">
+                                                                </div>-->
 
 
 

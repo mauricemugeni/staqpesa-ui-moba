@@ -7,7 +7,7 @@ $users = new Users();
 $withdrawals = new Transactions();
 $transaction_type = "ACCOUNT TO ACCOUNT TRANSFER";
 unset($_SESSION['transaction_type']);
-unset($_SESSION['withdrawal']);
+//unset($_SESSION['account_to_account_transfer']);
 unset($_SESSION['search']);
 ?>
 

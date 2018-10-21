@@ -19,6 +19,8 @@ $_SESSION['institution_code'] = $configs["institution_code"];
 $_SESSION['institution_name'] = $configs["institution_name"];
 $_SESSION['institution_email'] = $configs["institution_email"];
 $_SESSION['institution_phone'] = $configs["institution_phone"];
+$_SESSION['institution_paybill_number'] = $configs["institution_paybill_number"];
+$_SESSION['reflex_paybill_number'] = $configs["reflex_paybill_number"];
 $_SESSION['solo_chapter_code'] = $configs["solo_chapter_code"];
 
 if (!isset($_SESSION['chapter_details'])) {

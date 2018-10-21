@@ -7,7 +7,7 @@ $users = new Users();
 $deposits = new Transactions();
 $transaction_type = "SHARES DEPOSIT";
 unset($_SESSION['transaction_type']);
-unset($_SESSION['shares_deposit']);
+//unset($_SESSION['shares_deposit']);
 unset($_SESSION['search']);
 ?>
 
@@ -36,13 +36,17 @@ unset($_SESSION['search']);
                                 <tr>
                                     <th>Transaction ID</th>
                                     <th>Date</th>
-                                    <th>Account Number</th>
+                                    <?php if (!isset($_SESSION['account'])) { ?>
+                                        <th>Account Number</th>
+                                    <?php } ?>
                                     <th>Amount <?php echo '(' . $_SESSION['chapter_details']['currency'] . ')'; ?></th>
                                     <th>Deposited By</th>
-                                    <th>Staff</th>
+                                    <?php if ($_SESSION['logged_in_user_type_details']['name'] != "ACCOUNT HOLDER") { ?>
+                                        <th>Staff</th>
+                                    <?php } ?>
                                 </tr>
                                 <?php
-                                if (!empty($_POST) AND !isset($_POST['create_pdf'])) {
+                                if (!empty($_POST) AND ! isset($_POST['create_pdf'])) {
                                     $info = $deposits->execute();
                                 } else if (is_menu_set('view_shares_notifications') != "") {
                                     $info = $deposits->getAllTransactionNotifications($transaction_type);
@@ -51,7 +55,7 @@ unset($_SESSION['search']);
                                 } else {
                                     $info = $deposits->getAllTransactions($transaction_type);
                                 }
-                                
+
                                 if (isset($_POST['create_pdf'])) {
                                     $_SESSION['author'] = $_SESSION['user_details']['firstname'] . ' ' . $_SESSION['user_details']['lastname'];
                                     $_SESSION['document_name'] = 'shares.pdf';
@@ -69,10 +73,14 @@ unset($_SESSION['search']);
                                     echo "<tr>";
                                     echo "<td>  No record found.</td>";
                                     echo "<td> </td>";
+                                    if (!isset($_SESSION['account'])) {
+                                        echo "<td> </td>";
+                                    }
                                     echo "<td> </td>";
                                     echo "<td> </td>";
-                                    echo "<td> </td>";
-                                    echo "<td> </td>";
+                                    if ($_SESSION['logged_in_user_type_details']['name'] != "ACCOUNT HOLDER") {
+                                        echo "<td> </td>";
+                                    }
                                     echo "</tr>";
                                 } else {
                                     foreach ($info as $data) {
@@ -90,22 +98,34 @@ unset($_SESSION['search']);
                                             $status = "ACTIVE";
                                         }
 
-                                        $staff_details_createdby = $users->fetchStaffDetails($data['createdby']);
+                                        if (is_numeric($data['createdby']) == true) {
+                                            $staff_details_createdby = $users->fetchStaffDetails($data['createdby']);
+                                            $creator = $staff_details_createdby['firstname'] . " " . $staff_details_createdby['middlename'] . " " . $staff_details_createdby['lastname'];
+                                        } else {
+                                            $creator = $data['createdby'];
+                                        }
+
+                                        //$staff_details_createdby = $users->fetchStaffDetails($data['createdby']);
 
                                         echo '<tr>';
                                         echo "<td> <a href='#'>" . $data['id'] . '</td>';
                                         echo '<td>' . date("Y-m-d H:i:s", $data['createdat']) . '</td>';
-                                        echo '<td>' . $data['account_number'] . '</td>';
+                                        if (!isset($_SESSION['account'])) {
+                                            echo '<td>' . $data['account_number'] . '</td>';
+                                        }
                                         echo '<td>' . number_format($data['amount'], 2) . '</td>';
                                         echo '<td>' . $data['transactedby'] . '</td>';
-                                        echo '<td>' . $staff_details_createdby['firstname'] . " " . $staff_details_createdby['middlename'] . " " . $staff_details_createdby['lastname'] . '</td>';
+                                        if ($_SESSION['logged_in_user_type_details']['name'] != "ACCOUNT HOLDER") {
+                                            echo '<td>' . $creator . '</td>';
+                                        }
+                                        // echo '<td>' . $staff_details_createdby['firstname'] . " " . $staff_details_createdby['middlename'] . " " . $staff_details_createdby['lastname'] . '</td>';
                                         echo '</tr>';
                                     }
                                 }
                                 ?>
                             </table>
                         </div><!-- /.panel-body -->
-<?php // echo $_SESSION['pagination'];  ?>
+                        <?php // echo $_SESSION['pagination'];  ?>
                     </div><!-- /.panel -->
                 </div>        
             </div><!--row1-->

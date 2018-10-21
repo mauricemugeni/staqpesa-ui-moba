@@ -8,9 +8,9 @@ $transactions = new Transactions();
 $users = new Users();
 $loans = new Loans();
 $account_details = $users->fetchAccountDetails($_SESSION['account']);
+$loan_type_details = $loans->fetchLoanTypeDetails($_SESSION['loan_type']);
 
 if (!empty($_POST)) {
-    $loan_type_details = $loans->fetchLoanTypeDetails($_SESSION['loan_type']);
     $instalment_frequency_details = $loans->fetchInstalmentFrequencyDetails($loan_type_details['instalment_frequency']);
     $_SESSION['transaction_type'] = $transactions->getTransactionRefTypeId($_POST['transaction_type']);
 
@@ -98,39 +98,21 @@ if (!empty($_POST)) {
                                 </div>                                
                                 <div class="form-group">
                                     <label for="duration">Duration in Months</label>
-                                    <select name="duration" class="form-control">    
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>   
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>   
-                                        <option value="5">5</option>
-                                        <option value="6">6</option>
-                                        <option value="7">7</option>
-                                        <option value="8">8</option>   
-                                        <option value="9">9</option>
-                                        <option value="10">10</option>
-                                        <option value="11">11</option>
-                                        <option value="12">12</option>   
-                                        <option value="13">13</option>
-                                        <option value="14">14</option>   
-                                        <option value="15">15</option>
-                                        <option value="16">16</option>
-                                        <option value="17">17</option>
-                                        <option value="18">18</option>   
-                                        <option value="19">19</option>
-                                        <option value="20">20</option>
-                                        <option value="21">21</option>
-                                        <option value="22">22</option>   
-                                        <option value="23">23</option>
-                                        <option value="24">24</option>
+                                    <select name="duration" class="form-control" required="true">   
+                                        <option value="">Select period</option>
+
+                                        <?php
+                                        $start_duration = 1;
+                                        $end_duration = (int) $loan_type_details['maximum_duration'];
+
+                                        while ($start_duration <= $end_duration) {
+                                            echo '<option value="' . $start_duration . '">' . $start_duration . '</option>';
+                                            $start_duration++;
+                                        }
+                                        ?>
+
                                     </select> 
                                 </div>
-
-                                <!--                                <div class="form-group">
-                                                                    <label for="duration">Duration in Months</label>
-                                                                    <input type="number" class="form-control" id="duration" name="duration" placeholder="eg. 6" required="yes"/>
-                                                                </div>-->
-
 
                                 <div class="form-group">
                                     <label for="purpose">Purpose of Loan</label>
@@ -138,11 +120,11 @@ if (!empty($_POST)) {
                                 </div>
 
                                 <!--                                <div class="form-group">
-                                                                    <label for="eunique_credit">Outstanding credit from us in <?php // echo '(' . $_SESSION['chapter_details']['currency'] . ')';      ?></label>   
+                                                                    <label for="eunique_credit">Outstanding credit from us in <?php // echo '(' . $_SESSION['chapter_details']['currency'] . ')';       ?></label>   
                                                                     <input type="number" class="form-control" id="eunique_credit" name="eunique_credit" placeholder="eg. 500000" required="yes"/>
                                                                 </div>
                                                                 <div class="form-group">
-                                                                    <label for="other_credit">Credit from Other Sources in <?php // echo '(' . $_SESSION['chapter_details']['currency'] . ')';      ?></label>
+                                                                    <label for="other_credit">Credit from Other Sources in <?php // echo '(' . $_SESSION['chapter_details']['currency'] . ')';       ?></label>
                                                                     <input type="number" class="form-control" id="other_credit" name="other_credit" placeholder="eg. 500000" required="yes"/>
                                                                 </div>-->
 
@@ -225,14 +207,8 @@ if (!empty($_POST)) {
                                         <input type="text" class="form-control" id="customer_name" name="customer_name" placeholder="eg. John Fredrick Kennedy" required="yes"/>
                                     </div>
                                 <?php } ?>
-
-                                <div class="form-group checkbox">
-                                    <label>
-                                        <input type="checkbox" name="terms_and_conditions" value="" required="true"> I accept <?php echo $_SESSION['chapter_details']['chapter_name']; ?> <a href="?website_tac">terms and conditions</a>
-                                    </label>
-                                </div>
-
-                                <button type="submit" class="btn btn-info">Submit</button>
+                                
+                                <button type="submit" class="btn btn-info">Next</button>
                             </form>
 
                         </div>

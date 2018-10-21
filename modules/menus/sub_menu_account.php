@@ -4,7 +4,7 @@ $notifications = new Notifications();
 
 if (is_menu_set('?') != "") {
     $action = "search_user";
-} else if ((is_menu_set('add_account') != "") OR (is_menu_set('add_personal_occupation_details') != "") OR (is_menu_set('add_group_account_details') != "") OR (is_menu_set('add_business_account_details') != "") OR ( is_menu_set('add_account_banking') != "")) {
+} else if ((is_menu_set('add_account') != "") OR (is_menu_set('add_personal_occupation_details') != "") OR (is_menu_set('add_group_account_details') != "") OR (is_menu_set('add_business_account_details') != "") OR ( is_menu_set('add_account_banking') != "") OR ( is_menu_set('add_account_banking_new') != "")) {
     $request_type = "search_accounts";
     $action_place_holder = "Search Accounts";
 } else if (is_menu_set('transitional_update_account') != "") {

@@ -732,8 +732,17 @@ if (App::isLoggedIn()) {
                                 </a>
                             </div>
                         </div>
-
+                        
                         <!--Menu Item 10-->
+                        <div class="panel panel-default">
+                            <div class="panel-heading" id="headingEleven">
+                                <a role="button" href="?view_account_nominees" >
+                                    <i class="fa fa-users"></i> <span id="title">Account Nominees</span>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!--Menu Item 9-->
                         <div class="panel panel-default">
                             <div class="panel-heading" id="headingTen">
                                 <a role="button" href="?engage_loan_calculator" >
@@ -741,7 +750,7 @@ if (App::isLoggedIn()) {
                                 </a>
                             </div>
                         </div>
-
+                        
                     <?php } else if ($_SESSION['logged_in_user_type_details']['name'] == "GUEST") {
                         ?>
 

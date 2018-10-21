@@ -776,7 +776,9 @@ class Loans extends Database {
         $data['other_credit_status'] = $_SESSION['other_credit_status'];
         $data['other_credit_organization'] = $_SESSION['other_credit_organization'];
         $data['other_credit_amount'] = $_SESSION['other_credit_amount'];
-        $data['other_credit_date_issued'] = $_SESSION['other_credit_date_issued'];
+        $data['other_credit_date_issued'] = $_SESSION['other_credit_date_issued'];        
+        $data['delivery_method'] = $_SESSION['delivery_method'];
+        $data['banking_details_id'] = $_SESSION['banking_details_id'];        
         $data['createdby'] = $_SESSION['createdby'];
 
         // Transactions
@@ -808,7 +810,7 @@ class Loans extends Database {
         
         $data_string = http_build_query($data);
         
-        if (!empty($data['request_type']) && !empty($data['loan_type']) && !empty($data['principal_amount']) && !empty($data['account_number']) && !empty($data['transaction_type']) && !empty($data['guarantors_details']) && !empty($data['createdby'])) {
+        if (!empty($data['request_type']) && !empty($data['loan_type']) && !empty($data['principal_amount']) && !empty($data['account_number']) && !empty($data['transaction_type']) && !empty($data['guarantors_details']) && !empty($data['delivery_method'])) {
             $process_request = $this->sendHttpRequestPost($data_string);
             if ($process_request) {
                 $decoded_response = json_decode($process_request, true);

@@ -39,15 +39,20 @@ if ($details['status'] == 1000) {
                         </header>
                         <div class="panel-body">
                             <div class="action">
-                                <?php if ($details['createdby'] != $_SESSION['userid'] AND ( $details['status'] == 1001 OR $details['status'] == 1032)) { ?>
-                                    <a class="edit-individual" href="?update_withdrawal&update_type=accept_approval&code=" <?php echo $code; ?> >
-                                        Accept Approval
-                                    </a>
-                                    <a class="edit-individual-warning" href="?update_withdrawal&update_type=reject_approval&code=" <?php echo $code; ?> >
-                                        Reject Approval
-                                    </a>
-                                    <?php
-                                }
+                                <?php
+//                                if (isset($_SESSION['institution_staff'])) {
+//                                    if ($details['createdby'] != $_SESSION['userid'] AND ( $details['status'] == 1001 OR $details['status'] == 1032)) {
+//                                        
+                                ?>
+<!--                                        <a class="edit-individual" href="?update_withdrawal&update_type=accept_approval&code="<?php // echo $code;   ?> >
+                                            Accept Approval
+                                        </a>
+                                        <a class="edit-individual-warning" href="?update_withdrawal&update_type=reject_approval&code="<?php // echo $code;   ?> >
+                                            Reject Approval
+                                        </a>-->
+                                <?php
+//                                    }
+//                                }
                                 ?>
                             </div>
 
@@ -61,8 +66,8 @@ if ($details['status'] == 1000) {
                                     <span class="form-control"><?php echo $details['account_number']; ?></span> 
                                 </div>
                                 <div class="form-group">   
-                                    <label for="amount">Amount <?php echo '(' . $_SESSION['currency'] . ')'; ?>:</label>
-                                    <span class="form-control"><?php echo $_SESSION['currency'] . " ." . number_format($details['amount'], 2); ?></span> 
+                                    <label for="amount">Amount <?php echo '(' . $_SESSION['chapter_details']['currency'] . ')'; ?>:</label>
+                                    <span class="form-control"><?php echo $_SESSION['chapter_details']['currency'] . " ." . number_format($details['amount'], 2); ?></span> 
                                 </div>
                                 <div class="form-group">     
                                     <label for="transactedby">Transacted By:</label>

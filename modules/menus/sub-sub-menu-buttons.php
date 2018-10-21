@@ -238,7 +238,8 @@ else if ((is_menu_set('view_account_types') != "") OR ( is_menu_set('view_accoun
     $action_holder = "My Loan Repayments";
 } else if (is_menu_set('add_loan_guarantor') != "") {
     $request_url = "#";
-    $action_holder = "Unguaranteed: 63,000";
+    $action_holder = "Unguaranteed: ";
+//    $action_holder = "Unguaranteed: " . $_SESSION['outstanding_balance_to_be_guaranteed'];
 }
 ?>
 
@@ -311,6 +312,13 @@ if (is_menu_set('view_transactions') != "" OR is_menu_set('view_account_to_accou
 <?php } ?>
 
 <?php if (is_menu_set('add_loan_guarantor') != "") {
+    
+    $_SESSION['outstanding_balance_to_be_guaranteed'] = $_SESSION['principal_amount'];
+ //   $outstanding_balance_to_be_guaranteed = $_SESSION['principal_amount'];
+    if (!empty($_POST) AND $_POST['action'] == "update_loan_guarantors_list") {        
+        $_SESSION['new_outstanding_balance_to_be_guaranteed'] = $_SESSION['outstanding_balance_to_be_guaranteed'] - $_POST["amount"];
+        $_SESSION['outstanding_balance_to_be_guaranteed'] = $_SESSION['new_outstanding_balance_to_be_guaranteed'];
+    }
     ?>
 
     <form role="form" method="POST">
@@ -332,7 +340,7 @@ if (is_menu_set('view_transactions') != "" OR is_menu_set('view_account_to_accou
                     <span class="input-group-addon">
                         Guarantee Amount <?php echo '(' . $_SESSION['chapter_details']['currency'] . ')'; ?>
                     </span>
-                    <input type="number" class="form-control" id="amount" name="amount" placeholder="Amount" required="true"/>
+                    <input type="number" class="form-control" id="amount" name="amount" placeholder="<?php echo $_SESSION['outstanding_balance_to_be_guaranteed']; ?>" required="true"/>
                 </div>
             </div>
         </div>
