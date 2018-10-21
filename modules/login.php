@@ -60,7 +60,7 @@ if (!empty($_POST)) {
 <div class="templatemo-content-widget templatemo-login-widget white-bg">
     <header class="text-center">
         <h1><a href="<?php echo $_SESSION['website_url']; ?>" title="MOBA Sacco" class="logo">
-                <img style="margin-top: 30px;" src="img/branding/chapter_logos/<?php echo $_SESSION['chapter_code'] . '.svg'; ?>" width="160">
+                <img style="margin-top: 30px;" src="img/branding/svg/moba.svg" width="160">
             </a></h1>
         <h5>Realize Your Dreams</h5>
     </header>
