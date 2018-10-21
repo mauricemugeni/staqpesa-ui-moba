@@ -108,7 +108,7 @@ class Users extends Database {
         if ($status == 200) {
             $_SESSION['userid'] = App::cleanText($info['userid']);
             $_SESSION['login_user_type'] = $info['user_type'];
-        //    $_SESSION['login_user_type_ref_id'] = $info['user_type_ref_id'];
+            $_SESSION['login_user_type_ref_id'] = $info['user_type_ref_id'];
             $_SESSION['username'] = App::cleanText($info['userid']);
             $_SESSION['user'] = $data['username'];
             $_SESSION['logged_in_user_type_details'] = $this->fetchUserTypeDetails($_SESSION['login_user_type']);
@@ -1642,30 +1642,22 @@ class Users extends Database {
 
     private function addNextOfKin() {
         $data['request_type'] = $_POST['action'];
+        $data['ref_type'] = $_SESSION['ref_type'];
+        $data['ref_id'] = $_SESSION['ref_id'];
         $data['firstname'] = $_POST['firstname'];
         $data['middlename'] = $_POST['middlename'];
         $data['lastname'] = $_POST['lastname'];
         $data['relationship'] = $_POST['relationship'];
-        $data['ref_type'] = $_POST['ref_type'];
-        $data['ref_id'] = $_POST['ref_id'];
-
-        //Contacts
-        $data['phone_number1'] = $_SESSION['phone_number1'];
-        $data['phone_number2'] = $_SESSION['phone_number2'];
-        $data['email'] = $_SESSION['email'];
-        $data['postal_number'] = $_SESSION['postal_number'];
-        $data['postal_code'] = $_SESSION['postal_code'];
-        $data['town'] = $_SESSION['town'];
-        $data['residential_area'] = $_SESSION['residential_area'];
-        $data['estate'] = $_SESSION['estate'];
-        $data['street'] = $_SESSION['street'];
-        $data['division'] = $_SESSION['division'];
-        $data['location'] = $_SESSION['location'];
-        $data['sub_location'] = $_SESSION['sub_location'];
+        $data['workplace'] = $_POST['workplace'];
+        $data['phone_number'] = $_POST['phone_number'];
+        $data['email'] = $_POST['email'];
+        $data['postal_address'] = $_POST['postal_address'];
+        $data['physical_address'] = $_POST['physical_address'];
+        $data['createdby'] = $_SESSION['userid'];
 
         $data_string = http_build_query($data);
-
-        if (!empty($data['request_type']) && !empty($data['name']) && !empty($data['charge']) && !empty($data['createdby'])) {
+        
+        if (!empty($data['request_type']) && !empty($data['ref_type']) && !empty($data['firstname']) && !empty($data['relationship'])) {
             $process_request = $this->sendHttpRequestPost($data_string);
             if ($process_request) {
                 $decoded_response = json_decode($process_request, true);

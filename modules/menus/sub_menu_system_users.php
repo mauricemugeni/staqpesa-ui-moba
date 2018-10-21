@@ -98,7 +98,7 @@ if (is_menu_set('?') != "") {
 } else if (is_menu_set('view_next_of_kins_individual') != "") {
     $request_type = "search_next_of_kins";
     $action_place_holder = "Search Next of Kins";
-} else if (is_menu_set('add_next_of_kins') != "") {
+} else if (is_menu_set('add_next_of_kin') != "") {
     $request_type = "search_next_of_kins";
     $action_place_holder = "Search Next of Kins";
 }
