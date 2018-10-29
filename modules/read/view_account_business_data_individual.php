@@ -37,7 +37,7 @@ $business_form_details = $settings->fetchBusinessFormDetails($details['business_
     <aside class="right-side">
         <!-- Main content -->
         <section class="content">
-            <?php require_once('modules/menus/sub_menu_loans.php'); ?>
+            <?php // require_once('modules/menus/sub_menu_account.php'); ?>
             <div class="row">
                 <div class="col-lg-6">
                     <div class="panel">
@@ -49,7 +49,7 @@ $business_form_details = $settings->fetchBusinessFormDetails($details['business_
                                 <?php if (isset($_SESSION['add_loan_business_data'])) { ?>
                                     <div class="action">
                                         <a class="edit-individual" href="?add_loan_business_data" >
-                                            Add Loan Business Data Details
+                                            Add Business Data Details
                                         </a> 
                                     </div>
                                 <?php } else { ?>

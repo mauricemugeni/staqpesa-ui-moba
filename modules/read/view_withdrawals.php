@@ -7,7 +7,7 @@ $users = new Users();
 $withdrawals = new Transactions();
 $transaction_type = "WITHDRAWAL";
 unset($_SESSION['transaction_type']);
-unset($_SESSION['withdrawal']);
+//unset($_SESSION['withdrawal']);
 unset($_SESSION['search']);
 ?>
 
@@ -16,7 +16,7 @@ unset($_SESSION['search']);
     <aside class="right-side">
         <!-- Main content -->
         <section class="content">
-            <?php require_once('modules/menus/sub_menu_transactions.php'); ?>
+            <?php require_once('modules/menus/sub_menu_fosa_transactions.php'); ?>
             <div class="row">
                 <div class="col-lg-12">
                     <div class="panel">

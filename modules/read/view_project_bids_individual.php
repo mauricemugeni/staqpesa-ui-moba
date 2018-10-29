@@ -33,7 +33,7 @@ if ($details['status'] == 1000) {
     <aside class="right-side">
         <!-- Main content -->
         <section class="content">
-            <?php require_once('modules/menus/sub_menu_funding.php'); ?>
+            <?php // require_once('modules/menus/sub_menu_funding.php'); ?>
             <div class="row">
                 <div class="col-lg-8">
                     <div class="panel">

@@ -15,7 +15,13 @@ if (!empty($_POST)) {
     <aside class="right-side">
         <!-- Main content -->
         <section class="content">
-            <?php require_once('modules/menus/sub_menu_account.php'); ?>
+            <?php
+            if (isset($_SESSION['account'])) {
+                require_once('modules/menus/sub_menu_account_individual_account.php');
+            } else {
+                require_once('modules/menus/sub_menu_account.php');
+            }
+            ?>
             <div class="row">
                 <div class="col-lg-12">
                     <div class="panel">
@@ -44,6 +50,8 @@ if (!empty($_POST)) {
                                     $info = $users->execute();
                                 } else if (is_menu_set('view_account_holders_notifications') != "") {
                                     $info = $users->getAllAccountHolderNotifications();
+                                } else if (isset($_SESSION['account'])) {
+                                    $info = $users->getAllIndividualAccountAccountHolders();
                                 } else {
                                     $info = $users->getAllAccountHolders();
                                 }

@@ -21,8 +21,6 @@ class Loans extends Database {
             return $this->editLoan();
         } else if ($_POST['action'] == "edit_loan_type") {
             return $this->editLoanType();
-        } else if ($_POST['action'] == "edit_loan_business_data") {
-            return $this->editLoanBusinessData();
         } else if ($_POST['action'] == "edit_loan_guarantor") {
             return $this->editLoanGuarantor();
         } else if ($_POST['action'] == "get_loan_repayment_details") {
@@ -174,18 +172,6 @@ class Loans extends Database {
         return $info;
     }
 
-    public function updateLoanBusinessData($code, $update_type) {
-        $data['request_type'] = 'update_loan_business_data';
-        $data['code'] = $code;
-        $data['update_type'] = $update_type;
-        $data['userid'] = $_SESSION['userid'];
-        $data_string = http_build_query($data);
-        $process_request = $this->sendHttpRequestPut($data_string);
-        $decoded_response = json_decode($process_request, true);
-        $info = $decoded_response['message'];
-        return $info;
-    }
-
     public function updateLoanGuarantors($code, $update_type) {
         $data['request_type'] = 'update_loan_guarantors';
         $data['code'] = $code;
@@ -317,46 +303,6 @@ class Loans extends Database {
         return $response;
     }
 
-    private function editLoanBusinessData() {
-        $data['request_type'] = $_POST['action'];
-        $data['code'] = $_SESSION['loan_business_data'];
-        $data['eunique_credit'] = $_POST['eunique_credit'];
-        $data['other_credit'] = $_POST['other_credit'];
-        $data['business_type'] = $_POST['business_type'];
-        $data['business_form'] = $_POST['business_form'];
-        $data['business_time'] = $_POST['business_time'];
-        $data['stock_value'] = $_POST['stock_value'];
-        $data['daily_sales'] = $_POST['daily_sales'];
-        $data['monthly_income'] = $_POST['monthly_income'];
-        $data['monthly_expenses'] = $_POST['monthly_expenses'];
-        $data['employees'] = $_POST['employees'];
-        $data['licensed'] = $_POST['licensed'];
-        $data['road'] = $_POST['road'];
-        $data['street'] = $_POST['street'];
-        $data['location'] = $_POST['location'];
-        $data['building'] = $_POST['building'];
-        $data['house_number'] = $_POST['house_number'];
-        $data['createdby'] = $_POST['createdby'];
-
-        $data_string = http_build_query($data);
-
-        if (!empty($data['request_type']) && !empty($data['id']) && !empty($data['code']) && !empty($data['name']) && !empty($data['email']) && !empty($data['phone_number']) && !empty($data['location']) && !empty($data['createdby'])) {
-            $process_request = $this->sendHttpRequestPost($data_string);
-            if ($process_request) {
-                $decoded_response = json_decode($process_request, true);
-                $response['status'] = $decoded_response['status'];
-                $response['message'] = $decoded_response['message'];
-            } else {
-                $response['status'] = 400;
-                $response['message'] = "Sorry: There was an error processing the request. Please try again later";
-            }
-        } else {
-            $response['status'] = 400;
-            $response['message'] = "Error: Missing Values in Request";
-        }
-        return $response;
-    }
-
     private function editInstalmentFrequency() {
         $data['request_type'] = $_POST['action'];
         $data['code'] = $_SESSION['instalment_frequency'];
@@ -390,16 +336,6 @@ class Loans extends Database {
     public function getStaffDetails($code) {
         $users = new Users();
         return $users->fetchStaffDetails($code);
-    }
-
-    public function fetchLoanBusinessDataDetails($code) {
-        $data['request_type'] = 'fetch_loan_business_data_details';
-        $data['code'] = $code;
-        $data_string = http_build_query($data);
-        $process_request = $this->sendHttpRequestPost($data_string);
-        $decoded_response = json_decode($process_request, true);
-        $info = $decoded_response['message'];
-        return $info;
     }
 
     public function fetchLoanPrincipalAmount($transactionId) {
@@ -492,16 +428,6 @@ class Loans extends Database {
         return $info;
     }
 
-    public function transitionalFetchLoanBusinessDataDetails($code) {
-        $data['request_type'] = 'transitional_fetch_loan_business_data_details';
-        $data['code'] = $code;
-        $data_string = http_build_query($data);
-        $process_request = $this->sendHttpRequestPost($data_string);
-        $decoded_response = json_decode($process_request, true);
-        $info = $decoded_response['message'];
-        return $info;
-    }
-
     public function getAllInstalmentFrequencyNotifications() {
         $data['request_type'] = 'get_all_instalment_frequency_notifications';
         $data['userid'] = $_SESSION['userid'];
@@ -514,16 +440,6 @@ class Loans extends Database {
 
     public function getAllLoanRepaymentNotifications() {
         $data['request_type'] = 'get_all_loan_repayment_notifications';
-        $data['userid'] = $_SESSION['userid'];
-        $data_string = http_build_query($data);
-        $process_request = $this->sendHttpRequestPost($data_string);
-        $decoded_response = json_decode($process_request, true);
-        $info = $decoded_response['message'];
-        return $info;
-    }
-
-    public function getAllLoanBusinessDataNotifications() {
-        $data['request_type'] = 'get_all_loan_business_data_notifications';
         $data['userid'] = $_SESSION['userid'];
         $data_string = http_build_query($data);
         $process_request = $this->sendHttpRequestPost($data_string);
@@ -590,18 +506,9 @@ class Loans extends Database {
         return $info;
     }
 
-    public function getAllLoanBusinessData() {
-        $data['request_type'] = 'get_all_loan_business_data';
-        $data_string = http_build_query($data);
-        $process_request = $this->sendHttpRequestPost($data_string);
-        $decoded_response = json_decode($process_request, true);
-        $info = $decoded_response['message'];
-        return $info;
-    }
-
-    public function getAllAccountLoanBusinessData() {
-        $data['request_type'] = 'get_all_account_loan_business_data';
-        $data['account'] = $_SESSION['account'];
+    public function getAllIndividualLoanLoanRepayments() {
+        $data['request_type'] = 'get_all_individual_loan_loan_repayments';
+        $data['loan_number'] = $_SESSION['loan'];
         $data_string = http_build_query($data);
         $process_request = $this->sendHttpRequestPost($data_string);
         $decoded_response = json_decode($process_request, true);
@@ -621,6 +528,16 @@ class Loans extends Database {
     public function getAllAccountLoanGuarantors() {
         $data['request_type'] = 'get_all_account_loan_guarantors';
         $data['account'] = $_SESSION['account'];
+        $data_string = http_build_query($data);
+        $process_request = $this->sendHttpRequestPost($data_string);
+        $decoded_response = json_decode($process_request, true);
+        $info = $decoded_response['message'];
+        return $info;
+    }
+
+    public function getAllIndividualLoanLoanGuarantors() {
+        $data['request_type'] = 'get_all_individual_loan_loan_guarantors';
+        $data['loan_number'] = $_SESSION['loan'];
         $data_string = http_build_query($data);
         $process_request = $this->sendHttpRequestPost($data_string);
         $decoded_response = json_decode($process_request, true);

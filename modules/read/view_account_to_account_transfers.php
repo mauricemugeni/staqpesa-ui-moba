@@ -20,7 +20,7 @@ unset($_SESSION['search']);
             if ($_SESSION['logged_in_user_type_details']['name'] == "ACCOUNT HOLDER") {
                 require_once('modules/menus/sub_menu_transactions_account_holder.php');
             } else {
-                require_once('modules/menus/sub_menu_transactions.php');
+                require_once('modules/menus/sub_menu_fosa_transactions.php');
             }
             ?>
             <div class="row">
@@ -45,7 +45,7 @@ unset($_SESSION['search']);
                                     <th>Account To</th>
                                     <th>Amount <?php echo '(' . $_SESSION['chapter_details']['currency'] . ')'; ?></th>
                                     <th>Date</th>
-                                    <th>Status</th>
+                                    <!--<th>Status</th>-->
                                 </tr>
                                 <?php
                                 if (!empty($_POST) AND !isset($_POST['create_pdf'])) {
@@ -78,7 +78,7 @@ unset($_SESSION['search']);
                                     echo "<td> </td>";
                                     echo "<td> </td>";
                                     echo "<td> </td>";
-                                    echo "<td> </td>";
+//                                    echo "<td> </td>";
                                     echo "</tr>";
                                 } else {
                                     foreach ($info as $data) {
@@ -104,7 +104,7 @@ unset($_SESSION['search']);
                                         echo '<td>' . $data['account_number'] . '</td>';
                                         echo '<td>' . number_format($data['amount'], 2) . '</td>';
                                         echo '<td>' . date("Y-m-d H:i:s", $data['createdat']) . '</td>';
-                                        echo '<td>' . $status . '</td>';
+//                                        echo '<td>' . $status . '</td>';
                                         echo '</tr>';
                                     }
                                 }

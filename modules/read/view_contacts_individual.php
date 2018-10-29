@@ -27,7 +27,7 @@ if ($details['status'] == 1000) {
     <aside class="right-side">
         <!-- Main content -->
         <section class="content">
-            <?php require_once('modules/menus/sub_menu_system_users.php'); ?>
+            <?php // require_once('modules/menus/sub_menu_system_users.php'); ?>
             <div class="row">
                 <div class="col-lg-8">
                     <div class="panel">
@@ -36,33 +36,34 @@ if ($details['status'] == 1000) {
                         </header>
                         <div class="panel-body">
                             <div class="action">
-                                <?php if ($_SESSION['logged_in_user_type_details']['name'] != "INVESTOR") { ?>
-                                    <?php if ($details['lastmodifiedby'] != $_SESSION['userid'] AND $details['status'] == 1032) { ?>
-                                        <a class="edit-individual" href="?update_contact&update_type=accept_approval&code=" <?php echo $code; ?> >
+                                <?php // if ($_SESSION['logged_in_user_type_details']['name'] != "INVESTOR") { ?>
+                                <?php // if ($details['lastmodifiedby'] != $_SESSION['userid'] AND $details['status'] == 1032) { ?>
+<!--                                        <a class="edit-individual" href="?update_contact&update_type=accept_approval&code=" <?php // echo $code;  ?> >
                                             Accept Approval
                                         </a>
-                                        <a class="edit-individual-warning" href="?update_contact&update_type=reject_approval&code=" <?php echo $code; ?> >
+                                        <a class="edit-individual-warning" href="?update_contact&update_type=reject_approval&code=" <?php // echo $code;  ?> >
                                             Reject Approval
-                                        </a>
-                                        <?php
-                                    }
-                                    if ($details['status'] == 1020) {
-                                        ?>
-                                        <a class="edit-individual" href="?update_contact&update_type=activate&code=" <?php echo $code; ?> >
+                                        </a>-->
+                                <?php
+//                                    }
+//                                    if ($details['status'] == 1020) {
+                                ?>
+<!--                                        <a class="edit-individual" href="?update_contact&update_type=activate&code=" <?php // echo $code;  ?> >
                                             Activate
-                                        </a>
-                                    <?php } if ($details['status'] == 1021) { ?>
-                                        <a class="edit-individual-warning" href="?update_contact&update_type=deactivate&code=" <?php echo $code; ?> >
+                                        </a>-->
+                                <?php // } if ($details['status'] == 1021) { ?>
+<!--                                        <a class="edit-individual-warning" href="?update_contact&update_type=deactivate&code=" <?php // echo $code;  ?> >
                                             Deactivate
-                                        </a>
-                                    <?php } if ($details['status'] != 1000) { ?>
-                                        <a class="edit-individual-warning" href="?update_contact&update_type=delete&code=" <?php echo $code; ?> >
+                                        </a>-->
+                                <?php // } if ($details['status'] != 1000) { ?>
+<!--                                        <a class="edit-individual-warning" href="?update_contact&update_type=delete&code=" <?php // echo $code;  ?> >
                                             Delete
-                                        </a>
-                                        <?php
-                                    }
-                                }
-                                if ($details['status'] != 1032) {
+                                        </a>-->
+                                <?php
+//                                    }
+//                                }
+//                                if ($details['status'] != 1032) {
+                                if ($_SESSION['login_user_type'] == $details['ref_type'] AND $_SESSION['login_user_type_ref_id'] == $details['ref_id']) {
                                     ?>
                                     <a class="edit-individual" href="?update_contact&update_type=edit&code=" <?php echo $code; ?> >
                                         Edit
@@ -71,14 +72,16 @@ if ($details['status'] == 1000) {
                             </div>
 
                             <div id="status-element"><P />
-                                <?php if ($_SESSION['logged_in_user_type_details']['name'] != "INVESTOR" AND $_SESSION['logged_in_user_type_details']['name'] != "ACCOUNT HOLDER") { ?>
+                                <?php if 
+                                    ($_SESSION['login_user_type'] != $details['ref_type'] OR $_SESSION['login_user_type_ref_id'] != $details['ref_id']) {
+//                                    ($_SESSION['logged_in_user_type_details']['name'] != "INVESTOR" AND $_SESSION['logged_in_user_type_details']['name'] != "ACCOUNT HOLDER") { 
+                                    
+                                    $user_type_details = $users->fetchUserTypeDetails($details['ref_type']);
+?>
+                                
                                     <div class="form-group"> 
-                                        <label for="ref_type">Reference Type:</label>
-                                        <span class="form-control"><?php echo $details['ref_type']; ?> </span>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="ref_id">Reference ID:</label>
-                                        <span class="form-control"><?php echo $details['ref_id']; ?></span>
+                                        <label for="ref_type">Referenced User Type:</label>
+                                        <span class="form-control"><?php echo $user_type_details['name']; ?> </span>
                                     </div>
                                 <?php } ?>
                                 <div class="form-group"> 

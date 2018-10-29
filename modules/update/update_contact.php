@@ -14,7 +14,10 @@ if ($update_type == "edit") {
         } else if (is_bool($success) && $success == false) {
             $_SESSION['update_error'] = "Failed updating details";
         }
-        App::redirectTo("?view_contacts");
+        
+        App::redirectTo("?view_contacts_individual&code={$code}");
+        
+//        App::redirectTo("?view_contacts");
     }
 } else {
     $success = $users->updateContact($code, $update_type);
@@ -23,7 +26,10 @@ if ($update_type == "edit") {
     } else if (is_bool($success) && $success == false) {
         $_SESSION['update_error'] = "Error updating record";
     }
-    App::redirectTo("?view_contacts");
+    
+    App::redirectTo("?view_contacts_individual&code={$code}");
+    
+//    App::redirectTo("?view_contacts");
 }
 ?>
 
@@ -32,7 +38,7 @@ if ($update_type == "edit") {
     <aside class="right-side">
         <!-- Main content -->
         <section class="content">
-            <?php require_once('modules/menus/sub_menu_system_users.php'); ?>
+            <?php // require_once('modules/menus/sub_menu_system_users.php'); ?>
             <div class="row">
                 <div class="col-lg-6">
                     <section class="panel">

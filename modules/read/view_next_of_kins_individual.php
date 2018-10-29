@@ -27,7 +27,7 @@ if ($details['status'] == 1000) {
     <aside class="right-side">
         <!-- Main content -->
         <section class="content">
-            <?php require_once('modules/menus/sub_menu_system_users.php'); ?>
+            <?php // require_once('modules/menus/sub_menu_system_users.php'); ?>
             <div class="row">
                 <div class="col-lg-6">
                     <div class="panel">
@@ -36,24 +36,26 @@ if ($details['status'] == 1000) {
                         </header>
                         <div class="panel-body">
                             <div class="action">
-                                <?php if ($details['lastmodifiedby'] != $_SESSION['userid'] AND $details['status'] == 1032) { ?>
-                                    <a class="edit-individual" href="?update_next_of_kin&update_type=accept_approval&code=" <?php echo $code; ?> >
+                                <?php // if ($details['lastmodifiedby'] != $_SESSION['userid'] AND $details['status'] == 1032) { ?>
+<!--                                    <a class="edit-individual" href="?update_next_of_kin&update_type=accept_approval&code=" <?php // echo $code; ?> >
                                         Accept Approval
                                     </a>
-                                    <a class="edit-individual-warning" href="?update_next_of_kin&update_type=reject_approval&code=" <?php echo $code; ?> >
+                                    <a class="edit-individual-warning" href="?update_next_of_kin&update_type=reject_approval&code=" <?php // echo $code; ?> >
                                         Reject Approval
-                                    </a>
+                                    </a>-->
                                     <?php
-                                }
-                                if ($details['status'] != 1032) {
+//                                }
+//                                if ($details['status'] != 1032) {
+//                                    if (isset($_SESSION['account'])) {
                                     ?>
                                     <a class="edit-individual" href="?update_next_of_kin&update_type=edit&ref_type=" <?php echo $code; ?> >
                                         Edit
                                     </a>                    
-                                <?php } ?>
+                                <?php // } ?>
                             </div>
 
                             <div id="status-element">
+                                <p />
                                 <!--                                <div class="form-group"> 
                                                                     <label for="ref_id">Reference ID:</label>
                                                                     <span class="form-control"><?php // echo $details['ref_id'];  ?></span>
@@ -63,11 +65,14 @@ if ($details['status'] == 1000) {
                                                                     <span class="form-control"><?php // echo $user_type_details['name'];  ?></span> 
                                                                 </div>-->
 
-
-                                <div class="form-group"> 
+                                
+                                <?php if (!isset($_SESSION['account'])) { ?>
+                                    <div class="form-group"> 
                                     <label for="ref_type">Reference Details:</label>
                                     <span class="form-control"><?php echo $user_type_details['name'] . " : " . $details['ref_id']; ?></span> 
                                 </div>
+                                <?php } ?>
+                                
                                 <div class="form-group">  
                                     <label for="firstname">First Name:</label>
                                     <span class="form-control"><?php echo $details['firstname']; ?></span>

@@ -23,7 +23,7 @@ App::redirectTo("?view_account_loan_repayments");
     <aside class="right-side">
         <!-- Main content -->
         <section class="content">
-            <?php require_once('modules/menus/sub_menu_loans.php'); ?>
+            <?php // require_once('modules/menus/sub_menu_loans.php'); ?>
             <div class="row">
                 <div class="col-lg-6">
                     <section class="panel">

@@ -11,7 +11,7 @@ $loans = new Loans();
 
 if (!empty($_POST)) {
     if ($_SESSION['account']) {
-        $_SESSION['ref_type'] = "ACCOUNT HOLDER";
+        $_SESSION['ref_type'] = $users->getUserRefTypeId("ACCOUNT HOLDER");
         $_SESSION['ref_id'] = $_SESSION['account'];
         $add_next_of_kin_details = $users->execute();
         if ($add_next_of_kin_details['status'] == 200) {
@@ -37,7 +37,7 @@ if (!empty($_POST)) {
     <aside class="right-side">
         <!-- Main content -->
         <section class="content">
-            <?php require_once('modules/menus/sub_menu_system_users.php'); ?>
+            <?php // require_once('modules/menus/sub_menu_system_users.php'); ?>
             <div class="row">
                 <div class="col-lg-6">
                     <section class="panel">

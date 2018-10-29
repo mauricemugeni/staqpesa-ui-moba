@@ -14,7 +14,13 @@ unset($_SESSION['search']);
     <aside class="right-side">
         <!-- Main content -->
         <section class="content">
-            <?php require_once('modules/menus/sub_menu_loans.php'); ?>
+            <?php
+            if (isset($_SESSION['loan'])) {
+                require_once('modules/menus/sub_menu_loans_individual_loan.php');
+            } else {
+                require_once('modules/menus/sub_menu_loans.php');
+            }
+            ?>
             <div class="row">
                 <div class="col-lg-12">
                     <div class="panel">
@@ -41,16 +47,18 @@ unset($_SESSION['search']);
                                     <th>Status</th>
                                 </tr>
                                 <?php
-                                if (!empty($_POST) AND !isset($_POST['create_pdf'])) {
+                                if (!empty($_POST) AND ! isset($_POST['create_pdf'])) {
                                     $info = $loans->execute();
                                 } else if (is_menu_set('view_loan_guarantors_notifications') != "") {
                                     $info = $loans->getAllLoanGuarantorNotifications();
-                                } else if (isset($_SESSION['account'])) {
+                                } else if (isset($_SESSION['account']) AND ! isset($_SESSION['loan'])) {
                                     $info = $loans->getAllAccountLoanGuarantors();
+                                } else if (isset($_SESSION['loan'])) {
+                                    $info = $loans->getAllIndividualLoanLoanGuarantors();
                                 } else {
                                     $info = $loans->getAllLoanGuarantors();
                                 }
-                                
+
                                 if (isset($_POST['create_pdf'])) {
                                     $_SESSION['author'] = $_SESSION['user_details']['firstname'] . ' ' . $_SESSION['user_details']['lastname'];
                                     $_SESSION['document_name'] = 'loan guarantors.pdf';
@@ -59,7 +67,7 @@ unset($_SESSION['search']);
                                     $_SESSION['pdf_header_title'] = 'Loan Guarantors';
                                     $_SESSION['pdf_content'] = $info;
                                     $_SESSION['column_widths'] = array(50, 90, 30, 40, 60);
-                                     $_SESSION['column_titles'] = array('GUARANTOR\'S ID NO.', 'LOAN NUMBER', 'AMOUNT', 'TELEPHONE', 'STATUS');
+                                    $_SESSION['column_titles'] = array('GUARANTOR\'S ID NO.', 'LOAN NUMBER', 'AMOUNT', 'TELEPHONE', 'STATUS');
                                     App::redirectTo("?generatepdf");
                                 }
 
@@ -90,8 +98,8 @@ unset($_SESSION['search']);
                                             $status = "ACTIVE";
                                         }
 
-                                        $proposed_guarantor_details = $users->fetchAccountHolderDetails($data["id"]);
-                                        $proposed_guarantor_contact_details = $users->fetchAccountHolderContactDetails($data["id"]);
+                                        $proposed_guarantor_details = $users->fetchAccountHolderDetails($data["guarantor_id"]);
+                                        $proposed_guarantor_contact_details = $users->fetchAccountHolderContactDetails($data["guarantor_id"]);
                                         echo '<tr>';
                                         echo '<td>' . $proposed_guarantor_details['idnumber'] . '</td>';
                                         echo '<td>' . $data["loan_number"] . '</td>';

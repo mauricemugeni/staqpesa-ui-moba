@@ -32,7 +32,7 @@ if ($update_type == "edit") {
     <aside class="right-side">
         <!-- Main content -->
         <section class="content">
-            <?php require_once('modules/menus/sub_menu_settings.php'); ?>
+            <?php // require_once('modules/menus/sub_menu_settings.php'); ?>
             <div class="row">
                 <div class="col-lg-6">
                     <section class="panel">

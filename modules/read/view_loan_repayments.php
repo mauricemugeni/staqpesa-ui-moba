@@ -14,19 +14,24 @@ unset($_SESSION['search']);
     <aside class="right-side">
         <!-- Main content -->
         <section class="content">
-            <?php require_once('modules/menus/sub_menu_loans.php'); ?>
+            <?php 
+            if (isset($_SESSION['loan'])) {
+                require_once('modules/menus/sub_menu_loans_individual_loan.php');
+            } else {
+                require_once('modules/menus/sub_menu_loans.php');
+            }
+            ?>
             <div class="row">
                 <div class="col-lg-12">
                     <div class="panel">
                         <header class="panel-heading">
                             <?php if (is_menu_set('view_account_loan_repayments') != "") { ?>
                                 Loan Statement
-                                <?php require_once('modules/menus/sub-sub-menu-buttons.php'); ?>
                             <?php } else { ?>
                                 Loans Repayments
-                                <?php require_once('modules/menus/sub-sub-menu-buttons.php'); ?>
-                            <?php
+                                <?php
                             }
+                            require_once('modules/menus/sub-sub-menu-buttons.php');
                             if (isset($_SESSION['add_success'])) {
                                 echo $_SESSION['add_record_success'];
                                 unset($_SESSION['feedback_message']);
@@ -47,16 +52,18 @@ unset($_SESSION['search']);
                                     <th>Transacted By</th>
                                 </tr>
                                 <?php
-                                if (!empty($_POST) AND !isset($_POST['create_pdf'])) {
+                                if (!empty($_POST) AND ! isset($_POST['create_pdf'])) {
                                     $info = $loans->execute();
                                 } else if (is_menu_set('view_loan_repayments_notifications') != "") {
                                     $info = $loans->getAllLoanRepaymentNotifications();
-                                } else if (isset($_SESSION['account'])) {
+                                } else if (isset($_SESSION['account']) AND ! isset($_SESSION['loan'])) {
                                     $info = $loans->getAllAccountLoanRepayments();
+                                } else if (isset($_SESSION['loan'])) {
+                                    $info = $loans->getAllIndividualLoanLoanRepayments();
                                 } else {
                                     $info = $loans->getAllLoanRepayments();
                                 }
-                                
+
                                 if (isset($_POST['create_pdf'])) {
                                     $_SESSION['author'] = $_SESSION['user_details']['firstname'] . ' ' . $_SESSION['user_details']['lastname'];
                                     $_SESSION['document_name'] = 'loan repayments.pdf';
@@ -87,7 +94,7 @@ unset($_SESSION['search']);
                                         $loan_details = $loans->fetchLoanDetails($data['loan_number']);
 
                                         echo '<tr>';
-                                        echo "<td> <a href=''>" . $data['id'] . '</td>';
+                                        echo "<td> <a href='#'>" . $data['id'] . '</td>';
                                         //    echo '<td>' . $data['loan_number'] . '</td>';
                                         echo '<td>' . number_format($data['amount'], 2) . '</td>';
                                         echo '<td>' . number_format($data['loan_balance'], 2) . '</td>';
@@ -102,7 +109,7 @@ unset($_SESSION['search']);
                                 ?>
                             </table>
                         </div><!-- /.panel-body -->
-<?php // echo $_SESSION['pagination'];  ?>
+                        <?php // echo $_SESSION['pagination'];  ?>
                     </div><!-- /.panel -->
                 </div>        
             </div><!--row1-->
