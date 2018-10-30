@@ -4,7 +4,7 @@ if (!App::isLoggedIn())
 require_once WPATH . "modules/classes/Users.php";
 $users = new Users();
 $code = $_GET['code'];
-$_SESSION['next_of_kin'] = $code;
+$_SESSION['account_nominee'] = $code;
 $details = $users->fetchAccountNomineeDetails($code);
 $staff_details_lastmodifiedby = $users->fetchStaffDetails($details['lastmodifiedby']);
 if ($details['status'] == 1000) {
@@ -36,28 +36,33 @@ if ($details['status'] == 1000) {
                         </header>
                         <div class="panel-body">
                             <div class="action">
-                                <?php if ($details['lastmodifiedby'] != $_SESSION['userid'] AND $details['status'] == 1032) { ?>
-                                    <a class="edit-individual" href="?update_account_nominee&update_type=accept_approval&code=" <?php echo $code; ?> >
+                                <?php // if ($details['lastmodifiedby'] != $_SESSION['userid'] AND $details['status'] == 1032) { ?>
+<!--                                    <a class="edit-individual" href="?update_account_nominee&update_type=accept_approval&code=" <?php // echo $code;   ?> >
                                         Accept Approval
                                     </a>
-                                    <a class="edit-individual-warning" href="?update_account_nominee&update_type=reject_approval&code=" <?php echo $code; ?> >
+                                    <a class="edit-individual-warning" href="?update_account_nominee&update_type=reject_approval&code=" <?php // echo $code;   ?> >
                                         Reject Approval
-                                    </a>
-                                    <?php
-                                }
-                                if ($details['status'] != 1032) {
-                                    ?>
-                                    <a class="edit-individual" href="?update_account_nominee&update_type=edit&ref_type=" <?php echo $code; ?> >
+                                    </a>-->
+                                <?php
+//                                }
+//                                if ($details['status'] != 1032) {
+//                                if (isset($_SESSION['account'])) {
+                                ?>
+<!--                                    <a class="edit-individual" href="?update_account_nominee&update_type=edit&ref_type=" <?php // echo $code;   ?> >
                                         Edit
-                                    </a>                    
-                                <?php } ?>
+                                    </a>                    -->
+                                <?php // } ?>
                             </div>
 
                             <div id="status-element">
-                                <div class="form-group">  
-                                    <label for="account_number">Account Number:</label>
-                                    <span class="form-control"><?php echo $details['account_number']; ?></span>
-                                </div>
+                                <p />
+                                <?php if (!isset($_SESSION['account'])) { ?>
+                                    <div class="form-group">  
+                                        <label for="account_number">Account Number:</label>
+                                        <span class="form-control"><?php echo $details['account_number']; ?></span>
+                                    </div>
+                                <?php } ?>
+
                                 <div class="form-group">  
                                     <label for="firstname">First Name:</label>
                                     <span class="form-control"><?php echo $details['firstname']; ?></span>
@@ -99,16 +104,16 @@ if ($details['status'] == 1000) {
                                     <span class="form-control"><?php echo $status; ?></span>
                                 </div>     
                                 <div class="form-group">
-                                        <label for="lastmodifiedat">Last Modified At:</label>
-                                        <span class="form-control"><?php echo date("Y-m-d H:i:s", $details['lastmodifiedat']); ?></span>
-                                    </div>
+                                    <label for="lastmodifiedat">Last Modified At:</label>
+                                    <span class="form-control"><?php echo date("Y-m-d H:i:s", $details['lastmodifiedat']); ?></span>
+                                </div>
 
-                                    <div class="form-group">
-                                        <label for="lastmodifiedby">Last Modified By:</label>
-                                        <span class="form-control"><?php echo $staff_details_lastmodifiedby['firstname'] . " " . $staff_details_lastmodifiedby['middlename'] . " " . $staff_details_lastmodifiedby['lastname']; ?></span>
-                                    </div>
+                                <div class="form-group">
+                                    <label for="lastmodifiedby">Last Modified By:</label>
+                                    <span class="form-control"><?php echo $staff_details_lastmodifiedby['firstname'] . " " . $staff_details_lastmodifiedby['middlename'] . " " . $staff_details_lastmodifiedby['lastname']; ?></span>
+                                </div>
                                 <?php
-                                if ($details['lastauthorizedat'] != NULL AND $details['lastauthorizedat'] != NULL) {                                    
+                                if ($details['lastauthorizedat'] != NULL AND $details['lastauthorizedat'] != NULL) {
                                     $staff_details_lastauthorizedby = $users->fetchStaffDetails($details['lastauthorizedby']);
                                     ?>
                                     <div class="form-group">
@@ -122,7 +127,7 @@ if ($details['status'] == 1000) {
                                     </div>
 
                                 <?php } ?>
-                                
+
                             </div>
                         </div><!-- /.panel-body -->
                     </div><!-- /.panel -->

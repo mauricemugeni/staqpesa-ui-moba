@@ -11,7 +11,6 @@ unset($_SESSION['loan']);
 unset($_SESSION['loan_type_name']);
 unset($_SESSION['search']);
 unset($_SESSION["guarantors_list"]);
-
 ?>
 
 <div class="wrapper row-offcanvas row-offcanvas-left">
@@ -24,13 +23,13 @@ unset($_SESSION["guarantors_list"]);
                 <div class="col-lg-12">
                     <div class="panel">
                         <header class="panel-heading">
-                            <?php if (is_menu_set('view_account_loans') != "") { ?>
+                            <?php if (is_menu_set('view_account_loans')) { ?>
                                 Account Loans
-                                <?php require_once('modules/menus/sub-sub-menu-buttons.php'); ?>
                             <?php } else { ?>
                                 Loans
-                                <?php require_once('modules/menus/sub-sub-menu-buttons.php'); ?>
-                            <?php }
+                                <?php
+                            }
+                            require_once('modules/menus/sub-sub-menu-buttons.php');
                             if (isset($_SESSION['add_success'])) {
                                 echo $_SESSION['add_record_success'];
                                 unset($_SESSION['feedback_message']);
@@ -42,7 +41,9 @@ unset($_SESSION["guarantors_list"]);
                             <table class="table table-striped">
                                 <tr>
                                     <th>Transaction ID</th>
-                                    <th>Account Name</th>
+                                    <?php if (!isset($_SESSION['account'])) { ?>
+                                        <th>Account Name</th>
+                                    <?php } ?>
                                     <th>Amount <?php echo '(' . $_SESSION['chapter_details']['currency'] . ')'; ?></th>
                                     <!--<th>Duration(Months)</th>-->
                                     <th>Created At</th>
@@ -51,7 +52,7 @@ unset($_SESSION["guarantors_list"]);
                                     <th>Repayment Status</th>
                                 </tr>
                                 <?php
-                                if (!empty($_POST) AND !isset($_POST['create_pdf'])) {
+                                if (!empty($_POST) AND ! isset($_POST['create_pdf'])) {
                                     $info = $loans->execute();
                                 } else if (is_menu_set('view_loans_notifications') != "") {
                                     $info = $loans->getAllLoanNotifications();
@@ -60,7 +61,7 @@ unset($_SESSION["guarantors_list"]);
                                 } else {
                                     $info = $loans->getAllLoans();
                                 }
-                                
+
                                 if (isset($_POST['create_pdf'])) {
                                     $_SESSION['author'] = $_SESSION['user_details']['firstname'] . ' ' . $_SESSION['user_details']['lastname'];
                                     $_SESSION['document_name'] = 'loans.pdf';
@@ -77,7 +78,9 @@ unset($_SESSION["guarantors_list"]);
                                 if (count($info) == 0) {
                                     echo "<tr>";
                                     echo "<td>  No record found.</td>";
-                                    echo "<td> </td>";
+                                    if (!isset($_SESSION['account'])) {
+                                        echo "<td> </td>";
+                                    }
                                     echo "<td> </td>";
                                     echo "<td> </td>";
                                     echo "<td> </td>";
@@ -87,16 +90,16 @@ unset($_SESSION["guarantors_list"]);
                                 } else {
                                     foreach ($info as $details) {
                                         $loan_status = $loans->fetchLoanStatusDetails($details['id']);
-                                        if ($loan_status['status'] == 1001) {
-                                            $system_log_details = $users->fetchSystemLogDetails("CREATE", "TRANSACTIONS", $details['id']);
-                                            $old_value = json_decode($system_log_details['old_value']);
-                                            $createdat = $old_value->createdat;
-                                            $account_number = $old_value->account_number;
-                                        } else {
+//                                        if ($loan_status['status'] == 1001) {
+//                                            $system_log_details = $users->fetchSystemLogDetails("CREATE", "TRANSACTIONS", $details['id']);
+//                                            $old_value = json_decode($system_log_details['old_value']);
+//                                            $createdat = $old_value->createdat;
+//                                            $account_number = $old_value->account_number;
+//                                        } else {
                                             $loan_transaction_details = $transactions->fetchTransactionDetails($details['id']);
                                             $account_number = $loan_transaction_details['account_number'];
                                             $createdat = $loan_transaction_details['createdat'];
-                                        }
+//                                        }
 
                                         $loan_account_details = $users->fetchAccountDetails($account_number);
 
@@ -122,6 +125,8 @@ unset($_SESSION["guarantors_list"]);
                                             $repayment_statement = "LOAN IS DOMANT/DEFAULTED";
                                         } else if ($loan_status['status'] == 1041) {
                                             $repayment_statement = "LOAN IS SETTLED";
+                                        } else if ($loan_status['status'] == 1010) {
+                                            $repayment_statement = "APPLICATION REJECTED";
                                         }
 
                                         $loan_principal_amount = $details['principal_amount'];
@@ -130,7 +135,9 @@ unset($_SESSION["guarantors_list"]);
 
                                         echo '<tr>';
                                         echo "<td> <a href='?view_loans_individual&code=" . $details['id'] . "'>" . $details['id'] . '</td>';
-                                        echo '<td>' . $loan_account_details['account_name'] . '</td>';
+                                        if (!isset($_SESSION['account'])) {
+                                            echo '<td>' . $loan_account_details['account_name'] . '</td>';
+                                        }
                                         echo '<td>' . number_format($loan_principal_amount, 2) . '</td>';
                                         //  echo '<td>' . $details['duration'] . '</td>';
                                         //    echo '<td>' . date("Y-m-d H:i:s", $approval_status['createdat']) . '</td>';

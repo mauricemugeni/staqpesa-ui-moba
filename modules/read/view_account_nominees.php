@@ -12,7 +12,13 @@ unset($_SESSION['search']);
     <aside class="right-side">
         <!-- Main content -->
         <section class="content">
-            <?php require_once('modules/menus/sub_menu_account.php'); ?>
+            <?php
+            if (isset($_SESSION['account'])) {
+                require_once('modules/menus/sub_menu_account_individual_account.php');
+            } else {
+                require_once('modules/menus/sub_menu_account.php');
+            }
+            ?>
             <div class="row">
                 <div class="col-lg-12">
                     <div class="panel">
@@ -30,17 +36,20 @@ unset($_SESSION['search']);
                         <div class="panel-body">
                             <table class="table table-striped">
                                 <tr>
-                                    <th>Reference ID</th>
-                                    <th>Account Number</th>
+                                    
                                     <th>Name</th>
-                                    <?php if ($_SESSION['logged_in_user_type_details']['name'] == "ACCOUNT HOLDER") { ?>
-                                        <th>Percentage (%)</th>
-                                    <?php } else { ?>
-                                        <th>Relationship</th>
-                                    <?php } ?>
+                                    <th>Account Number</th>
+                                    <th>Percentage(%)</th>
+                                    <th>Relationship</th>
+                                    
+                                    <?php // if ($_SESSION['logged_in_user_type_details']['name'] == "ACCOUNT HOLDER") { ?>
+                                        <!--<th>Percentage (%)</th>-->
+                                    <?php // } else { ?>
+                                        <!--<th>Relationship</th>-->
+                                    <?php // } ?>
                                     <th>Phone No.</th>
                                     <th>Email Address</th>
-                                    <th>Status</th>
+                                    <!--<th>Status</th>-->
                                 </tr>
                                 <?php
                                 if (!empty($_POST) AND ! isset($_POST['create_pdf'])) {
@@ -74,36 +83,41 @@ unset($_SESSION['search']);
                                     echo "<td> </td>";
                                     echo "<td> </td>";
                                     echo "<td> </td>";
-                                    echo "<td> </td>";
+//                                    echo "<td> </td>";
                                     echo "</tr>";
                                 } else {
                                     foreach ($info as $data) {
-                                        if ($data['status'] == 1000) {
-                                            $status = "DELETED";
-                                        } else if ($data['status'] == 1001 OR $data['status'] == 1032) {
-                                            $status = "AWAITING APPROVAL";
-                                        } else if ($data['status'] == 1010) {
-                                            $status = "ACTIVE";
-                                        } else if ($data['status'] == 1011) {
-                                            $status = "ACTIVE";
-                                        } else if ($data['status'] == 1020) {
-                                            $status = "NOT ACTIVE";
-                                        } else if ($data['status'] == 1021) {
-                                            $status = "ACTIVE";
-                                        }
+//                                        if ($data['status'] == 1000) {
+//                                            $status = "DELETED";
+//                                        } else if ($data['status'] == 1001 OR $data['status'] == 1032) {
+//                                            $status = "AWAITING APPROVAL";
+//                                        } else if ($data['status'] == 1010) {
+//                                            $status = "ACTIVE";
+//                                        } else if ($data['status'] == 1011) {
+//                                            $status = "ACTIVE";
+//                                        } else if ($data['status'] == 1020) {
+//                                            $status = "NOT ACTIVE";
+//                                        } else if ($data['status'] == 1021) {
+//                                            $status = "ACTIVE";
+//                                        }
+                                        
+                                        $nominee_name = $data['firstname'] . " " . $data['middlename'] . " " . $data['lastname'];
 
                                         echo '<tr>';
-                                        echo "<td> <a href='?view_account_nominees_individual&code=" . $data['id'] . "'>" . $data['id'] . '</td>';
+                                        echo "<td> <a href='?view_account_nominees_individual&code=" . $data['id'] . "'>" . $nominee_name . '</td>';
                                         echo '<td>' . $data['account_number'] . '</td>';
-                                        echo '<td>' . $data['firstname'] . " " . $data['middlename'] . " " . $data['lastname'] . '</td>';
-                                        if ($_SESSION['logged_in_user_type_details']['name'] == "ACCOUNT HOLDER") {
-                                            echo '<td>' . $data['percentage'] . '</td>';
-                                        } else {
-                                            echo '<td>' . $data['relationship'] . '</td>';
-                                        }
+                                        echo '<td>' . $data['percentage'] . '</td>';
+                                        echo '<td>' . $data['relationship'] . '</td>';
+                                        
+//                                        if ($_SESSION['logged_in_user_type_details']['name'] == "ACCOUNT HOLDER") {
+//                                            echo '<td>' . $data['percentage'] . '</td>';
+//                                        } else {
+//                                            echo '<td>' . $data['relationship'] . '</td>';
+//                                        }
+                                        
                                         echo '<td>' . $data['phone_number'] . '</td>';
                                         echo '<td>' . $data['email'] . '</td>';
-                                        echo '<td>' . $status . '</td>';
+//                                        echo '<td>' . $status . '</td>';
                                         echo '</tr>';
                                     }
                                 }

@@ -34,12 +34,12 @@ if (App::isLoggedIn()) {
 
             <!-- search form -->
             <!--<form action="#" method="get" class="sidebar-form">-->
-                <div class="input-group">
-                    <input type="text" name="q" class="form-control" placeholder="Search..."/>
-                    <span class="input-group-btn">
-                        <button type='submit' name='search' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i></button>
-                    </span>
-                </div>
+            <div class="input-group">
+                <input type="text" name="q" class="form-control" placeholder="Search..."/>
+                <span class="input-group-btn">
+                    <button type='submit' name='search' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i></button>
+                </span>
+            </div>
             <!--</form>-->
             <!-- sidebar menu: : style can be found in sidebar.less -->
             <ul class="sidebar-menu" >
@@ -317,185 +317,304 @@ if (App::isLoggedIn()) {
 
                         <?php } else if (isset($_SESSION['institution_staff']) AND $_SESSION['institution_staff'] == true) { ?>
 
-
-                            <!--Menu Item 0-->
+                            <!--Menu Item 1-->
                             <div class="panel panel-default">
                                 <div class="panel-heading" id="headingOne">
                                     <a role="button" href="?dashboard" >
                                         <i class="fa fa-dashboard"></i> <span id="title">Dashboard</span>
                                     </a>
                                 </div>
-
-                            </div>
-
-                            <!--Menu Item 1-->
-                            <div class="panel panel-default">
-                                <div class="panel-heading" role="tab" id="headingTwo">
-                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordionMenu" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                        <i class="fa fa-users"></i> <span id="title">Account Members</span>
-                                    </a>
-                                    <?php
-                                    if ($notifications->accountsNotifications() > 0) {
-                                        ?><span class="sidebar-notification label label-success"><a href="#"><i class="fa fa-bell"></i> </a></span>
-                                    <?php } ?>
-
-                                </div>
-                                <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-                                    <div class="panel-body">
-                                        <ul class="nav">
-                                            <li>
-                                                <a id="mainMenuCollapeAccount" href="?view_accounts">
-                                                    <span>Member Accounts</span>
-                                                    <?php
-                                                    if ($notifications->accountsNotifications() > 0) {
-                                                        ?>
-                                                        <span id="accounts-notification" class="accounts-notification sidebar-notification label label-success">
-                                                            <?php
-                                                            echo $notifications->accountsNotifications();
-                                                        }
-                                                        ?>
-                                                    </span>
-                                                </a>
-                                            </li>                                            
-                                            <li>
-                                                <a id="mainMenuCollapeAccount" href="?view_account_holders">
-                                                    <span>Account Holders</span>
-                                                    <?php
-                                                    if ($notifications->accountHoldersNotifications() > 0) {
-                                                        ?>
-                                                        <span id="accounts-notification" class="accounts-notification sidebar-notification label label-success">
-                                                            <?php
-                                                            echo $notifications->accountHoldersNotifications();
-                                                        }
-                                                        ?>
-                                                    </span>
-                                                </a>
-                                            </li>
-
-                                            <li>
-                                                <a href="?view_account_holder_occupations">
-                                                    <span>Account Holder Occupations</span>
-                                                    <?php
-                                                    if ($notifications->accountHolderOccupationsNotifications() > 0) {
-                                                        ?>
-                                                        <span id="accounts-notification" class="accounts-notification sidebar-notification label label-success">
-                                                            <?php
-                                                            echo $notifications->accountHolderOccupationsNotifications();
-                                                        }
-                                                        ?>
-                                                    </span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a id="mainMenuCollapeAccount" href="?view_account_nominees">
-                                                    <span>Account Nominees</span>
-                                                    <?php
-                                                    if ($notifications->accountNomineesNotifications() > 0) {
-                                                        ?>
-                                                        <span id="accounts-notification" class="accounts-notification sidebar-notification label label-success">
-                                                            <?php
-                                                            echo $notifications->accountNomineesNotifications();
-                                                        }
-                                                        ?>
-                                                    </span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!--Menu Item 2-->
-                            <div class="panel panel-default" id="menu">
-                                <div class="panel-heading" role="tab" id="headingThree">
-                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordionMenu" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                        <i class="fa fa-clock-o"></i> <span id="title">Micro Lending</span>
-                                        <?php
-                                        if ($notifications->loansNotifications() > 0) {
-                                            ?><span class="sidebar-notification label label-success"><i class="fa fa-bell"></i> </span>
-                                        <?php } ?>
-                                    </a>
-                                </div>
-                                <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-                                    <div class="panel-body">
-                                        <ul class="nav">
-                                            <li>
-                                                <a href="?view_loans">
-                                                    <span>Loans</span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="?view_loan_repayments">
-                                                    <span>Loan Repayments</span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="?view_loan_guarantors">
-                                                    <span>Loan Guarantors</span>
-                                                </a>
-                                            </li>
-                                            <!--                                            <li>
-                                                                                            <a href="?view_loan_business_data">
-                                                                                                <span>Loan Business Data</span>
-                                                                                            </a>
-                                                                                        </li>-->
-                                        </ul>
-                                    </div>
-                                </div>
                             </div>
 
                             <!--Menu Item 3-->
-                            <div class="panel panel-default" id="menu">
-                                <div class="panel-heading" role="tab" id="headingFour">
-                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordionMenu" href="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
-                                        <i class="fa fa-exchange"></i> <span id="title" title="View Deposits, Withdrawals and all Transactions">FOSA Transactions</span>
-                                        <?php
-                                        if ($notifications->transactionTypesNotifications() > 0 || $notifications->withdrawalsNotifications() > 0) {
-                                            ?><span title="Some pending actions" class="sidebar-notification label label-success"><i class="fa fa-bell"></i> </span>
-                                        <?php } ?>
+                            <div class="panel panel-default">
+                                <div class="panel-heading" id="headingThree">
+                                    <a role="button" href="?view_deposits" >
+                                        <i class="fa fa-dashboard"></i> <span id="title">Savings</span>
                                     </a>
                                 </div>
-                                <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
-                                    <div class="panel-body">
-                                        <ul class="nav">
-                                            <li>
-                                                <a href="?view_deposits">
-                                                    <span>Savings</span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="?view_shares">
-                                                    <span>Shares</span>
-                                                </a>
-                                            </li>
-                                            <!--                                            <li>
-                                                                                            <a href="?view_withdrawals">
-                                                                                                <span>Withdrawals</span>
-                                            <?php
-//                                                    if ($notifications->transactionTypesNotifications() > 0) {
-                                            ?>
-                                                                                                    <span class="sidebar-notification label label-success">
-                                            <?php
-//                                                            echo $notifications->transactionTypesNotifications();
-//                                                        }
-                                            ?>
-                                                                                                </span>
-                                                                                            </a>
-                                                                                        </li>-->
-                                            <!--                                            <li>
-                                                                                            <a href="?view_account_to_account_transfers">
-                                                                                                <span>Account To Account Transfers</span>
-                                                                                            </a>
-                                                                                        </li>-->
-                                            <li>
-                                                <a href="?view_transactions">
-                                                    <span>All Transactions</span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
+                            </div>
+
+                            <!--Menu Item 4-->
+                            <div class="panel panel-default">
+                                <div class="panel-heading" id="headingFour">
+                                    <a role="button" href="?view_shares" >
+                                        <i class="fa fa-dashboard"></i> <span id="title">Shares</span>
+                                    </a>                                    
                                 </div>
                             </div>
+
+                            <!--Menu Item 5-->
+                            <div class="panel panel-default">
+                                <div class="panel-heading" id="headingFive">
+                                    <a role="button" href="?view_withdrawals" >
+                                        <i class="fa fa-magic"></i> <span id="title">Withdrawals</span>
+                                    </a>
+                                </div>
+                            </div>
+
+
+                            <!--Menu Item 6-->
+                            <div class="panel panel-default">
+                                <div class="panel-heading" id="headingSix">
+                                    <a role="button" href="?view_account_to_account_transfers" >
+                                        <i class="fa fa-dashboard"></i> <span id="title">Account Transfers</span>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <!--Menu Item 7-->
+                            <div class="panel panel-default">
+                                <div class="panel-heading" id="headingSeven">
+                                    <a role="button" href="?view_loans" >
+                                        <i class="fa fa-dashboard"></i> <span id="title">Loans</span>
+                                    </a>    
+                                    <?php
+                                    if ($notifications->loansNotifications() > 0) {
+                                        ?><span class="sidebar-notification label label-success"><i class="fa fa-bell"></i> </span>
+                                    <?php } ?>
+                                </div>
+                            </div>
+
+                            <!--Menu Item 8-->
+                            <!--                            <div class="panel panel-default">
+                                                            <div class="panel-heading" id="headingEight">
+                                                                <a role="button" href="?view_loan_repayments" >
+                                                                    <i class="fa fa-magic"></i> <span id="title">Loan Repayments</span>
+                                                                </a>
+                                                            </div>
+                                                        </div>       -->
+
+                            <!--Menu Item 2-->
+                            <div class="panel panel-default">
+                                <div class="panel-heading" id="headingTwo">
+                                    <a role="button" href="?view_accounts" >
+                                        <i class="fa fa-dashboard"></i> <span id="title">Account Members</span>
+                                    </a>
+                                    <?php if ($notifications->accountsNotifications() > 0 OR $notifications->accountHoldersNotifications() > 0) { ?>
+                                        <span class="sidebar-notification label label-success"><a href="#"><i class="fa fa-bell"></i> </a></span>
+                                    <?php } ?>
+                                </div>
+                            </div>
+
+                            <!--Menu Item 9-->
+                            <div class="panel panel-default">
+                                <div class="panel-heading" id="headingNine">
+                                    <a role="button" href="?view_guest_users" >
+                                        <i class="fa fa-dashboard"></i> <span id="title">Guest Users</span>
+                                    </a>
+                                    <?php if ($notifications->guestUsersNotifications() > 0) { ?>
+                                        <span class="sidebar-notification label label-success"><a href="#"><i class="fa fa-bell"></i> </a></span>
+                                    <?php } ?>                                    
+                                </div>
+                            </div>
+
+                            <!--Menu Item 10-->
+                            <div class="panel panel-default">
+                                <div class="panel-heading" id="headingTen"> 
+                                    <a role="button" href="?view_next_of_kins" >
+                                        <i class="fa fa-dashboard"></i> <span id="title">Next of kins</span>
+                                    </a>
+                                </div>
+                            </div>                            
+
+                            <!--Menu Item 11-->
+                            <div class="panel panel-default">
+                                <div class="panel-heading" id="headingEleven">
+                                    <a role="button" href="?view_inbox_messages" >
+                                        <i class="fa fa-magic"></i> <span id="title">Inbox Messages</span>
+                                    </a>
+                                    <?php
+                                    if (isset($_SESSION['staqpesa_admin']) OR isset($_SESSION['institution_admin'])) {
+//      $notifications_count = $notifications->assignedOpenInboxMessagesNotifications();
+                                        $notifications_count = $notifications->unassignedInboxMessagesNotifications();
+                                    } else if (isset($_SESSION['staqpesa_staff']) OR isset($_SESSION['institution_staff'])) {
+                                        $notifications_count = $notifications->assignedInboxMessagesNotifications();
+                                    }
+                                    if ($notifications_count > 0) {
+                                        ?>
+                                        <span class="sidebar-notification label label-success"><a href="#"><i class="fa fa-bell"></i> </a></span>
+                                    <?php } ?>                                    
+                                </div>
+                            </div>
+
+                            <!--Menu Item 12-->
+                            <div class="panel panel-default">
+                                <div class="panel-heading" id="headingTwelve">
+                                    <a role="button" href="?view_contacts" >
+                                        <i class="fa fa-dashboard"></i> <span id="title">Contacts</span>
+                                    </a>                                    
+                                </div>
+                            </div>
+
+                            <!--Menu Item 13-->
+                            <div class="panel panel-default">
+                                <div class="panel-heading" id="headingThirteen">
+                                    <a role="button" href="?engage_loan_calculator" >
+                                        <i class="fa fa-magic"></i> <span id="title">Amortization Calculator</span>
+                                    </a>
+                                </div>
+                            </div>
+
+
+                            <!--Menu Item 3-->
+                            <!--                            <div class="panel panel-default" id="menu">
+                                                            <div class="panel-heading" role="tab" id="headingThree">
+                                                                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordionMenu" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                                                    <i class="fa fa-clock-o"></i> <span id="title">Transactions</span>
+                            <?php
+//                                        if ($notifications->loansNotifications() > 0) {
+                            ?><span class="sidebar-notification label label-success"><i class="fa fa-bell"></i> </span>
+                            <?php // } ?>
+                                                                </a>
+                                                            </div>
+                                                            <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                                                                <div class="panel-body">
+                                                                    <ul class="nav">
+                                                                        <li><a href="?view_deposits"><span>Savings</span></a></li>
+                                                                        <li><a href="?view_shares"><span>Shares</span></a></li>
+                                                                        <li><a href="?view_withdrawals"><span>Withdrawals</span></a></li>
+                                                                        <li><a href="?view_account_to_account_transfers"><span>Account Transfers</span></a></li>
+                                                                        <li><a href="?view_loans"><span>Loans</span></a></li>
+                                                                        <li><a href="?view_loan_repayments"><span>Loan Repayments</span></a></li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>-->
+
+
+
+
+                            <!--                            <div class="panel panel-default">
+                                                            <div class="panel-heading" role="tab" id="headingTwo">
+                                                                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordionMenu" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                                                    <i class="fa fa-users"></i> <span id="title">Account Members</span>
+                                                                </a>
+                            <?php
+//                            if ($notifications->accountsNotifications() > 0) {
+                            ?><span class="sidebar-notification label label-success"><a href="#"><i class="fa fa-bell"></i> </a></span>
+                            <?php // } ?>
+                            
+                                                            </div>
+                                                            <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                                                                <div class="panel-body">
+                                                                    <ul class="nav">
+                                                                        <li>
+                                                                            <a id="mainMenuCollapeAccount" href="?view_accounts">
+                                                                                <span>Member Accounts</span>
+                            <?php
+//                            if ($notifications->accountsNotifications() > 0) {
+                            ?>
+                                                                                        <span id="accounts-notification" class="accounts-notification sidebar-notification label label-success">
+                            <?php
+//                                echo $notifications->accountsNotifications();
+//                            }
+                            ?>
+                                                                                </span>
+                                                                            </a>
+                                                                        </li>                                            
+                                                                        <li>
+                                                                            <a id="mainMenuCollapeAccount" href="?view_account_holders">
+                                                                                <span>Account Holders</span>
+                            <?php
+//                            if ($notifications->accountHoldersNotifications() > 0) {
+                            ?>
+                                                                                        <span id="accounts-notification" class="accounts-notification sidebar-notification label label-success">
+                            <?php
+//                                echo $notifications->accountHoldersNotifications();
+//                            }
+                            ?>
+                                                                                </span>
+                                                                            </a>
+                                                                        </li>
+                            
+                                                                        <li>
+                                                                            <a href="?view_account_holder_occupations">
+                                                                                <span>Account Holder Occupations</span>
+                            <?php
+//                            if ($notifications->accountHolderOccupationsNotifications() > 0) {
+                            ?>
+                                                                                        <span id="accounts-notification" class="accounts-notification sidebar-notification label label-success">
+                            <?php
+//                                echo $notifications->accountHolderOccupationsNotifications();
+//                            }
+                            ?>
+                                                                                </span>
+                                                                            </a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a id="mainMenuCollapeAccount" href="?view_account_nominees">
+                                                                                <span>Account Nominees</span>
+                            <?php
+//                            if ($notifications->accountNomineesNotifications() > 0) {
+                            ?>
+                                                                                        <span id="accounts-notification" class="accounts-notification sidebar-notification label label-success">
+                            <?php
+//                                echo $notifications->accountNomineesNotifications();
+//                            }
+                            ?>
+                                                                                </span>
+                                                                            </a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>-->
+
+
+
+                            <!--Menu Item 3-->
+                            <!--                            <div class="panel panel-default" id="menu">
+                                                            <div class="panel-heading" role="tab" id="headingFour">
+                                                                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordionMenu" href="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
+                                                                    <i class="fa fa-exchange"></i> <span id="title" title="View Deposits, Withdrawals and all Transactions">FOSA Transactions</span>
+                            <?php
+//                                        if ($notifications->transactionTypesNotifications() > 0 || $notifications->withdrawalsNotifications() > 0) {
+                            ?><span title="Some pending actions" class="sidebar-notification label label-success"><i class="fa fa-bell"></i> </span>
+                            <?php // } ?>
+                                                                </a>
+                                                            </div>
+                                                            <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+                                                                <div class="panel-body">
+                                                                    <ul class="nav">
+                                                                        <li>
+                                                                            <a href="?view_deposits">
+                                                                                <span>Savings</span>
+                                                                            </a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="?view_shares">
+                                                                                <span>Shares</span>
+                                                                            </a>
+                                                                        </li>-->
+                            <!--                                            <li>
+                                                                            <a href="?view_withdrawals">
+                                                                                <span>Withdrawals</span>
+                            <?php
+//                                                    if ($notifications->transactionTypesNotifications() > 0) {
+                            ?>
+                                                                                    <span class="sidebar-notification label label-success">
+                            <?php
+//                                                            echo $notifications->transactionTypesNotifications();
+//                                                        }
+                            ?>
+                                                                                </span>
+                                                                            </a>
+                                                                        </li>-->
+                            <!--                                            <li>
+                                                                            <a href="?view_account_to_account_transfers">
+                                                                                <span>Account To Account Transfers</span>
+                                                                            </a>
+                                                                        </li>-->
+                            <!--                                            <li>
+                                                                            <a href="?view_transactions">
+                                                                                <span>All Transactions</span>
+                                                                            </a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>-->
 
                             <!--Menu Item 4-->
                             <!--                            <div class="panel panel-default">
@@ -541,67 +660,67 @@ if (App::isLoggedIn()) {
                                                         </div>-->
 
                             <!--Menu Item 6-->
-                            <div class="panel panel-default">
-                                <div class="panel-heading" role="tab" id="headingSeven">
-                                    <a role="button" data-toggle="collapse" data-parent="#accordionMenu" href="#collapseSeven" aria-expanded="true" aria-controls="collapseSeven">
-                                        <i class="fa fa-user-md"></i> <span id="title">System Users</span>
-                                        <?php
-                                        //if ($notifications->investorsNotifications() > 0 || $notifications->projectsNotifications() > 0 ) {
-                                        ?><span class="sidebar-notification label label-success"><i class="fa fa-bell"></i> </span>
-                                        <?php //}     ?>
-                                    </a>
-                                </div>
-                                <div id="collapseSeven" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSeven">
-                                    <div class="panel-body">
-                                        <ul class="nav">
-                                            <li><a href="?view_guest_users">Guest Users</a></li>                                            
-                                            <!--<li><a href="?view_mentors">Mentors</a></li>-->
-                                            <li><a href="?view_next_of_kins">Next of Kins</a></li>
-                                            <li><a href="?view_contacts">Contacts</a></li>
-
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
+                            <!--                            <div class="panel panel-default">
+                                                            <div class="panel-heading" role="tab" id="headingSeven">
+                                                                <a role="button" data-toggle="collapse" data-parent="#accordionMenu" href="#collapseSeven" aria-expanded="true" aria-controls="collapseSeven">
+                                                                    <i class="fa fa-user-md"></i> <span id="title">System Users</span>
+                            <?php
+                            //if ($notifications->investorsNotifications() > 0 || $notifications->projectsNotifications() > 0 ) {
+                            ?><span class="sidebar-notification label label-success"><i class="fa fa-bell"></i> </span>
+                            <?php //}     ?>
+                                                                </a>
+                                                            </div>
+                                                            <div id="collapseSeven" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSeven">
+                                                                <div class="panel-body">
+                                                                    <ul class="nav">
+                                                                        <li><a href="?view_guest_users">Guest Users</a></li>                                            
+                                                                        <li><a href="?view_mentors">Mentors</a></li>
+                                                                        <li><a href="?view_next_of_kins">Next of Kins</a></li>
+                                                                        <li><a href="?view_contacts">Contacts</a></li>
+                            
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>-->
 
                             <!--Menu Item 7-->
-                            <div class="panel panel-default">
-                                <div class="panel-heading" id="headingEight">
-                                    <a role="button" href="?view_inbox_messages" >
-                                        <i class="fa fa-magic"></i> <span id="title">Inbox Messages</span>
-                                    </a>
-                                </div>
-                            </div>
+                            <!--                            <div class="panel panel-default">
+                                                            <div class="panel-heading" id="headingEight">
+                                                                <a role="button" href="?view_inbox_messages" >
+                                                                    <i class="fa fa-magic"></i> <span id="title">Inbox Messages</span>
+                                                                </a>
+                                                            </div>
+                                                        </div>-->
 
                             <!--Menu Item 8-->
-                            <div class="panel panel-default">
-                                <div class="panel-heading" role="tab" id="headingNine">
-                                    <a role="button" data-toggle="collapse" data-parent="#accordionMenu" href="#collapseNine" aria-expanded="true" aria-controls="collapseNine">
-                                        <i class="fa fa-user-md"></i> <span id="title">Jobs Corner</span>
-                                        <?php
-                                        //if ($notifications->jobAdvertisementsNotifications() > 0 || $notifications->jobApplicationsNotifications() > 0 ) {
-                                        ?><span class="sidebar-notification label label-success"><i class="fa fa-bell"></i> </span>
-                                        <?php //}     ?>
-                                    </a>
-                                </div>
-                                <div id="collapseNine" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingNine">
-                                    <div class="panel-body">
-                                        <ul class="nav">
-                                            <li><a href="?view_job_advertisements">Job Advertisements</a></li>
-                                            <li><a href="?view_job_applications">Job Applications</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
+                            <!--                            <div class="panel panel-default">
+                                                            <div class="panel-heading" role="tab" id="headingNine">
+                                                                <a role="button" data-toggle="collapse" data-parent="#accordionMenu" href="#collapseNine" aria-expanded="true" aria-controls="collapseNine">
+                                                                    <i class="fa fa-user-md"></i> <span id="title">Jobs Corner</span>
+                            <?php
+                            //if ($notifications->jobAdvertisementsNotifications() > 0 || $notifications->jobApplicationsNotifications() > 0 ) {
+                            ?><span class="sidebar-notification label label-success"><i class="fa fa-bell"></i> </span>
+                            <?php //}     ?>
+                                                                </a>
+                                                            </div>
+                                                            <div id="collapseNine" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingNine">
+                                                                <div class="panel-body">
+                                                                    <ul class="nav">
+                                                                        <li><a href="?view_job_advertisements">Job Advertisements</a></li>
+                                                                        <li><a href="?view_job_applications">Job Applications</a></li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>-->
 
                             <!--Menu Item 9-->
-                            <div class="panel panel-default">
-                                <div class="panel-heading" id="headingTen">
-                                    <a role="button" href="?engage_loan_calculator" >
-                                        <i class="fa fa-magic"></i> <span id="title">Amortization Calculator</span>
-                                    </a>
-                                </div>
-                            </div>
+                            <!--                            <div class="panel panel-default">
+                                                            <div class="panel-heading" id="headingTen">
+                                                                <a role="button" href="?engage_loan_calculator" >
+                                                                    <i class="fa fa-magic"></i> <span id="title">Amortization Calculator</span>
+                                                                </a>
+                                                            </div>
+                                                        </div>-->
                             <?php
                         }
                     } else if ($_SESSION['logged_in_user_type_details']['name'] == "ACCOUNT HOLDER") {
@@ -615,8 +734,8 @@ if (App::isLoggedIn()) {
                                 </a>
                             </div>
                         </div>
-                        
-                        
+
+
                         <!--Menu Item 1-->
                         <div class="panel panel-default">
                             <div class="panel-heading" id="headingTwo">
@@ -625,8 +744,8 @@ if (App::isLoggedIn()) {
                                 </a>
                             </div>
                         </div>
-                        
-                        
+
+
                         <!--Menu Item 2-->
                         <div class="panel panel-default">
                             <div class="panel-heading" id="headingThree">
@@ -635,7 +754,7 @@ if (App::isLoggedIn()) {
                                 </a>
                             </div>
                         </div>
-                        
+
                         <!--Menu Item 3-->
                         <div class="panel panel-default">
                             <div class="panel-heading" id="headingFour">
@@ -644,8 +763,8 @@ if (App::isLoggedIn()) {
                                 </a>
                             </div>
                         </div>
-                        
-                        
+
+
                         <!--Menu Item 4-->
                         <div class="panel panel-default">
                             <div class="panel-heading" id="headingFive">
@@ -654,7 +773,7 @@ if (App::isLoggedIn()) {
                                 </a>
                             </div>
                         </div>
-                        
+
                         <!--Menu Item 5-->
                         <div class="panel panel-default">
                             <div class="panel-heading" id="headingSix">
@@ -663,8 +782,8 @@ if (App::isLoggedIn()) {
                                 </a>
                             </div>
                         </div>
-                        
-                        
+
+
                         <!--Menu Item 6-->
                         <div class="panel panel-default">
                             <div class="panel-heading" id="headingSeven">
@@ -673,7 +792,7 @@ if (App::isLoggedIn()) {
                                 </a>
                             </div>
                         </div>
-                        
+
                         <!--Menu Item 7-->
                         <div class="panel panel-default">
                             <div class="panel-heading" id="headingEight">
@@ -684,28 +803,28 @@ if (App::isLoggedIn()) {
                         </div>
 
                         <!--Menu Item 1-->
-<!--                        <div class="panel panel-default">
-                            <div class="panel-heading" role="tab" id="headingTwo">
-                                <a role="button" data-toggle="collapse" data-parent="#accordionMenu" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                                    <i class="fa fa-money"></i> <span id="title">My Transactions</span>
-                                    <span class="sidebar-notification label label-success"><i class="fa fa-bell"></i> </span>
-                                </a>
-                            </div>
-                            <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-                                <div class="panel-body">
-                                    <ul class="nav">
-                                        <li><a href="?view_transactions"><span>All Transactions</span></a></li>
-                                        <li><a href="?view_deposits">Savings</a></li>
-                                        <li><a href="?view_shares"><span>Shares</span></a></li>
-                                        <li><a href="?view_withdrawals"><span>Withdrawals</span></a></li>
-                                        <li><a href="?view_account_to_account_transfers">Account Transfers</a></li>
-                                        <li><a href="?view_loans">Loans</a></li>
-                                        <li><a href="?view_account_loan_repayments">Loan Repayments</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>-->
-                        
+                        <!--                        <div class="panel panel-default">
+                                                    <div class="panel-heading" role="tab" id="headingTwo">
+                                                        <a role="button" data-toggle="collapse" data-parent="#accordionMenu" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                                                            <i class="fa fa-money"></i> <span id="title">My Transactions</span>
+                                                            <span class="sidebar-notification label label-success"><i class="fa fa-bell"></i> </span>
+                                                        </a>
+                                                    </div>
+                                                    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                                                        <div class="panel-body">
+                                                            <ul class="nav">
+                                                                <li><a href="?view_transactions"><span>All Transactions</span></a></li>
+                                                                <li><a href="?view_deposits">Savings</a></li>
+                                                                <li><a href="?view_shares"><span>Shares</span></a></li>
+                                                                <li><a href="?view_withdrawals"><span>Withdrawals</span></a></li>
+                                                                <li><a href="?view_account_to_account_transfers">Account Transfers</a></li>
+                                                                <li><a href="?view_loans">Loans</a></li>
+                                                                <li><a href="?view_account_loan_repayments">Loan Repayments</a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>-->
+
                         <!--Menu Item 6-->
                         <!--                        <div class="panel panel-default">
                                                     <div class="panel-heading" id="headingSeven">
@@ -732,7 +851,7 @@ if (App::isLoggedIn()) {
                                 </a>
                             </div>
                         </div>
-                        
+
                         <!--Menu Item 10-->
                         <div class="panel panel-default">
                             <div class="panel-heading" id="headingEleven">
@@ -750,7 +869,7 @@ if (App::isLoggedIn()) {
                                 </a>
                             </div>
                         </div>
-                        
+
                     <?php } else if ($_SESSION['logged_in_user_type_details']['name'] == "GUEST") {
                         ?>
 
@@ -913,7 +1032,7 @@ if (App::isLoggedIn()) {
                                                 Menu Item 6
                                                 <div class="panel panel-default">
                                                     <div class="panel-heading" id="headingSeven">
-                                                        <a role="button" href="?view_contacts_individual&code=<?php // echo $_SESSION['contacts']['id'];   ?>" >
+                                                        <a role="button" href="?view_contacts_individual&code=<?php // echo $_SESSION['contacts']['id'];       ?>" >
                                                             <i class="fa fa-phone"></i> <span id="title">My Contacts</span>
                                                         </a>
                                                     </div>
@@ -922,7 +1041,7 @@ if (App::isLoggedIn()) {
                                                 Menu Item 7
                                                 <div class="panel panel-default">
                                                     <div class="panel-heading" id="headingEight">
-                                                        <a role="button" href="?view_next_of_kins_individual&code=<?php // echo $_SESSION['next_of_kins']['id'];   ?>" >
+                                                        <a role="button" href="?view_next_of_kins_individual&code=<?php // echo $_SESSION['next_of_kins']['id'];       ?>" >
                                                             <i class="fa fa-dashboard"></i> <span id="title">Next Of Kin</span>
                                                         </a>
                                                     </div>

@@ -35,13 +35,16 @@ if (is_menu_set('?') != "") {
 } else if ((is_menu_set('view_loan_guarantors') != "") OR ( is_menu_set('view_loan_guarantor_notifications') != "")) {
     $request_url = "?add_loan_guarantor";
     $action_holder = "Add Loan Guarantor";
-} else if ((is_menu_set('view_loan_business_data') != "") OR ( is_menu_set('view_loan_business_data_notifications') != "")) {
+} else if ((is_menu_set('view_account_business_data') != "") OR ( is_menu_set('view_account_business_data_notifications') != "")) {
     $request_url = "#";
-    $action_holder = "Loan Business Data";
-} else if (is_menu_set('view_account_loan_business_data') != "") {
-    $request_url = "#";
-    $action_holder = "My Loan Business Data";
-} else if ((is_menu_set('view_loans') != "") OR ( is_menu_set('view_loans_notifications') != "")) {
+    $action_holder = "Business Details";
+}
+
+//else if (is_menu_set('view_account_loan_business_data') != "") {
+//    $request_url = "#";
+//    $action_holder = "My Loan Business Data";
+//}
+else if ((is_menu_set('view_loans') != "") OR ( is_menu_set('view_loans_notifications') != "")) {
     $statement_type = "fetch_loans_statement";
     if (isset($_SESSION['account'])) {
         $request_url = "?add_loan";
@@ -85,23 +88,34 @@ if (is_menu_set('?') != "") {
     $request_url = "?add_branch";
     $action_holder = "Add Branch";
 } else if ((is_menu_set('view_account_holders') != "") OR ( is_menu_set('view_account_holders_notifications') != "")) {
-    $request_url = "#";
-    $action_holder = "Account Holders";
-} else if ((is_menu_set('view_account_nominees') != "") OR ( is_menu_set('view_account_nominees_notifications') != "")) {
-    $request_url = "#";
-    $action_holder = "Account Nominees";
-} else if ((is_menu_set('view_account_holder_occupations') != "") OR ( is_menu_set('view_account_holder_occupations_notifications') != "")) {
-    $request_url = "#";
-    $action_holder = "Account Holder Occupations";
-} else if (is_menu_set('view_account_holders_individual_account') != "") {
-    if (isset($_SESSION['can_add_accountholder']) AND $_SESSION['can_add_accountholder'] == true) {
+    if (isset($_SESSION['can_add_accountholder'])) {
         $request_url = "?add_account_holder";
         $action_holder = "Add Account Holder";
     } else {
         $request_url = "#";
         $action_holder = "Account Holders";
     }
-} else if ((is_menu_set('view_loan_types') != "") OR ( is_menu_set('view_loan_types_notifications') != "")) {
+} else if ((is_menu_set('view_account_nominees') != "") OR ( is_menu_set('view_account_nominees_notifications') != "")) {
+    $request_url = "#";
+    $action_holder = "Account Nominees";
+} else if ((is_menu_set('view_account_banking_details') != "") OR ( is_menu_set('view_account_banking_details_notifications') != "")) {
+    $request_url = "#";
+    $action_holder = "Account Banking Details";
+} else if ((is_menu_set('view_account_holder_occupations') != "") OR ( is_menu_set('view_account_holder_occupations_notifications') != "")) {
+    $request_url = "#";
+    $action_holder = "Account Holder Occupations";
+}
+
+//else if (is_menu_set('view_account_holders_individual_account') != "") {
+//    if (isset($_SESSION['can_add_accountholder']) AND $_SESSION['can_add_accountholder'] == true) {
+//        $request_url = "?add_account_holder";
+//        $action_holder = "Add Account Holder";
+//    } else {
+//        $request_url = "#";
+//        $action_holder = "Account Holders";
+//    }
+//}
+else if ((is_menu_set('view_loan_types') != "") OR ( is_menu_set('view_loan_types_notifications') != "")) {
     $request_url = "?add_loan_type";
     $action_holder = "Add Loan Type";
 } else if ((is_menu_set('view_marital_statuses') != "") OR ( is_menu_set('view_marital_statuses_notifications') != "")) {
@@ -246,7 +260,7 @@ else if ((is_menu_set('view_account_types') != "") OR ( is_menu_set('view_accoun
 
 <?php
 if (is_menu_set('view_inbox_messages') != "" OR is_menu_set('view_job_advertisements') != "" OR is_menu_set('view_job_applications') != "" OR is_menu_set('view_accounts') != ""
-        OR is_menu_set('view_loan_guarantors') != "" OR is_menu_set('view_account_loan_guarantors') != "" OR is_menu_set('view_loan_business_data') != "" OR is_menu_set('view_loans') != ""
+        OR is_menu_set('view_loan_guarantors') != "" OR is_menu_set('view_account_loan_guarantors') != "" OR is_menu_set('view_account_business_data') != "" OR is_menu_set('view_loans') != ""
         OR is_menu_set('view_account_loans') != "" OR is_menu_set('view_investors') != "" OR is_menu_set('view_institutions') != "" OR is_menu_set('view_account_holders') != ""
         OR is_menu_set('view_projects') != "" OR is_menu_set('view_investor_projects') != "" OR is_menu_set('view_member_projects') != "" OR is_menu_set('view_project_bids') != ""
         OR is_menu_set('view_bids_on_project') != "" OR is_menu_set('view_staff') != ""
@@ -262,20 +276,20 @@ if (is_menu_set('view_inbox_messages') != "" OR is_menu_set('view_job_advertisem
 <?php if ((!isset($_SESSION['investor'])) AND ( !is_menu_set('add_loan_guarantor')) AND ( !is_menu_set('view_contacts')) AND ( !is_menu_set('view_contacts_notifications'))) { ?>
     <a href="<?php echo $request_url; ?>" class="btn btn-success sub-sub-menu-buttons">
         <i class="fa fa-plus"></i> 
-        <?php echo $action_holder; ?>
+    <?php echo $action_holder; ?>
     </a>
-<?php } ?>
+    <?php } ?>
 <?php if (is_menu_set('add_loan_guarantor') != "") { ?>
     <a href="<?php echo $request_url; ?>" class="btn btn-danger sub-sub-menu-buttons">
-        <?php echo $action_holder; ?>
+    <?php echo $action_holder; ?>
     </a>
-<?php } ?>
+    <?php } ?>
 <?php if (is_menu_set('view_roles_individual') != "") { ?>
     <a href="<?php echo "?view_role_privileges"; ?>" class="btn btn-success sub-sub-menu-buttons">
         <i class="fa fa-plus"></i> 
-        <?php echo "View Privileges"; ?>
+    <?php echo "View Privileges"; ?>
     </a>
-<?php } ?>
+    <?php } ?>
 
 <?php
 if (is_menu_set('view_transactions') != "" OR is_menu_set('view_account_to_account_transfers') != "" OR is_menu_set('view_deposits') != "" OR is_menu_set('view_withdrawals') != ""
@@ -311,11 +325,12 @@ if (is_menu_set('view_transactions') != "" OR is_menu_set('view_account_to_accou
     </form>
 <?php } ?>
 
-<?php if (is_menu_set('add_loan_guarantor') != "") {
-    
+<?php
+if (is_menu_set('add_loan_guarantor') != "") {
+
     $_SESSION['outstanding_balance_to_be_guaranteed'] = $_SESSION['principal_amount'];
- //   $outstanding_balance_to_be_guaranteed = $_SESSION['principal_amount'];
-    if (!empty($_POST) AND $_POST['action'] == "update_loan_guarantors_list") {        
+    //   $outstanding_balance_to_be_guaranteed = $_SESSION['principal_amount'];
+    if (!empty($_POST) AND $_POST['action'] == "update_loan_guarantors_list") {
         $_SESSION['new_outstanding_balance_to_be_guaranteed'] = $_SESSION['outstanding_balance_to_be_guaranteed'] - $_POST["amount"];
         $_SESSION['outstanding_balance_to_be_guaranteed'] = $_SESSION['new_outstanding_balance_to_be_guaranteed'];
     }

@@ -560,3 +560,185 @@ Deleted files:
 Null
 
 *********************************************************************************************************************************************************************************************
+29 October, 2018 - Maurice
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Summary
+1. Continued with the re-branding of the UI module to be generally acceptable across organizations/clients.....the case study here is MOBA sacco. Finalized on the institution-staff profile of the module for first draft review.
+------------------------------------------------
+Website
+------------------------------------------------
+Edited files:
+Null
+
+Added files:
+Null
+
+Deleted files:
+Null
+
+------------------------------------------------
+Admin Portal
+------------------------------------------------
+Edited files:
+
+1. controller.php
+2. modules/add/add_account_banking.php
+3. modules/add/add_account_to_account_transfer.php
+4. modules/add/add_account_to_account_transfer_next.php
+5. modules/add/add_deposit.php
+6. modules/add/add_loan.php
+7. modules/add/add_loan_business_data.php
+8. modules/add/add_loan_guarantor.php
+9. modules/add/add_next_of_kin.php
+10. modules/add/add_shares.php
+11. modules/add/add_withdrawal.php
+12. modules/classes/Loans.php
+13. modules/classes/Notifications.php
+14. modules/classes/Users.php
+15. modules/menus/main_sidebar.php
+16. modules/menus/sub-sub-menu-buttons.php
+17. modules/menus/sub_menu_account.php
+18. RENAMED 'modules/menus/sub_menu_view_account.php' TO 'modules/menus/sub_menu_account_account_holder.php'
+19. modules/menus/sub_menu_account_individual_account.php
+20. modules/menus/sub_menu_careers.php
+21. RENAMED 'modules/menus/sub_menu_transactions.php' TO 'modules/menus/sub_menu_fosa_transactions.php'
+22. modules/menus/sub_menu_loans.php
+23. modules/menus/sub_menu_loans_individual_loan.php
+24. modules/menus/sub_menu_system_contacts.php
+25. modules/menus/sub_menu_system_users.php
+26. modules/read/transitional_view_accounts_individual.php
+27. modules/read/view_accounts_individual.php
+28. modules/read/view_account_banking_details.php
+29. modules/read/view_account_banking_details_individual.php
+30. RENAMED 'modules/read/view_loan_business_data.php' TO 'modules/read/view_account_business_data.php'
+31. RENAMED 'modules/read/view_loan_business_data_individual.php' TO 'modules/read/view_account_business_data_individual.php'
+32. modules/read/view_account_categories_individual.php
+33. modules/read/view_account_holders.php
+34. modules/read/view_account_holders_individual_account.php
+35. modules/read/view_account_holder_occupations_individual.php
+36. modules/read/view_account_nominees.php
+37. modules/read/view_account_nominees_individual.php
+38. modules/read/view_account_to_account_transfers.php
+39. modules/read/view_account_types_individual.php
+40. modules/read/view_branches_individual.php
+41. modules/read/view_contacts.php
+42. modules/read/view_contacts_individual.php
+43. modules/read/view_default_charge_rates_individual.php
+44. modules/read/view_deposits.php
+45. modules/read/view_financing_methods_individual.php
+46. modules/read/view_funding_types_individual.php
+47. modules/read/view_guest_users_individual.php
+48. modules/read/view_inbox_messages.php
+49. modules/read/view_instalment_frequencies_individual.php
+50. modules/read/view_institutions_individual.php
+51. modules/read/view_investors_individual.php
+52. modules/read/view_investor_types_individual.php
+53. modules/read/view_job_advertisements_individual.php
+54. modules/read/view_job_applications_individual.php
+55. modules/read/view_loans.php
+56. modules/read/view_loans_individual.php
+57. modules/read/view_loan_contact_persons_individual.php
+58. modules/read/view_loan_data_individual.php
+59. modules/read/view_loan_external_data_individual.php
+60. modules/read/view_loan_guarantors.php
+61. modules/read/view_loan_guarantors_individual.php
+62. modules/read/view_loan_processing_fees_individual.php
+63. modules/read/view_loan_repayments.php
+64. modules/read/view_loan_types_individual.php
+65. modules/read/view_marital_statuses_individual.php
+66. modules/read/view_nationalities_individual.php
+67. modules/read/view_next_of_kins_individual.php
+68. modules/read/view_positions_individual.php
+69. modules/read/view_projects_individual.php
+70. modules/read/view_project_bids_individual.php
+71. modules/read/view_responses_individual.php
+72. modules/read/view_roles_individual.php
+73. modules/read/view_sectors_individual.php
+74. modules/read/view_shares.php
+75. modules/read/view_staff_individual.php
+76. modules/read/view_statuses_individual.php
+77. modules/read/view_system_administrators_individual.php
+78. modules/read/view_system_components_individual.php
+79. modules/read/view_system_privileges_individual.php
+80. modules/read/view_transactions.php
+81. modules/read/view_transaction_types_individual.php
+82. modules/read/view_user_privileges_individual.php
+83. modules/read/view_user_types_individual.php
+84. modules/read/view_withdrawals.php
+85. modules/read/view_withdrawals_individual.php
+86. modules/update/transitional_update_account.php
+87. modules/update/update_account.php
+88. modules/update/update_account_banking_details.php
+89. modules/update/update_account_category.php
+90. modules/update/update_account_holder.php
+91. modules/update/update_account_holder_occupation.php
+92. modules/update/update_account_nominee.php
+93. modules/update/update_account_type.php
+94. modules/update/update_branch.php
+95. modules/update/update_business_form.php
+96. modules/update/update_business_plan.php
+97. modules/update/update_business_type.php
+98. modules/update/update_contact.php
+99. modules/update/update_default_charge_rate.php
+100. modules/update/update_financing_method.php
+101. modules/update/update_funding_type.php
+102. modules/update/update_guest_user.php
+103. modules/update/update_instalment_frequency.php
+104. modules/update/update_institution.php
+105. modules/update/update_investor.php
+106. modules/update/update_investor_type.php
+107. modules/update/update_loan.php
+108. modules/update/update_loan_balance.php
+109. modules/update/update_loan_balance_next.php
+110. modules/update/update_loan_business_data.php
+111. modules/update/update_loan_contact_person.php
+112. modules/update/update_loan_data.php
+113. modules/update/update_loan_external_data.php
+114. modules/update/update_loan_guarantor.php
+115. modules/update/update_loan_processing_fees.php
+116. modules/update/update_loan_type.php
+117. modules/update/update_marital_status.php
+118. modules/update/update_nationality.php
+119. modules/update/update_next_of_kin.php
+120. modules/update/update_position.php
+121. modules/update/update_profpicture.php
+122. modules/update/update_project.php
+123. modules/update/update_project_bid.php
+124. modules/update/update_response.php
+125. modules/update/update_role.php
+126. modules/update/update_sector.php
+127. modules/update/update_signature.php
+128. modules/update/update_staff.php
+129. modules/update/update_status.php
+130. modules/update/update_system_administrator.php
+131. modules/update/update_system_component.php
+132. modules/update/update_system_privilege.php
+133. modules/update/update_transaction_type.php
+134. modules/update/update_user_type.php
+135. modules/update/update_user_type_privilege.php
+
+Added files:
+Null
+
+Deleted files:
+Null
+
+------------------------------------------------
+API
+------------------------------------------------
+
+Edited files:
+
+1. modules/classes/Loans.php
+2. modules/classes/Notifications.php
+3. modules/classes/Search.php
+4. modules/classes/Users.php
+5. modules/index.php
+
+Added files:
+Null
+
+Deleted files:
+Null
+
+*********************************************************************************************************************************************************************************************

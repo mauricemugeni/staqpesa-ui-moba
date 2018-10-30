@@ -22,6 +22,8 @@ class Users extends Database {
             return $this->addAccount();
         } else if ($_POST['action'] == "edit_account") {
             return $this->editAccount();
+        } else if ($_POST['action'] == "edit_account_business_data") {
+            return $this->editAccountBusinessData();
         } else if ($_POST['action'] == "add_job_advertisement") {
             return $this->addJobAdvertisement();
         } else if ($_POST['action'] == "edit_job_advertisement") {
@@ -62,6 +64,8 @@ class Users extends Database {
             return $this->addNextOfKin();
         } else if ($_POST['action'] == "edit_next_of_kin") {
             return $this->editNextOfKin();
+        } else if ($_POST['action'] == "edit_account_banking_details") {
+            return $this->editAccountBankingDetails();
         } else if ($_POST['action'] == "edit_contact") {
             return $this->editContact();
         } else if ($_POST['action'] == "view_statement_from_to") {
@@ -108,7 +112,7 @@ class Users extends Database {
         if ($status == 200) {
             $_SESSION['userid'] = App::cleanText($info['userid']);
             $_SESSION['login_user_type'] = $info['user_type'];
-        //    $_SESSION['login_user_type_ref_id'] = $info['user_type_ref_id'];
+            $_SESSION['login_user_type_ref_id'] = $info['user_type_ref_id'];
             $_SESSION['username'] = App::cleanText($info['userid']);
             $_SESSION['user'] = $data['username'];
             $_SESSION['logged_in_user_type_details'] = $this->fetchUserTypeDetails($_SESSION['login_user_type']);
@@ -519,6 +523,27 @@ class Users extends Database {
 //        return $currentGroup;
 //    }
 
+
+    public function transitionalFetchAccountBusinessDataDetails($code) {
+        $data['request_type'] = 'transitional_fetch_account_business_data_details';
+        $data['code'] = $code;
+        $data_string = http_build_query($data);
+        $process_request = $this->sendHttpRequestPost($data_string);
+        $decoded_response = json_decode($process_request, true);
+        $info = $decoded_response['message'];
+        return $info;
+    }
+
+    public function getAllAccountBusinessDataNotifications() {
+        $data['request_type'] = 'get_all_account_business_data_notifications';
+        $data['userid'] = $_SESSION['userid'];
+        $data_string = http_build_query($data);
+        $process_request = $this->sendHttpRequestPost($data_string);
+        $decoded_response = json_decode($process_request, true);
+        $info = $decoded_response['message'];
+        return $info;
+    }
+
     public function getAllJobAdvertisementNotifications() {
         $data['request_type'] = 'get_all_job_advertisement_notifications';
         $data['userid'] = $_SESSION['userid'];
@@ -531,16 +556,6 @@ class Users extends Database {
 
     public function getAllJobApplicationNotifications() {
         $data['request_type'] = 'get_all_job_application_notifications';
-        $data['userid'] = $_SESSION['userid'];
-        $data_string = http_build_query($data);
-        $process_request = $this->sendHttpRequestPost($data_string);
-        $decoded_response = json_decode($process_request, true);
-        $info = $decoded_response['message'];
-        return $info;
-    }
-
-    public function getAllInboxMessagesNotifications() {
-        $data['request_type'] = 'get_all_inbox_messages_notifications';
         $data['userid'] = $_SESSION['userid'];
         $data_string = http_build_query($data);
         $process_request = $this->sendHttpRequestPost($data_string);
@@ -640,6 +655,34 @@ class Users extends Database {
         return $info;
     }
 
+    public function getAllAssignedInboxMessagesNotifications() {
+        $data['request_type'] = 'get_all_assigned_inbox_messages_notifications';
+        $data['userid'] = $_SESSION['userid'];
+        $data_string = http_build_query($data);
+        $process_request = $this->sendHttpRequestPost($data_string);
+        $decoded_response = json_decode($process_request, true);
+        $info = $decoded_response['message'];
+        return $info;
+    }
+
+    public function getAllAssignedOpenInboxMessagesNotifications() {
+        $data['request_type'] = 'get_all_assigned_open_inbox_messages_notifications';
+        $data_string = http_build_query($data);
+        $process_request = $this->sendHttpRequestPost($data_string);
+        $decoded_response = json_decode($process_request, true);
+        $info = $decoded_response['message'];
+        return $info;
+    }
+
+    public function getAllUnassignedInboxMessagesNotifications() {
+        $data['request_type'] = 'get_all_unassigned_inbox_messages_notifications';
+        $data_string = http_build_query($data);
+        $process_request = $this->sendHttpRequestPost($data_string);
+        $decoded_response = json_decode($process_request, true);
+        $info = $decoded_response['message'];
+        return $info;
+    }
+
     public function getAllAccountHolderNotifications() {
         $data['request_type'] = 'get_all_account_holder_notifications';
         $data['userid'] = $_SESSION['userid'];
@@ -662,6 +705,16 @@ class Users extends Database {
 
     public function getAllAccountNomineeNotifications() {
         $data['request_type'] = 'get_all_account_nominee_notifications';
+        $data['userid'] = $_SESSION['userid'];
+        $data_string = http_build_query($data);
+        $process_request = $this->sendHttpRequestPost($data_string);
+        $decoded_response = json_decode($process_request, true);
+        $info = $decoded_response['message'];
+        return $info;
+    }
+
+    public function getAllAccountBankingDetailNotifications() {
+        $data['request_type'] = 'get_all_account_banking_detail_notifications';
         $data['userid'] = $_SESSION['userid'];
         $data_string = http_build_query($data);
         $process_request = $this->sendHttpRequestPost($data_string);
@@ -698,8 +751,38 @@ class Users extends Database {
         return $info;
     }
 
+    public function getAllIndividualAccountAccountHolders() {
+        $data['request_type'] = 'get_all_individual_account_account_holders';
+        $data['account_number'] = $_SESSION['account'];
+        $data_string = http_build_query($data);
+        $process_request = $this->sendHttpRequestPost($data_string);
+        $decoded_response = json_decode($process_request, true);
+        $info = $decoded_response['message'];
+        return $info;
+    }
+
     public function getAllAccountHolderOccupations() {
         $data['request_type'] = 'get_all_account_holder_occupations';
+        $data_string = http_build_query($data);
+        $process_request = $this->sendHttpRequestPost($data_string);
+        $decoded_response = json_decode($process_request, true);
+        $info = $decoded_response['message'];
+        return $info;
+    }
+
+    public function getAllIndividualAccountAccountHolderOccupations() {
+        $data['request_type'] = 'get_all_individual_account_account_holder_occupations';
+        $data['account_number'] = $_SESSION['account'];
+        $data_string = http_build_query($data);
+        $process_request = $this->sendHttpRequestPost($data_string);
+        $decoded_response = json_decode($process_request, true);
+        $info = $decoded_response['message'];
+        return $info;
+    }
+
+    public function getAllIndividualAccountAccountBusinessData() {
+        $data['request_type'] = 'get_all_individual_account_account_business_data';
+        $data['account_number'] = $_SESSION['account'];
         $data_string = http_build_query($data);
         $process_request = $this->sendHttpRequestPost($data_string);
         $decoded_response = json_decode($process_request, true);
@@ -715,10 +798,38 @@ class Users extends Database {
         $info = $decoded_response['message'];
         return $info;
     }
-    
+
+    public function getAllAccountBankingDetails() {
+        $data['request_type'] = 'get_all_account_banking_details';
+        $data_string = http_build_query($data);
+        $process_request = $this->sendHttpRequestPost($data_string);
+        $decoded_response = json_decode($process_request, true);
+        $info = $decoded_response['message'];
+        return $info;
+    }
+
+    public function getAllIndividualAccountAccountBankingDetails() {
+        $data['request_type'] = 'get_all_individual_account_account_banking_details';
+        $data['account_number'] = $_SESSION['account'];
+        $data_string = http_build_query($data);
+        $process_request = $this->sendHttpRequestPost($data_string);
+        $decoded_response = json_decode($process_request, true);
+        $info = $decoded_response['message'];
+        return $info;
+    }
+
     public function getAllAccountNomineesIndividualAccount() {
-        $data['request_type'] = 'get_all_account_nominees_individual_account';
+        $data['request_type'] = 'get_all_individual_account_account_nominees';
         $data['account'] = $_SESSION['account'];
+        $data_string = http_build_query($data);
+        $process_request = $this->sendHttpRequestPost($data_string);
+        $decoded_response = json_decode($process_request, true);
+        $info = $decoded_response['message'];
+        return $info;
+    }
+
+    public function getAllAccountBusinessData() {
+        $data['request_type'] = 'get_all_account_business_data';
         $data_string = http_build_query($data);
         $process_request = $this->sendHttpRequestPost($data_string);
         $decoded_response = json_decode($process_request, true);
@@ -989,6 +1100,18 @@ class Users extends Database {
         return $info;
     }
 
+    public function updateAccountBusinessData($code, $update_type) {
+        $data['request_type'] = 'update_account_business_data';
+        $data['code'] = $code;
+        $data['update_type'] = $update_type;
+        $data['userid'] = $_SESSION['userid'];
+        $data_string = http_build_query($data);
+        $process_request = $this->sendHttpRequestPut($data_string);
+        $decoded_response = json_decode($process_request, true);
+        $info = $decoded_response['message'];
+        return $info;
+    }
+
     public function updatePosition($code, $update_type) {
         $data['request_type'] = 'update_position';
         $data['code'] = $code;
@@ -1096,9 +1219,10 @@ class Users extends Database {
         return $info;
     }
 
-    public function fetchAccountBankingDtlDetails() {
+    public function fetchAccountBankingDtlDetails($code) {
         $data['request_type'] = 'fetch_account_banking_dtl_details';
-        $data['account_number'] = $_SESSION['account'];
+        $data['code'] = $code;
+//        $data['account_number'] = $_SESSION['account'];
         $data_string = http_build_query($data);
         $process_request = $this->sendHttpRequestPost($data_string);
         $decoded_response = json_decode($process_request, true);
@@ -1332,6 +1456,16 @@ class Users extends Database {
         return $info;
     }
 
+    public function fetchAccountBusinessDataDetails($code) {
+        $data['request_type'] = 'fetch_account_business_data_details';
+        $data['code'] = $code;
+        $data_string = http_build_query($data);
+        $process_request = $this->sendHttpRequestPost($data_string);
+        $decoded_response = json_decode($process_request, true);
+        $info = $decoded_response['message'];
+        return $info;
+    }
+
     public function fetchProposedGuarantorDetails($idnumber) {
         $data['request_type'] = 'fetch_proposed_guarantor_details';
         $data['idnumber'] = $idnumber;
@@ -1353,7 +1487,7 @@ class Users extends Database {
     }
 
     public function addAccount() {
-        
+
         //add_account
         $data['request_type'] = $_POST['action'];
         $data['branch'] = $_SESSION['branch'];
@@ -1394,7 +1528,6 @@ class Users extends Database {
 //        $data['holder_createdat'] = $_SESSION['holder_createdat'];
 //    $_SESSION['user_type'] = "ACCOUNT HOLDER";
 //    $_SESSION['ref_type'] = $users->getUserRefTypeId($_SESSION['user_type']);
-    
         //add_personal_occupation_details
         $data['employment_status'] = $_SESSION['employment_status'];
         $data['monthly_income_range'] = $_SESSION['monthly_income_range'];
@@ -1440,9 +1573,9 @@ class Users extends Database {
         $data['location'] = $_SESSION['location'];
         $data['sub_location'] = $_SESSION['sub_location'];
         $data['landmark_feature'] = $_SESSION['landmark_feature'];
-        
+
         $data_string = http_build_query($data);
-        
+
         if (!empty($data['request_type']) && !empty($data['account_type']) && !empty($data['holder_firstname']) && !empty($data['employment_status']) && !empty($data['nominee_percentage']) && !empty($data['phone_number1'])) {
             $process_request = $this->sendHttpRequestPost($data_string);
             if ($process_request) {
@@ -1554,51 +1687,52 @@ class Users extends Database {
     public function addAccountBankingDetails() {
         $data['request_type'] = 'add_account_banking_details';
         $data['account_number'] = $_SESSION['account'];
-        
-        if($_POST['mobile_service_provider'] == "") {
+        $data['createdby'] = $_POST['createdby'];
+
+        if ($_POST['mobile_service_provider'] == "") {
             $data['mobile_service_provider'] = 'N/A';
         } else {
             $data['mobile_service_provider'] = $_POST['mobile_service_provider'];
         }
-        
-        if($_POST['mobile_number'] == "") {
+
+        if ($_POST['mobile_number'] == "") {
             $data['mobile_number'] = 'N/A';
         } else {
             $data['mobile_number'] = $_POST['mobile_number'];
         }
-        
-        if($_POST['bank_account_number'] == "") {
+
+        if ($_POST['bank_account_number'] == "") {
             $data['bank_account_number'] = 'N/A';
         } else {
             $data['bank_account_number'] = $_POST['bank_account_number'];
         }
-        
-        if($_POST['bank_name'] == "") {
+
+        if ($_POST['bank_name'] == "") {
             $data['bank_name'] = 'N/A';
         } else {
             $data['bank_name'] = $_POST['bank_name'];
         }
-        
-        if($_POST['bank_code'] == "") {
+
+        if ($_POST['bank_code'] == "") {
             $data['bank_code'] = 'N/A';
         } else {
             $data['bank_code'] = $_POST['bank_code'];
         }
-        
-        if($_POST['bank_branch_name'] == "") {
+
+        if ($_POST['bank_branch_name'] == "") {
             $data['bank_branch_name'] = 'N/A';
         } else {
             $data['bank_branch_name'] = $_POST['bank_branch_name'];
         }
-        
-        if($_POST['bank_branch_code'] == "") {
+
+        if ($_POST['bank_branch_code'] == "") {
             $data['bank_branch_code'] = 'N/A';
         } else {
             $data['bank_branch_code'] = $_POST['bank_branch_code'];
         }
-        
+
         $data_string = http_build_query($data);
-        
+
         if (!empty($data['request_type']) && !empty($data['account_number']) && !empty($data['mobile_number'])) {
             $process_request = $this->sendHttpRequestPost($data_string);
             if ($process_request) {
@@ -1642,30 +1776,22 @@ class Users extends Database {
 
     private function addNextOfKin() {
         $data['request_type'] = $_POST['action'];
+        $data['ref_type'] = $_SESSION['ref_type'];
+        $data['ref_id'] = $_SESSION['ref_id'];
         $data['firstname'] = $_POST['firstname'];
         $data['middlename'] = $_POST['middlename'];
         $data['lastname'] = $_POST['lastname'];
         $data['relationship'] = $_POST['relationship'];
-        $data['ref_type'] = $_POST['ref_type'];
-        $data['ref_id'] = $_POST['ref_id'];
-
-        //Contacts
-        $data['phone_number1'] = $_SESSION['phone_number1'];
-        $data['phone_number2'] = $_SESSION['phone_number2'];
-        $data['email'] = $_SESSION['email'];
-        $data['postal_number'] = $_SESSION['postal_number'];
-        $data['postal_code'] = $_SESSION['postal_code'];
-        $data['town'] = $_SESSION['town'];
-        $data['residential_area'] = $_SESSION['residential_area'];
-        $data['estate'] = $_SESSION['estate'];
-        $data['street'] = $_SESSION['street'];
-        $data['division'] = $_SESSION['division'];
-        $data['location'] = $_SESSION['location'];
-        $data['sub_location'] = $_SESSION['sub_location'];
+        $data['workplace'] = $_POST['workplace'];
+        $data['phone_number'] = $_POST['phone_number'];
+        $data['email'] = $_POST['email'];
+        $data['postal_address'] = $_POST['postal_address'];
+        $data['physical_address'] = $_POST['physical_address'];
+        $data['createdby'] = $_SESSION['userid'];
 
         $data_string = http_build_query($data);
 
-        if (!empty($data['request_type']) && !empty($data['name']) && !empty($data['charge']) && !empty($data['createdby'])) {
+        if (!empty($data['request_type']) && !empty($data['ref_type']) && !empty($data['firstname']) && !empty($data['relationship'])) {
             $process_request = $this->sendHttpRequestPost($data_string);
             if ($process_request) {
                 $decoded_response = json_decode($process_request, true);
@@ -1950,12 +2076,52 @@ class Users extends Database {
         $data['month'] = $_POST['month'];
         $data['year'] = $_POST['year'];
         $data['nationality'] = $_POST['nationality'];
-        $data['signatory'] = $_POST['signatory'];
+        $data['is_signatory'] = $_POST['is_signatory'];
+        $data['createdby'] = $_POST['createdby'];
+
+        $data_string = http_build_query($data);
+        
+        if (!empty($data['request_type']) && !empty($data['code'])) {
+            $process_request = $this->sendHttpRequestPost($data_string);
+            if ($process_request) {
+                $decoded_response = json_decode($process_request, true);
+                $response['status'] = $decoded_response['status'];
+                $response['message'] = $decoded_response['message'];
+            } else {
+                $response['status'] = 400;
+                $response['message'] = "Sorry: There was an error processing the request. Please try again later";
+            }
+        } else {
+            $response['status'] = 400;
+            $response['message'] = "Error: Missing Values in Request";
+        }
+        return $response;
+    }
+
+    private function editAccountBusinessData() {
+        $data['request_type'] = $_POST['action'];
+        $data['code'] = $_SESSION['account_business_data'];
+        $data['eunique_credit'] = $_POST['eunique_credit'];
+        $data['other_credit'] = $_POST['other_credit'];
+        $data['business_type'] = $_POST['business_type'];
+        $data['business_form'] = $_POST['business_form'];
+        $data['business_time'] = $_POST['business_time'];
+        $data['stock_value'] = $_POST['stock_value'];
+        $data['daily_sales'] = $_POST['daily_sales'];
+        $data['monthly_income'] = $_POST['monthly_income'];
+        $data['monthly_expenses'] = $_POST['monthly_expenses'];
+        $data['employees'] = $_POST['employees'];
+        $data['licensed'] = $_POST['licensed'];
+        $data['road'] = $_POST['road'];
+        $data['street'] = $_POST['street'];
+        $data['location'] = $_POST['location'];
+        $data['building'] = $_POST['building'];
+        $data['house_number'] = $_POST['house_number'];
         $data['createdby'] = $_POST['createdby'];
 
         $data_string = http_build_query($data);
 
-        if (!empty($data['request_type']) && !empty($data['code']) && !empty($data['firstname']) && !empty($data['gender']) && !empty($data['idnumber']) && !empty($data['day']) && !empty($data['signatory']) && !empty($data['createdby'])) {
+        if (!empty($data['request_type']) && !empty($data['id']) && !empty($data['code']) && !empty($data['name']) && !empty($data['email']) && !empty($data['phone_number']) && !empty($data['location']) && !empty($data['createdby'])) {
             $process_request = $this->sendHttpRequestPost($data_string);
             if ($process_request) {
                 $decoded_response = json_decode($process_request, true);
@@ -1977,39 +2143,16 @@ class Users extends Database {
         $data['code'] = $_SESSION['account'];
         $data['account_name'] = $_POST['account_name'];
         $data['account_type'] = $_POST['account_type'];
-        $data['account_category'] = $_POST['account_category'];
-        $data['branch'] = $_POST['branch'];
-        $data['other_account'] = $_POST['other_account'];
-
-        if ($_POST['employer'] != NULL) {
-            $data['employer'] = $_POST['employer'];
-            $data['company_name'] = $_POST['company_name'];
-            $data['company_business_type'] = $_POST['company_business_type'];
-            $data['company_postal_number'] = $_POST['company_postal_number'];
-            $data['company_postal_code'] = $_POST['company_postal_code'];
-            $data['company_town'] = $_POST['company_town'];
-            $data['company_phone_number'] = $_POST['company_phone_number'];
-            $data['company_email'] = $_POST['company_email'];
-        }
-
-        if ($data['other_account'] == 1) {
-            $data['other_account_number1'] = $_POST['other_account_number1'];
-            $data['other_account_bank1'] = $_POST['other_account_bank1'];
-            $data['other_account_branch1'] = $_POST['other_account_branch1'];
-            $data['other_account_number2'] = $_POST['other_account_number2'];
-            $data['other_account_bank2'] = $_POST['other_account_bank2'];
-            $data['other_account_branch2'] = $_POST['other_account_branch2'];
-        }
-
+        $data['branch'] = $_POST['branch'];        
+        $data['contribution_amount'] = $_POST['contribution_amount'];
+        $data['contribution_effective_date'] = $_POST['year'] . "-" . $_POST['month'] . "-" . $_POST['day'];
+        $data['remittance_mode'] = $_POST['remittance_mode'];        
+        $data['referee'] = $_POST['referee'];
+        $data['recruited_by'] = $_POST['recruited_by'];
         $data['createdby'] = $_POST['createdby'];
 
         $data_string = http_build_query($data);
-
-        argDump($data_string);
-        argDump($data_string);
-        argDump($data_string);
-        exit();
-
+        
         if (!empty($data['request_type']) && !empty($data['code']) && !empty($data['account_name']) && !empty($data['account_type']) && !empty($data['createdby'])) {
             $process_request = $this->sendHttpRequestPost($data_string);
             if ($process_request) {
@@ -2206,6 +2349,71 @@ class Users extends Database {
         $data_string = http_build_query($data);
 
         if (!empty($data['request_type']) && !empty($data['id']) && !empty($data['firstname']) && !empty($data['phone_number']) && !empty($data['createdby'])) {
+            $process_request = $this->sendHttpRequestPost($data_string);
+            if ($process_request) {
+                $decoded_response = json_decode($process_request, true);
+                $response['status'] = $decoded_response['status'];
+                $response['message'] = $decoded_response['message'];
+            } else {
+                $response['status'] = 400;
+                $response['message'] = "Sorry: There was an error processing the request. Please try again later";
+            }
+        } else {
+            $response['status'] = 400;
+            $response['message'] = "Error: Missing Values in Request";
+        }
+        return $response;
+    }
+
+    public function editAccountBankingDetails() {
+        $data['request_type'] = $_POST['action'];
+        $data['id'] = $_POST['code'];
+
+        if ($_POST['mobile_service_provider'] == "") {
+            $data['mobile_service_provider'] = 'N/A';
+        } else {
+            $data['mobile_service_provider'] = $_POST['mobile_service_provider'];
+        }
+
+        if ($_POST['mobile_number'] == "") {
+            $data['mobile_number'] = 'N/A';
+        } else {
+            $data['mobile_number'] = $_POST['mobile_number'];
+        }
+
+        if ($_POST['bank_account_number'] == "") {
+            $data['bank_account_number'] = 'N/A';
+        } else {
+            $data['bank_account_number'] = $_POST['bank_account_number'];
+        }
+
+        if ($_POST['bank_name'] == "") {
+            $data['bank_name'] = 'N/A';
+        } else {
+            $data['bank_name'] = $_POST['bank_name'];
+        }
+
+        if ($_POST['bank_code'] == "") {
+            $data['bank_code'] = 'N/A';
+        } else {
+            $data['bank_code'] = $_POST['bank_code'];
+        }
+
+        if ($_POST['bank_branch_name'] == "") {
+            $data['bank_branch_name'] = 'N/A';
+        } else {
+            $data['bank_branch_name'] = $_POST['bank_branch_name'];
+        }
+
+        if ($_POST['bank_branch_code'] == "") {
+            $data['bank_branch_code'] = 'N/A';
+        } else {
+            $data['bank_branch_code'] = $_POST['bank_branch_code'];
+        }
+
+        $data_string = http_build_query($data);
+
+        if (!empty($data['request_type']) && !empty($data['id'])) {
             $process_request = $this->sendHttpRequestPost($data_string);
             if ($process_request) {
                 $decoded_response = json_decode($process_request, true);

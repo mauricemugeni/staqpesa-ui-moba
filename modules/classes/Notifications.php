@@ -112,9 +112,27 @@ class Notifications extends Database {
         return $info;
     }
 
-    public function inboxMessagesNotifications() {
-        $data['request_type'] = 'count_inbox_messages_notifications';
+    public function assignedInboxMessagesNotifications() {
+        $data['request_type'] = 'count_assigned_inbox_messages_notifications';
         $data['userid'] = $_SESSION['userid'];
+        $data_string = http_build_query($data);
+        $process_request = $this->sendHttpRequestPost($data_string);
+        $decoded_response = json_decode($process_request, true);
+        $info = $decoded_response['message'];
+        return $info;
+    }
+
+    public function assignedOpenInboxMessagesNotifications() {
+        $data['request_type'] = 'count_assigned_open_inbox_messages_notifications';
+        $data_string = http_build_query($data);
+        $process_request = $this->sendHttpRequestPost($data_string);
+        $decoded_response = json_decode($process_request, true);
+        $info = $decoded_response['message'];
+        return $info;
+    }
+
+    public function unassignedInboxMessagesNotifications() {
+        $data['request_type'] = 'count_unassigned_inbox_messages_notifications';
         $data_string = http_build_query($data);
         $process_request = $this->sendHttpRequestPost($data_string);
         $decoded_response = json_decode($process_request, true);
@@ -193,7 +211,17 @@ class Notifications extends Database {
     }
 
     public function accountHolderOccupationsNotifications() {
-        $data['request_type'] = 'count_account_holder_notifications_notifications';
+        $data['request_type'] = 'count_account_holder_occupations_notifications';
+        $data['userid'] = $_SESSION['userid'];
+        $data_string = http_build_query($data);
+        $process_request = $this->sendHttpRequestPost($data_string);
+        $decoded_response = json_decode($process_request, true);
+        $info = $decoded_response['message'];
+        return $info;
+    }
+
+    public function accountBusinessDataNotifications() {
+        $data['request_type'] = 'count_account_business_data_notifications';
         $data['userid'] = $_SESSION['userid'];
         $data_string = http_build_query($data);
         $process_request = $this->sendHttpRequestPost($data_string);
@@ -204,6 +232,16 @@ class Notifications extends Database {
 
     public function accountNomineesNotifications() {
         $data['request_type'] = 'count_account_nominees_notifications';
+        $data['userid'] = $_SESSION['userid'];
+        $data_string = http_build_query($data);
+        $process_request = $this->sendHttpRequestPost($data_string);
+        $decoded_response = json_decode($process_request, true);
+        $info = $decoded_response['message'];
+        return $info;
+    }
+
+    public function accountBankingDetailsNotifications() {
+        $data['request_type'] = 'count_account_banking_details_notifications';
         $data['userid'] = $_SESSION['userid'];
         $data_string = http_build_query($data);
         $process_request = $this->sendHttpRequestPost($data_string);
@@ -334,16 +372,6 @@ class Notifications extends Database {
 
     public function loansNotifications() {
         $data['request_type'] = 'count_loans_notifications';
-        $data['userid'] = $_SESSION['userid'];
-        $data_string = http_build_query($data);
-        $process_request = $this->sendHttpRequestPost($data_string);
-        $decoded_response = json_decode($process_request, true);
-        $info = $decoded_response['message'];
-        return $info;
-    }
-
-    public function loanBusinessDataNotifications() {
-        $data['request_type'] = 'count_loan_business_data_notifications';
         $data['userid'] = $_SESSION['userid'];
         $data_string = http_build_query($data);
         $process_request = $this->sendHttpRequestPost($data_string);

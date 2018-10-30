@@ -19,8 +19,11 @@ $branch_details = $settings->fetchBranchDetails($details['branch']);
 $staff_details_createdby = $users->fetchStaffDetails($details['createdby']);
 $details2 = $users->fetchIndividualAccountHolderDetails($_SESSION['account']);
 
-if (count($details2) == 0 OR $account_type_details['name'] == "GROUP/JOINT ACCOUNT") {
-    $_SESSION['can_add_accountholder'] = true;
+if ($details['status'] != 1000 AND $details['status'] != 1020) {
+    if ($account_type_details['name'] == "GROUP/JOINT ACCOUNT" OR ( $account_type_details['name'] == "PERSONAL ACCOUNT" AND $account_holders == 0)) {
+//if (count($details2) == 0 OR $account_type_details['name'] == "GROUP/JOINT ACCOUNT") {
+        $_SESSION['can_add_accountholder'] = true;
+    }
 }
 
 if ($details['status'] == 1000) {
@@ -43,7 +46,7 @@ if ($details['status'] == 1000) {
     <aside class="right-side">
         <!-- Main content -->
         <section class="content">
-            <?php require_once('modules/menus/sub_menu_view_account.php'); ?>
+            <?php require_once('modules/menus/sub_menu_account_individual_account.php'); ?>            
             <div class="row">
                 <div class="col-lg-6">
                     <div class="panel">
@@ -87,38 +90,35 @@ if ($details['status'] == 1000) {
                                     }
 
                                     if ($details['status'] != 1000 AND $details['status'] != 1020) {
-                                        if ($_SESSION['account_category'] == $users->getAccountCategoryId("JOINT ACCOUNT") OR ( ($_SESSION['account_category'] == $users->getAccountCategoryId("INDIVIDUAL ACCOUNT")) AND $account_holders == 0)) {
-                                            ?>
-                                            <a class="edit-individual" href="?add_account_holder"> Add Account Holder </a>
-                                        <?php } ?>
-                                        <a class="edit-individual" href="?add_deposit">
-                                            Deposit
-                                        </a>
-                                        <a class="edit-individual" href="?add_shares">
-                                            Buy Shares
-                                        </a>
-                                        <a class="edit-individual" href="?add_withdrawal">
-                                            Withdraw
-                                        </a>
-                                        <a class="edit-individual" href="?add_account_to_account_transfer">
-                                            Account To Account Transfer
-                                        </a>
-                                        <a class="edit-individual" href="?add_loan">
-                                            Request Loan
-                                        </a>
-                                    <?php } ?>
+//                                        if ($account_type_details['name'] == "GROUP/JOINT ACCOUNT" OR ( $account_type_details['name'] == "PERSONAL ACCOUNT" AND $account_holders == 0)) {
+                                    ?>
+                                    <!--<a class="edit-individual" href="?add_account_holder"> Add Account Holder </a>-->
+                                    <?php // } ?>
+                                    <a class="edit-individual" href="?add_deposit">
+                                        Deposit
+                                    </a>
+                                    <a class="edit-individual" href="?add_shares">
+                                        Buy Shares
+                                    </a>
+                                    <a class="edit-individual" href="?add_withdrawal">
+                                        Withdraw
+                                    </a>
+                                    <a class="edit-individual" href="?add_account_to_account_transfer">
+                                        Account Transfer
+                                    </a>
+                                    <a class="edit-individual" href="?add_loan">
+                                        Request Loan
+                                    </a>
+                                    <?php  } ?>
                                     <a class="edit-individual" href="?view_loans">
                                         Account Loans
                                     </a>
                                     <a class="edit-individual" href="?view_transactions">
                                         Transactions Statement
                                     </a>
-                                    <a class="edit-individual" href="?view_account_holders_individual_account">
-                                        Account Holder(s)
-                                    </a>
-                                    <a class="edit-individual" href="?view_projects">
-                                        Account Projects
-                                    </a>
+                                    <!--                                    <a class="edit-individual" href="?view_projects">
+                                                                            Account Projects
+                                                                        </a>-->
                                 <?php } ?>
                             </div>
                             <div id="status-element">

@@ -16,7 +16,7 @@ unset($_SESSION['search']);
     <aside class="right-side">
         <!-- Main content -->
         <section class="content">
-            <?php require_once('modules/menus/sub_menu_transactions.php'); ?>
+            <?php require_once('modules/menus/sub_menu_fosa_transactions.php'); ?>
             <div class="row">
                 <div class="col-lg-12">
                     <div class="panel">
@@ -41,7 +41,7 @@ unset($_SESSION['search']);
                                     <?php } ?>
                                     <th>Amount <?php echo '(' . $_SESSION['chapter_details']['currency'] . ')'; ?></th>
                                     <th>Deposited By</th>
-                                    <?php if ($_SESSION['logged_in_user_type_details']['name'] != "ACCOUNT HOLDER") { ?>
+                                    <?php if (isset($_SESSION['institution_admin']) OR isset($_SESSION['staqpesa_staff']) OR isset($_SESSION['staqpesa_admin'])) { ?>
                                         <th>Staff</th>
                                     <?php } ?>
                                 </tr>
@@ -78,7 +78,7 @@ unset($_SESSION['search']);
                                     }
                                     echo "<td> </td>";
                                     echo "<td> </td>";
-                                    if ($_SESSION['logged_in_user_type_details']['name'] != "ACCOUNT HOLDER") {
+                                    if (isset($_SESSION['institution_admin']) OR isset($_SESSION['staqpesa_staff']) OR isset($_SESSION['staqpesa_admin'])) {
                                         echo "<td> </td>";
                                     }
                                     echo "</tr>";
@@ -105,8 +105,6 @@ unset($_SESSION['search']);
                                             $creator = $data['createdby'];
                                         }
 
-                                        //$staff_details_createdby = $users->fetchStaffDetails($data['createdby']);
-
                                         echo '<tr>';
                                         echo "<td> <a href='#'>" . $data['id'] . '</td>';
                                         echo '<td>' . date("Y-m-d H:i:s", $data['createdat']) . '</td>';
@@ -115,10 +113,9 @@ unset($_SESSION['search']);
                                         }
                                         echo '<td>' . number_format($data['amount'], 2) . '</td>';
                                         echo '<td>' . $data['transactedby'] . '</td>';
-                                        if ($_SESSION['logged_in_user_type_details']['name'] != "ACCOUNT HOLDER") {
+                                        if (isset($_SESSION['institution_admin']) OR isset($_SESSION['staqpesa_staff']) OR isset($_SESSION['staqpesa_admin'])) {
                                             echo '<td>' . $creator . '</td>';
                                         }
-                                        // echo '<td>' . $staff_details_createdby['firstname'] . " " . $staff_details_createdby['middlename'] . " " . $staff_details_createdby['lastname'] . '</td>';
                                         echo '</tr>';
                                     }
                                 }

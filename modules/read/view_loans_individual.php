@@ -45,10 +45,10 @@ if ($loan_status_details['credit_status'] == 1001) {
     $approval_statement = "AWAITING ACCOUNT APPROVAL";
 } else if ($loan_status_details['credit_status'] == 1010) {
     $_SESSION['loan_active_status'] = 0;
-    $approval_statement = "CREDIT APPROVAL REJECTED";
+    $approval_statement = "APPLICATION REJECTED";
 } else if ($loan_status_details['account_status'] == 1010) {
     $_SESSION['loan_active_status'] = 0;
-    $approval_statement = "ACCOUNT APPROVAL REJECTED";
+    $approval_statement = "APPROVAL REJECTED";
 } else if (( $loan_status_details['credit_status'] == 1011 OR $loan_status_details['credit_status'] == 1031) AND ( $loan_status_details['account_status'] == 1011 OR $loan_status_details['account_status'] == 1031)) {
     $_SESSION['loan_active_status'] = 1;
     $approval_statement = "APPROVAL ACCEPTED";
@@ -64,6 +64,8 @@ if ($loan_status_details['status'] == 1001 OR $loan_status_details['status'] == 
     $repayment_statement = "LOAN IS DOMANT/DEFAULTED";
 } else if ($loan_status_details['status'] == 1041) {
     $repayment_statement = "LOAN IS SETTLED";
+} else if ($loan_status_details['status'] == 1010) {
+    $repayment_statement = "APPLICATION REJECTED";
 }
 
 if ($loan_status_details['credit_status'] == 1000) {
@@ -71,9 +73,9 @@ if ($loan_status_details['credit_status'] == 1000) {
 } else if ($loan_status_details['credit_status'] == 1001) {
     $credit_status = "AWAITING APPROVAL";
 } else if ($loan_status_details['credit_status'] == 1010) {
-    $credit_status = "APPROVAL REJECTED";
+    $credit_status = "APPLICATION REJECTED";
 } else if ($loan_status_details['credit_status'] == 1011) {
-    $credit_status = "APPROVAL ACCEPTED";
+    $credit_status = "APPLICATION ACCEPTED";
 } else if ($loan_status_details['credit_status'] == 1020) {
     $credit_status = "NOT ACTIVE";
 } else if ($loan_status_details['credit_status'] == 1021) {
@@ -82,7 +84,9 @@ if ($loan_status_details['credit_status'] == 1000) {
 
 if ($loan_status_details['account_status'] == 1000) {
     $account_status = "DELETED";
-} else if ($loan_status_details['account_status'] == 1001) {
+} else if ($loan_status_details['account_status'] == 1001 AND $loan_status_details['credit_status'] == 1010) {
+    $account_status = "APPLICATION REJECTED";
+} else if ($loan_status_details['account_status'] == 1001 AND $loan_status_details['credit_status'] <> 1010) {
     $account_status = "AWAITING APPROVAL";
 } else if ($loan_status_details['account_status'] == 1010) {
     $account_status = "APPROVAL REJECTED";
@@ -100,7 +104,7 @@ if ($loan_status_details['account_status'] == 1000) {
     <aside class="right-side">
         <!-- Main content -->
         <section class="content">
-            <?php require_once('modules/menus/sub_menu_loans.php'); ?>
+            <?php require_once('modules/menus/sub_menu_loans_individual_loan.php'); ?>
             <div class="row">
                 <div class="col-lg-6">
                     <div class="panel">
@@ -129,13 +133,13 @@ if ($loan_status_details['account_status'] == 1000) {
                                             Reject Approval
                                         </a>
                                         <?php
-                                        if ($loan_status_details['status'] == 1001 AND $loan_status_details['account_status'] == 1001) {
+//                                        if ($loan_status_details['status'] == 1001 AND $loan_status_details['account_status'] == 1001) {
                                             ?>
-                                            <a class="edit-individual" href="?update_loan&update_type=edit&code=" <?php echo $_SESSION['loan']; ?> >
+<!--                                            <a class="edit-individual" href="?update_loan&update_type=edit&code=" <?php // echo $_SESSION['loan']; ?> >
                                                 Edit
-                                            </a> <p />
+                                            </a> <p />-->
                                             <?php
-                                        }
+//                                        }
                                     }
 
                                     if ($loan_status_details['creditedby'] != $_SESSION['userid']) {

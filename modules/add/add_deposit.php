@@ -20,14 +20,14 @@ if (!empty($_POST)) {
         $_SESSION['feedback_message'] = "<strong>Error!</strong> There was an error effecting the deposit transaction. Please try again.";
     }
 }
-?>
+?>  
 
 <div class="wrapper row-offcanvas row-offcanvas-left">
     <?php require_once('modules/menus/main_sidebar.php'); ?>
     <aside class="right-side">
         <!-- Main content -->
         <section class="content">
-            <?php require_once('modules/menus/sub_menu_transactions.php'); ?>
+            <?php // require_once('modules/menus/sub_menu_fosa_transactions.php'); ?>
             <div class="row">
                 <form role="form" method="POST">
                     <div class="col-lg-9">

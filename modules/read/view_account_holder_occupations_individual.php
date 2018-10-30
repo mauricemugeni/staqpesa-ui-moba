@@ -65,7 +65,7 @@ if ($details['status'] == 1000) {
                                     </a>
                                 <?php } ?>
                                 <?php if ($details['status'] != 1032) { ?>
-                                    <a class="edit-individual" href="?update_account_holder&update_type=edit&code=" <?php echo $code; ?> >
+                                    <a class="edit-individual" href="?update_account_holder_occupation&update_type=edit&code=" <?php echo $code; ?> >
                                         Edit
                                     </a>
                                 <?php } ?>

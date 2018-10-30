@@ -11,7 +11,7 @@ $users = new Users();
     <aside class="right-side">
         <!-- Main content -->
         <section class="content">
-            <?php require_once('modules/menus/sub_menu_system_users.php'); ?>
+            <?php require_once('modules/menus/sub_menu_system_contacts.php'); ?>
             <div class="row">
                 <div class="col-lg-12">
                     <div class="panel">
@@ -44,8 +44,11 @@ $users = new Users();
                                 <?php
                                 if (!empty($_POST) AND !isset($_POST['create_pdf'])) {
                                     $info = $users->execute();
-                                } else if (is_menu_set('view_inbox_messages_notifications') != "") {
-                                    $info = $users->getAllInboxMessagesNotifications();
+                                } else if (is_menu_set('view_inbox_messages_notifications') AND (isset($_SESSION['staqpesa_admin']) OR isset($_SESSION['institution_admin']))) {
+//                                    $info = $users->getAllAssignedOpenInboxMessagesNotifications();
+                                    $info = $users->getAllUnassignedInboxMessagesNotifications();
+                                } else if (is_menu_set('view_inbox_messages_notifications') AND (isset($_SESSION['staqpesa_staff']) OR isset($_SESSION['institution_staff']))) {
+                                    $info = $users->getAllAssignedInboxMessagesNotifications();
                                 } else {
                                     $info = $users->getAllInboxMessages();
                                 }
@@ -94,12 +97,32 @@ $users = new Users();
                                         $staff_details_createdby = $users->fetchStaffDetails($data['assigned_staff']);
                                         
                                         echo "<tr>";
-                                        echo "<td> <a href='#'>" . $data['id'] . "</td>";
-                                        echo "<td>" . $data['name'] . "</td>";
-                                        echo "<td>" . $data['email'] . "</td>";
-                                        echo "<td>" . $data['phone_number'] . "</td>";
-                                        echo "<td>" . $data['subject'] . "</td>";
-                                        echo "<td>" . $data['message'] . "</td>";
+                                        echo "<td> <a href='#'>" . $data['id'] . "</td>";                                        
+                                        if (is_null($data['name']) == TRUE OR $data['name'] == "") {
+                                            echo '<td> MISSING </td>';
+                                        } else {
+                                            echo '<td>' . $data['name'] . '</td>';
+                                        }
+                                        if (is_null($data['email']) == TRUE OR $data['email'] == "") {
+                                            echo '<td> MISSING </td>';
+                                        } else {
+                                            echo '<td>' . $data['email'] . '</td>';
+                                        }
+                                        if (is_null($data['phone_number']) == TRUE OR $data['phone_number'] == "") {
+                                            echo '<td> MISSING </td>';
+                                        } else {
+                                            echo '<td>' . $data['phone_number'] . '</td>';
+                                        }
+                                        if (is_null($data['subject']) == TRUE OR $data['subject'] == "") {
+                                            echo '<td> MISSING </td>';
+                                        } else {
+                                            echo '<td>' . $data['subject'] . '</td>';
+                                        }
+                                        if (is_null($data['message']) == TRUE OR $data['message'] == "") {
+                                            echo '<td> MISSING </td>';
+                                        } else {
+                                            echo '<td>' . $data['message'] . '</td>';
+                                        }
                                         echo "<td>" . date("Y-m-d H:i:s", $data['createdat']) . "</td>";
                                         if ($data['status'] == 1001) {
                                             echo "<td> OPEN </td>";

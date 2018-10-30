@@ -10,24 +10,23 @@ $loans = new Loans();
 //$ref_type = $_GET['ref_type'];
 
 if (!empty($_POST)) {
-    $_SESSION['next_of_kin_firstname'] = $_POST['firstname'];
-    $_SESSION['next_of_kin_middlename'] = $_POST['middlename'];
-    $_SESSION['next_of_kin_lastname'] = $_POST['lastname'];
-    $_SESSION['next_of_kin_relationship'] = $_POST['relationship'];
-    $_SESSION['next_of_kin_phone_number'] = $_POST['phone_number'];
-    $_SESSION['next_of_kin_email'] = $_POST['email'];
-    $_SESSION['next_of_kin_postal_address'] = $_POST['postal_address'];
-    $_SESSION['next_of_kin_workplace'] = $_POST['workplace'];
-    $_SESSION['next_of_kin_physical_address'] = $_POST['physical_address'];
-
     if ($_SESSION['account']) {
-        $checkIfAccountHasBankingDetails = $users->checkIfAccountHasBankingDetails();
-        if ($checkIfAccountHasBankingDetails == true) {
-            $_SESSION['has_banking_details'] == true;
-        } else if ($checkIfAccountHasBankingDetails == false) {
-            $_SESSION['has_banking_details'] == false;
+        $_SESSION['ref_type'] = $users->getUserRefTypeId("ACCOUNT HOLDER");
+        $_SESSION['ref_id'] = $_SESSION['account'];
+        $add_next_of_kin_details = $users->execute();
+        if ($add_next_of_kin_details['status'] == 200) {
+            $checkIfAccountHasBankingDetails = $users->checkIfAccountHasBankingDetails();
+            if ($checkIfAccountHasBankingDetails == true) {
+                $_SESSION['has_banking_details'] = true;
+            } else if ($checkIfAccountHasBankingDetails == false) {
+                $_SESSION['has_banking_details'] = false;
+            }
+            App::redirectTo("?add_account_banking");
+        } else {
+            $_SESSION['add_next_of_kin_fail'] = true;
+            $_SESSION['feedback_message'] = "<strong>Error!</strong> There was an error saving the next of kin's details entered. Please try again.";
+            App::redirectTo("?add_next_of_kin");
         }
-        App::redirectTo("?add_account_banking");
     }
 }
 ?>
@@ -38,20 +37,27 @@ if (!empty($_POST)) {
     <aside class="right-side">
         <!-- Main content -->
         <section class="content">
-            <?php require_once('modules/menus/sub_menu_system_users.php'); ?>
+            <?php // require_once('modules/menus/sub_menu_system_users.php'); ?>
             <div class="row">
                 <div class="col-lg-6">
                     <section class="panel">
                         <header class="panel-heading">
                             Add Next of Kin
+                            <?php
+                            if (isset($_SESSION['add_next_of_kin_fail'])) {
+                                echo $_SESSION['add_record_fail'];
+                                unset($_SESSION['feedback_message']);
+                                unset($_SESSION['add_next_of_kin_fail']);
+                            }
+                            ?>
                         </header>
                         <div class="panel-body">
                             <form role="form" method="POST">
-                                <?php if ($ref_type == "ACCOUNT HOLDER") { ?>
-                                    <input type="hidden" name="action" value="add_account"/>
-                                <?php } else { ?>
-                                    <input type="hidden" name="action" value="add_next_of_kin"/>
-                                <?php } ?>
+                                <?php // if ($ref_type == "ACCOUNT HOLDER") {  ?>
+                                    <!--<input type="hidden" name="action" value="add_account"/>-->
+                                <?php // } else {  ?>
+                                <input type="hidden" name="action" value="add_next_of_kin"/>
+                                <?php // }  ?>
                                 <div class="form-group">
                                     <label for="firstname">First Name</label>
                                     <input type="text" class="form-control" id="firstname" name="firstname" placeholder="eg. John" required="yes"/>
