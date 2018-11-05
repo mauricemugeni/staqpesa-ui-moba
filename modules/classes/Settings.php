@@ -2037,10 +2037,11 @@ class Settings extends Database {
         return $info;
     }
 
-    public function updateInstitution($code, $update_type) {
+    public function updateInstitution($code, $update_type, $approval_comment) {
         $data['request_type'] = 'update_institution';
         $data['code'] = $code;
         $data['update_type'] = $update_type;
+        $data['approval_comment'] = $approval_comment;
         $data['userid'] = $_SESSION['userid'];
         $data_string = http_build_query($data);
         $process_request = $this->sendHttpRequestPut($data_string);

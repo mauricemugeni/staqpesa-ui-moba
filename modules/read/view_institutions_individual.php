@@ -30,7 +30,7 @@ if ($details['status'] == 1000) {
     <aside class="right-side">
         <!-- Main content -->
         <section class="content">
-            <?php // require_once('modules/menus/sub_menu_account.php'); ?>
+            <?php require_once('modules/menus/sub_menu_institutions_individual_institution.php'); ?>
             <div class="row">
                 <div class="col-lg-8">
                     <div class="panel">
@@ -39,7 +39,11 @@ if ($details['status'] == 1000) {
                         </header>
                         <div class="panel-body">
                             <div class="action">
-                                <?php if (($details['createdby'] != $_SESSION['userid'] AND $details['status'] == 1001) OR ( $details['lastmodifiedby'] != $_SESSION['userid'] AND $details['status'] == 1032)) { ?>
+                                <?php
+                                // if (($details['createdby'] != $_SESSION['userid'] AND $details['status'] == 1001) OR ($details['lastmodifiedby'] != $_SESSION['userid'] AND $details['status'] == 1032)) { 
+//                                if (isset($_SESSION['staqpesa_admin']) OR isset($_SESSION['staqpesa_staff'])) {
+                                if ((isset($_SESSION['staqpesa_admin']) AND ($details['status'] == 1001 OR $details['status'] == 1032)) OR (isset($_SESSION['staqpesa_staff']) AND (($details['createdby'] != $_SESSION['userid'] AND $details['status'] == 1001) OR ($details['lastmodifiedby'] != $_SESSION['userid'] AND $details['status'] == 1032)))) {
+                                    ?>
                                     <a class="edit-individual" href="?update_institution&update_type=accept_approval&code=" <?php echo $code; ?> >
                                         Accept Approval
                                     </a>
@@ -53,7 +57,7 @@ if ($details['status'] == 1000) {
                                     <a class="edit-individual" href="?update_institution&update_type=activate&code=" <?php echo $code; ?> >
                                         Activate
                                     </a>
-                                <?php } if ($details['status'] == 1021) { ?>
+                                <?php } if ($details['status'] == 1021 OR $details['status'] == 1011) { ?>
                                     <a class="edit-individual-warning" href="?update_institution&update_type=deactivate&code=" <?php echo $code; ?> >
                                         Deactivate
                                     </a>
@@ -62,9 +66,10 @@ if ($details['status'] == 1000) {
                                         Delete
                                     </a>
                                     <?php
+//                                    }
                                 }
 
-                                if ($details['status'] != 1032) {
+                                if (isset($_SESSION['institution_admin']) AND $details['status'] != 1032) {
                                     ?>
                                     <a class="edit-individual" href="?update_institution&update_type=edit&code=" <?php echo $code; ?> >
                                         Edit

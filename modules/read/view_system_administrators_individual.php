@@ -31,7 +31,7 @@ if ($details['status'] == 1000) {
     <aside class="right-side">
         <!-- Main content -->
         <section class="content">
-            <?php // require_once('modules/menus/sub_menu_system_users.php'); ?>
+            <?php require_once('modules/menus/sub_menu_institutions_individual_institution.php'); ?>
             <div class="row">
                 <div class="col-lg-6">
                     <div class="panel">
@@ -40,7 +40,10 @@ if ($details['status'] == 1000) {
                         </header>
                         <div class="panel-body">
                             <div class="action">
-                                <?php if (($details['createdby'] != $_SESSION['userid'] AND $details['status'] == 1001) OR ( $details['lastmodifiedby'] != $_SESSION['userid'] AND $details['status'] == 1032)) { ?>
+                                <?php
+//                                if (($details['createdby'] != $_SESSION['userid'] AND $details['status'] == 1001) OR ( $details['lastmodifiedby'] != $_SESSION['userid'] AND $details['status'] == 1032)) { 
+                                if (isset($_SESSION['staqpesa_admin']) OR isset($_SESSION['staqpesa_staff'])) {
+                                    ?>
                                     <a class="edit-individual" href="?update_system_administrator&update_type=accept_approval&code=" <?php echo $code; ?> >
                                         Accept Approval
                                     </a>
@@ -48,24 +51,24 @@ if ($details['status'] == 1000) {
                                         Reject Approval
                                     </a>
                                     <?php
-                                }
-                                if ($details['status'] == 1020) {
-                                    ?>
-                                    <a class="edit-individual" href="?update_system_administrator&update_type=activate&code=" <?php echo $code; ?> >
-                                        Activate
-                                    </a>
-                                <?php } if ($details['status'] == 1021) { ?>
-                                    <a class="edit-individual-warning" href="?update_system_administrator&update_type=deactivate&code=" <?php echo $code; ?> >
-                                        Deactivate
-                                    </a>
-                                <?php } if ($details['status'] != 1000) { ?>
-                                    <a class="edit-individual-warning" href="?update_system_administrator&update_type=delete&code=" <?php echo $code; ?> >
-                                        Delete
-                                    </a>
-                                    <?php
+                                    if ($details['status'] == 1020) {
+                                        ?>
+                                        <a class="edit-individual" href="?update_system_administrator&update_type=activate&code=" <?php echo $code; ?> >
+                                            Activate
+                                        </a>
+                                    <?php } if ($details['status'] == 1021) { ?>
+                                        <a class="edit-individual-warning" href="?update_system_administrator&update_type=deactivate&code=" <?php echo $code; ?> >
+                                            Deactivate
+                                        </a>
+                                    <?php } if ($details['status'] != 1000) { ?>
+                                        <a class="edit-individual-warning" href="?update_system_administrator&update_type=delete&code=" <?php echo $code; ?> >
+                                            Delete
+                                        </a>
+                                        <?php
+                                    }
                                 }
 
-                                if ($details['status'] != 1032) {
+                                if (isset($_SESSION['institution_admin']) AND $details['status'] != 1032) {
                                     ?>
                                     <a class="edit-individual" href="?update_system_administrator&update_type=edit&code=" <?php echo $code; ?> >
                                         Edit

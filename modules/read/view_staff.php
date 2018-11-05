@@ -14,7 +14,7 @@ unset($_SESSION['search']);
     <aside class="right-side">
         <!-- Main content -->
         <section class="content">
-            <?php require_once('modules/menus/sub_menu_system_users.php'); ?>
+            <?php // require_once('modules/menus/sub_menu_system_users.php'); ?>
             <div class="row">
                 <div class="col-lg-12">
                     <div class="panel">
