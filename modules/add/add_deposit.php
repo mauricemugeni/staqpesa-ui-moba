@@ -30,7 +30,7 @@ if (!empty($_POST)) {
             <?php // require_once('modules/menus/sub_menu_fosa_transactions.php'); ?>
             <div class="row">
                 <form role="form" method="POST">
-                    <div class="col-lg-7">
+                    <div class="col-lg-9">
                         <section class="panel">
                             <header class="panel-heading">
                                 Customer Deposit
@@ -120,7 +120,7 @@ if (!empty($_POST)) {
                             </div>
                         </section>
                     </div>     
-                    <div class="col-lg-5">
+                    <div class="col-lg-3">
                         <section class="panel">
                             <header class="panel-heading">
                                 <i class="fa fa-money"></i> Payment
