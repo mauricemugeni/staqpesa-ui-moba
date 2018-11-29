@@ -811,3 +811,67 @@ Deleted files:
 Null
 
 *********************************************************************************************************************************************************************************************
+29 November, 2018 - Maurice
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Summary
+1. Worked on the self-registration for new organizations on the staqpesa website and subsequent processing of the same on the backend. 
+2. Worked on automatic creation of DB, DB user and sub-domain with every newly registered organization that is approved.  
+3. Finalized on the institution-admin, staqpesa-staff and staqpesa-admin user profiles for first draft review.
+
+------------------------------------------------
+Website
+------------------------------------------------
+Edited files:
+1. controller.php
+2. core/configs.ini
+3. core/template/footer.php
+4. core/template/header.php
+5. MOVED 'images/icons/apps/excite.png' TO 'images/packages/1.png'
+6. MOVED 'images/icons/apps/metro.png' TO 'images/packages/2.png'
+7. MOVED 'images/icons/apps/pro.png' TO 'images/packages/3.png'
+8. modules/classes/System_Administration.php
+9. modules/contact.php
+10. modules/inc/packages/types.php
+11. modules/login.php
+12. modules/packages.php
+
+
+Added files:
+1. images/partner_countries folder
+
+Deleted files:
+NULL
+
+------------------------------------------------
+Admin Portal
+------------------------------------------------
+Edited files:
+1. core/configs.ini
+2. modules/admin/settings.php
+3. modules/menus/sub_menu_settings.php
+
+Added files:
+Null
+
+Deleted files:
+Null
+
+------------------------------------------------
+API
+------------------------------------------------
+
+Edited files:
+
+1. core/configs.ini
+2. index.php
+3. modules/classes/Settings.php
+4. modules/classes/Users.php
+5. modules/index.php
+
+Added files:
+1. modules/cpanel_UAPI/ folder
+
+Deleted files:
+Null
+
+*********************************************************************************************************************************************************************************************

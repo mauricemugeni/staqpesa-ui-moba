@@ -397,7 +397,11 @@ if (is_menu_set('?') != "") {
         <li role="presentation" <?php
         if (is_menu_set('view_system_components') || is_menu_set('add_system_component') || is_menu_set('view_system_components_individual') || is_menu_set('update_system_component') ||
                 is_menu_set('view_role_privileges') || is_menu_set('add_role_privilege') || is_menu_set('view_role_privileges_individual') || is_menu_set('update_role_privilege') ||
-                is_menu_set('view_statuses') || is_menu_set('add_status') || is_menu_set('view_statuses_individual') || is_menu_set('update_status') != "") {
+                is_menu_set('view_statuses') || is_menu_set('add_status') || is_menu_set('view_statuses_individual') || is_menu_set('update_status') ||
+                is_menu_set('view_responses') || is_menu_set('add_response') || is_menu_set('view_responses_individual') || is_menu_set('update_response') ||
+                is_menu_set('view_sectors') || is_menu_set('add_sector') || is_menu_set('view_sectors_individual') || is_menu_set('update_sector') ||
+                is_menu_set('view_financing_methods') || is_menu_set('add_financing_method') || is_menu_set('view_financing_methods_individual') || is_menu_set('update_financing_method') ||
+                is_menu_set('view_funding_types') || is_menu_set('add_funding_type') || is_menu_set('view_funding_types_individual') || is_menu_set('update_funding_type')) {
             ?> class="active" <?php } ?>>
             <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                 <i class="fa fa-dot-circle-o"></i> System Settings <span class="caret"></span>
@@ -406,6 +410,10 @@ if (is_menu_set('?') != "") {
                 <li role="presentation" <?php if (is_menu_set('view_system_privileges') || is_menu_set('add_system_privilege') || is_menu_set('view_system_privileges_individual') || is_menu_set('update_system_privilege') != "") { ?> class="active" <?php } ?>><a href="?view_system_privileges">System Privileges</a></li>
                 <li role="presentation" <?php if (is_menu_set('view_system_components') || is_menu_set('add_system_component') || is_menu_set('view_system_components_individual') || is_menu_set('update_system_component') != "") { ?> class="active" <?php } ?>><a href="?view_system_components">System Components</a></li>
                 <li role="presentation" <?php if (is_menu_set('view_statuses') || is_menu_set('add_status') || is_menu_set('view_statuses_individual') || is_menu_set('update_status') != "") { ?> class="active" <?php } ?>><a href="?view_statuses">Statuses</a></li>        
+                <li role="presentation" <?php if (is_menu_set('view_sectors') || is_menu_set('add_sector') || is_menu_set('view_sectors_individual') || is_menu_set('update_sector') != "") { ?> class="active" <?php } ?>><a href="?view_sectors">Sectors</a></li>            
+                <li role="presentation" <?php if (is_menu_set('view_responses') || is_menu_set('add_response') || is_menu_set('view_responses_individual') || is_menu_set('update_response') != "") { ?> class="active" <?php } ?>><a href="?view_responses">Responses</a></li>
+                <li role="presentation" <?php if (is_menu_set('view_financing_methods') || is_menu_set('add_financing_method') || is_menu_set('view_financing_methods_individual') || is_menu_set('update_financing_method') != "") { ?> class="active" <?php } ?>><a href="?view_financing_methods">Financing Methods</a></li>
+                <li role="presentation" <?php if (is_menu_set('view_funding_types') || is_menu_set('add_funding_type') || is_menu_set('view_funding_types_individual') || is_menu_set('update_funding_type') != "") { ?> class="active" <?php } ?>><a href="?view_funding_types">Funding Types</a></li>
             </ul>
         </li>
         <li role="presentation" <?php
@@ -413,14 +421,18 @@ if (is_menu_set('?') != "") {
                 is_menu_set('view_marital_statuses') || is_menu_set('add_marital_status') || is_menu_set('view_marital_statuses_individual') || is_menu_set('update_marital_status') ||
                 is_menu_set('view_user_privileges') || is_menu_set('add_user_privilege') || is_menu_set('view_user_privileges_individual') || is_menu_set('update_user_privilege') ||
                 is_menu_set('view_user_types') || is_menu_set('add_user_type') || is_menu_set('view_user_types_individual') || is_menu_set('update_user_type') ||
+                is_menu_set('view_account_types') || is_menu_set('add_account_type') || is_menu_set('view_account_types_individual') || is_menu_set('update_account_type') ||
+                is_menu_set('view_investor_types') || is_menu_set('add_investor_type') || is_menu_set('view_investor_types_individual') || is_menu_set('update_investor_type') ||
                 is_menu_set('view_roles') || is_menu_set('add_role') || is_menu_set('view_roles_individual') || is_menu_set('update_role')) {
             ?> class="active" <?php } ?>>
             <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                 <i class="fa fa-user-md"></i>User Settings <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
-                    <!--            <li role="presentation" <?php // if (is_menu_set('view_role_privileges') || is_menu_set('add_role_privilege') || is_menu_set('view_role_privileges_individual') || is_menu_set('update_role_privilege') != "") {            ?> class="active" <?php // }            ?>><a href="?view_role_privileges">Role Privileges</a></li>
-                <li role="presentation" <?php // if (is_menu_set('view_user_privileges') || is_menu_set('add_user_privilege') || is_menu_set('view_user_privileges_individual') || is_menu_set('update_user_privilege') != "") {            ?> class="active" <?php // }            ?>><a href="?view_user_privileges">User Privileges </a></li>-->
+                    <!--            <li role="presentation" <?php // if (is_menu_set('view_role_privileges') || is_menu_set('add_role_privilege') || is_menu_set('view_role_privileges_individual') || is_menu_set('update_role_privilege') != "") {              ?> class="active" <?php // }              ?>><a href="?view_role_privileges">Role Privileges</a></li>
+                <li role="presentation" <?php // if (is_menu_set('view_user_privileges') || is_menu_set('add_user_privilege') || is_menu_set('view_user_privileges_individual') || is_menu_set('update_user_privilege') != "") {              ?> class="active" <?php // }              ?>><a href="?view_user_privileges">User Privileges </a></li>-->
+                <li role="presentation" <?php if (is_menu_set('view_account_types') || is_menu_set('add_account_type') || is_menu_set('view_account_types_individual') || is_menu_set('update_account_type') != "") { ?> class="active" <?php } ?>><a href="?view_account_types">Account Types</a></li>
+                <li role="presentation" <?php if (is_menu_set('view_investor_types') || is_menu_set('add_investor_type') || is_menu_set('view_investor_types_individual') || is_menu_set('update_investor_type') != "") { ?> class="active" <?php } ?>><a href="?view_investor_types">Investor Types</a></li>
                 <li role="presentation" <?php if (is_menu_set('view_user_types') || is_menu_set('add_user_type') || is_menu_set('view_user_types_individual') || is_menu_set('update_user_type') != "") { ?> class="active" <?php } ?>><a href="?view_user_types">User Types</a></li>
                 <li role="presentation" <?php if (is_menu_set('view_roles') || is_menu_set('add_role') || is_menu_set('view_roles_individual') || is_menu_set('update_role') != "") { ?> class="active" <?php } ?>><a href="?view_roles">Roles</a></li>
                 <li role="presentation" <?php if (is_menu_set('view_marital_statuses') || is_menu_set('add_marital_status') || is_menu_set('view_marital_statuses_individual') || is_menu_set('update_marital_status') != "") { ?> class="active" <?php } ?>><a href="?view_marital_statuses">Marital Status</a></li>               
@@ -466,39 +478,29 @@ if (is_menu_set('?') != "") {
 
     <?php } else if (isset($_SESSION['institution_admin']) AND $_SESSION['institution_admin'] == true) { ?>
         <li role="presentation" <?php
-        if (is_menu_set('view_branches') || is_menu_set('add_branch') || is_menu_set('view_branches_individual') || is_menu_set('update_branch') ||
-                is_menu_set('view_responses') || is_menu_set('add_response') || is_menu_set('view_responses_individual') || is_menu_set('update_response') ||
-                is_menu_set('view_sectors') || is_menu_set('add_sector') || is_menu_set('view_sectors_individual') || is_menu_set('update_sector')) {
+        if (is_menu_set('view_branches') || is_menu_set('add_branch') || is_menu_set('view_branches_individual') || is_menu_set('update_branch')) {
             ?> class="active" <?php } ?>>
             <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                 <i class="fa fa-chain"></i>System Settings <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
                 <li role="presentation" <?php if (is_menu_set('view_branches') || is_menu_set('add_branch') || is_menu_set('view_branches_individual') || is_menu_set('update_branch')) { ?> class="active" <?php } ?>><a href="?view_branches">Branches</a></li>
-                <li role="presentation" <?php if (is_menu_set('view_sectors') || is_menu_set('add_sector') || is_menu_set('view_sectors_individual') || is_menu_set('update_sector') != "") { ?> class="active" <?php } ?>><a href="?view_sectors">Sectors</a></li>            
-                <li role="presentation" <?php if (is_menu_set('view_responses') || is_menu_set('add_response') || is_menu_set('view_responses_individual') || is_menu_set('update_response') != "") { ?> class="active" <?php } ?>><a href="?view_responses">Responses</a></li>
             </ul>
         </li>
         <li role="presentation" <?php
-        if (is_menu_set('view_positions') || is_menu_set('add_position') || is_menu_set('view_positions_individual') || is_menu_set('update_position') ||
-                is_menu_set('view_account_types') || is_menu_set('add_account_type') || is_menu_set('view_account_types_individual') || is_menu_set('update_account_type') ||
-                is_menu_set('view_investor_types') || is_menu_set('add_investor_type') || is_menu_set('view_investor_types_individual') || is_menu_set('update_investor_type')) {
+        if (is_menu_set('view_positions') || is_menu_set('add_position') || is_menu_set('view_positions_individual') || is_menu_set('update_position')) {
             ?> class="active" <?php } ?>>
             <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                 <i class="fa fa-chain"></i>User Settings <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
-                <li role="presentation" <?php if (is_menu_set('view_account_types') || is_menu_set('add_account_type') || is_menu_set('view_account_types_individual') || is_menu_set('update_account_type') != "") { ?> class="active" <?php } ?>><a href="?view_account_types">Account Types</a></li>
-                <li role="presentation" <?php if (is_menu_set('view_investor_types') || is_menu_set('add_investor_type') || is_menu_set('view_investor_types_individual') || is_menu_set('update_investor_type') != "") { ?> class="active" <?php } ?>><a href="?view_investor_types">Investor Types</a></li>
                 <li role="presentation" <?php if (is_menu_set('view_positions') || is_menu_set('add_position') || is_menu_set('view_positions_individual') || is_menu_set('update_position') != "") { ?> class="active" <?php } ?>><a href="?view_positions">Positions</a></li>
             </ul>
         </li>
         <li role="presentation" <?php
         if (is_menu_set('view_default_charge_rates') || is_menu_set('add_default_charge_rate') || is_menu_set('view_default_charge_rates_individual') || is_menu_set('update_default_charge_rate') ||
                 is_menu_set('view_loan_processing_fees') || is_menu_set('add_loan_processing_fees') || is_menu_set('view_loan_processing_fees_individual') || is_menu_set('update_loan_processing_fees') ||
-                is_menu_set('view_loan_types') || is_menu_set('add_loan_type') || is_menu_set('view_loan_types_individual') || is_menu_set('update_loan_type') ||
-                is_menu_set('view_financing_methods') || is_menu_set('add_financing_method') || is_menu_set('view_financing_methods_individual') || is_menu_set('update_financing_method') ||
-                is_menu_set('view_funding_types') || is_menu_set('add_funding_type') || is_menu_set('view_funding_types_individual') || is_menu_set('update_funding_type')) {
+                is_menu_set('view_loan_types') || is_menu_set('add_loan_type') || is_menu_set('view_loan_types_individual') || is_menu_set('update_loan_type')) {
             ?> class="active" <?php } ?>>
             <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                 <i class="fa fa-chain"></i>Transaction Settings <span class="caret"></span>
@@ -507,9 +509,6 @@ if (is_menu_set('?') != "") {
                 <li role="presentation" <?php if (is_menu_set('view_loan_types') || is_menu_set('add_loan_type') || is_menu_set('view_loan_types_individual') || is_menu_set('update_loan_type') != "") { ?> class="active" <?php } ?>><a href="?view_loan_types">Loan Types</a></li>
                 <li role="presentation" <?php if (is_menu_set('view_loan_processing_fees') || is_menu_set('add_loan_processing_fees') || is_menu_set('view_loan_processing_fees_individual') || is_menu_set('update_loan_processing_fees') != "") { ?> class="active" <?php } ?>><a href="?view_loan_processing_fees">Loan Processing Fees</a></li>
                 <li role="presentation" <?php if (is_menu_set('view_default_charge_rates') || is_menu_set('add_default_charge_rate') || is_menu_set('view_default_charge_rates_individual') || is_menu_set('update_default_charge_rate') != "") { ?> class="active" <?php } ?>><a href="?view_default_charge_rates">Default Charge Rates</a></li>
-                <li role="presentation" <?php if (is_menu_set('view_financing_methods') || is_menu_set('add_financing_method') || is_menu_set('view_financing_methods_individual') || is_menu_set('update_financing_method') != "") { ?> class="active" <?php } ?>><a href="?view_financing_methods">Financing Methods</a></li>
-                <li role="presentation" <?php if (is_menu_set('view_funding_types') || is_menu_set('add_funding_type') || is_menu_set('view_funding_types_individual') || is_menu_set('update_funding_type') != "") { ?> class="active" <?php } ?>><a href="?view_funding_types">Funding Types</a></li>
-
             </ul>
         </li>
         <?php

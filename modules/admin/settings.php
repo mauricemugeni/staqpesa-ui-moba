@@ -173,6 +173,78 @@ $reports = new Reports();
                             </div>
                         </div>
                     </a>
+                                
+                    <a href="?view_account_types" >
+                        <div class="col-md-3">
+                            <div class="sm-st clearfix">
+                                <span class="sm-st-icon st-green"><i class="fa fa-anchor"></i></span>
+                                <div class="sm-st-info">
+                                    <span><?php echo $reports->countAllSubjectAreaRecords("count_all_account_types"); ?></span>
+                                    <span>Account Types</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+
+                    <a href="?view_responses" >
+                        <div class="col-md-3">
+                            <div class="sm-st clearfix">
+                                <span class="sm-st-icon st-violet"><i class="fa fa-reply"></i></span>
+                                <div class="sm-st-info">
+                                    <span><?php echo $reports->countAllSubjectAreaRecords("count_all_responses"); ?></span>
+                                    <span>Responses</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+
+                    <a href="?view_financing_methods" >
+                        <div class="col-md-3">
+                            <div class="sm-st clearfix">
+                                <span class="sm-st-icon st-green"><i class="fa fa-money"></i></span>
+                                <div class="sm-st-info">
+                                    <span><?php echo $reports->countAllSubjectAreaRecords("count_all_financing_methods"); ?></span>
+                                    <span>Financing Methods</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+
+                    <a href="?view_funding_types" >
+                        <div class="col-md-3">
+                            <div class="sm-st clearfix">
+                                <span class="sm-st-icon st-violet"><i class="fa fa-usd"></i></span>
+                                <div class="sm-st-info">
+                                    <span><?php echo $reports->countAllSubjectAreaRecords("count_all_funding_types"); ?></span>
+                                    <span>Funding Types</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+
+                    <a href="?view_investor_types" >
+                        <div class="col-md-3">
+                            <div class="sm-st clearfix">
+                                <span class="sm-st-icon st-violet"><i class="fa fa-usd"></i></span>
+                                <div class="sm-st-info">
+                                    <span><?php echo $reports->countAllSubjectAreaRecords("count_all_investor_types"); ?></span>
+                                    <span>Investor Types</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+
+                    <a href="?view_sectors" >
+                        <div class="col-md-3">
+                            <div class="sm-st clearfix">
+                                <span class="sm-st-icon st-violet"><i class="fa fa-usd"></i></span>
+                                <div class="sm-st-info">
+                                    <span><?php echo $reports->countAllSubjectAreaRecords("count_all_sectors"); ?></span>
+                                    <span>Sectors</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
 
                 <?php } else if (isset($_SESSION['institution_admin']) AND $_SESSION['institution_admin'] == true) { ?>
                     <a href="?view_branches" >
@@ -222,31 +294,7 @@ $reports = new Reports();
                             </div>
                         </div>
                     </a>
-
-                    <a href="?view_account_types" >
-                        <div class="col-md-3">
-                            <div class="sm-st clearfix">
-                                <span class="sm-st-icon st-green"><i class="fa fa-anchor"></i></span>
-                                <div class="sm-st-info">
-                                    <span><?php echo $reports->countAllSubjectAreaRecords("count_all_account_types"); ?></span>
-                                    <span>Account Types</span>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-
-                    <a href="?view_responses" >
-                        <div class="col-md-3">
-                            <div class="sm-st clearfix">
-                                <span class="sm-st-icon st-violet"><i class="fa fa-reply"></i></span>
-                                <div class="sm-st-info">
-                                    <span><?php echo $reports->countAllSubjectAreaRecords("count_all_responses"); ?></span>
-                                    <span>Responses</span>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-
+                
                     <a href="?view_positions" >
                         <div class="col-md-3">
                             <div class="sm-st clearfix">
@@ -254,54 +302,6 @@ $reports = new Reports();
                                 <div class="sm-st-info">
                                     <span><?php echo $reports->countAllSubjectAreaRecords("count_all_positions"); ?></span>
                                     <span>Positions</span>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-
-                    <a href="?view_financing_methods" >
-                        <div class="col-md-3">
-                            <div class="sm-st clearfix">
-                                <span class="sm-st-icon st-green"><i class="fa fa-money"></i></span>
-                                <div class="sm-st-info">
-                                    <span><?php echo $reports->countAllSubjectAreaRecords("count_all_financing_methods"); ?></span>
-                                    <span>Financing Methods</span>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-
-                    <a href="?view_funding_types" >
-                        <div class="col-md-3">
-                            <div class="sm-st clearfix">
-                                <span class="sm-st-icon st-violet"><i class="fa fa-usd"></i></span>
-                                <div class="sm-st-info">
-                                    <span><?php echo $reports->countAllSubjectAreaRecords("count_all_funding_types"); ?></span>
-                                    <span>Funding Types</span>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-
-                    <a href="?view_investor_types" >
-                        <div class="col-md-3">
-                            <div class="sm-st clearfix">
-                                <span class="sm-st-icon st-violet"><i class="fa fa-usd"></i></span>
-                                <div class="sm-st-info">
-                                    <span><?php echo $reports->countAllSubjectAreaRecords("count_all_investor_types"); ?></span>
-                                    <span>Investor Types</span>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-
-                    <a href="?view_sectors" >
-                        <div class="col-md-3">
-                            <div class="sm-st clearfix">
-                                <span class="sm-st-icon st-violet"><i class="fa fa-usd"></i></span>
-                                <div class="sm-st-info">
-                                    <span><?php echo $reports->countAllSubjectAreaRecords("count_all_sectors"); ?></span>
-                                    <span>Sectors</span>
                                 </div>
                             </div>
                         </div>
