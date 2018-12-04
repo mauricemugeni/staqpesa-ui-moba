@@ -23,9 +23,32 @@ $_SESSION['institution_paybill_number'] = $configs["institution_paybill_number"]
 $_SESSION['reflex_paybill_number'] = $configs["reflex_paybill_number"];
 $_SESSION['solo_chapter_code'] = $configs["solo_chapter_code"];
 
+
+//if (!isset($_SESSION['chapter_details'])) {
+//    if (isset($_SESSION['chapter_code'])) {
+//        $_SESSION['chapter_details'] = $users->fetchChapterDetails($_SESSION['chapter_code']);
+//        $_SESSION['chapter_details'] = $users->fetchDetails($_SESSION['chapter_code']);
+//        $chapter_currency = $settings->fetchPartnerCountryDetails($_SESSION['chapter_details']['country']);
+//        $_SESSION['chapter_details']['currency'] = $chapter_currency;
+//    } 
+//    
+////    else if (isset($_GET['chapter_code'])) {
+////        $_SESSION['chapter_code'] = $_GET['chapter_code'];
+////        $_SESSION['chapter_details'] = $users->fetchChapterDetails($_SESSION['chapter_code']);
+////    } 
+//    
+//    else {
+//        $_SESSION['chapter_code'] = $_SESSION['solo_chapter_code'];
+//        $_SESSION['chapter_details'] = $users->fetchSoloChapterDetails($_SESSION['institution_code'], $_SESSION['solo_chapter_code']);
+//        $chapter_currency = $settings->fetchPartnerCountryDetails($_SESSION['chapter_details']['country']);
+//        $_SESSION['chapter_details']['currency'] = $chapter_currency;
+//    }
+//}
+
+
 if (!isset($_SESSION['chapter_details'])) {
     if (isset($_SESSION['chapter_code'])) {
-        $_SESSION['chapter_details'] = $users->fetchChapterDetails($_SESSION['chapter_code']);
+        $_SESSION['chapter_details'] = $users->fetchChapterDetails($_SESSION['chapter_code']);        
     } 
     
 //    else if (isset($_GET['chapter_code'])) {
@@ -111,7 +134,7 @@ if (!empty($_POST)) {
     <h5><a href="?forgot_password">Forgot Password?</a></h5>
 </div>
 <div class="templatemo-content-widget templatemo-login-widget templatemo-register-widget white-bg">
-    <p>Not a registered user yet? <strong><a href="<?php echo $_SESSION['website_url']; ?>/?applying" class="blue-text">Sign up now!</a></strong></p>
+    <p>Not a registered user yet? <strong><a href="<?php echo $_SESSION['website_url']; ?>/?institution_self_registration" class="blue-text">Sign up now!</a></strong></p>
 </div>  
 
 

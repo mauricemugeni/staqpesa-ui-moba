@@ -8,7 +8,7 @@ $users = new Users();
 $code = $_GET['code'];
 $_SESSION['loan_processing_fee'] = $code;
 
-$details = $settings->fetchLoanProcessingFeeDetails($code);
+$details = $settings->fetchIndividualLoanProcessingFeeDetails($code);
 $staff_details_createdby = $users->fetchStaffDetails($details['createdby']);
 
 if ($details['status'] == 1000) {
@@ -74,20 +74,20 @@ if ($details['status'] == 1000) {
                             </div>
                             <div id="status-element">
                                 <div class="form-group"> 
-                                    <label for="start">Start/Lower Amount <?php echo '(' . $_SESSION['currency'] . ')'; ?>:</label>
-                                    <span class="form-control"><?php echo $_SESSION['currency'] ." .". number_format($details['start'], 2); ?></span>
+                                    <label for="start">Start/Lower Amount <?php echo '(' . $_SESSION['chapter_details']['currency'] . ')'; ?>:</label>
+                                    <span class="form-control"><?php echo $_SESSION['chapter_details']['currency'] ." .". number_format($details['start'], 2); ?></span>
                                 </div>
                                 <div class="form-group">
-                                    <label for="end">End/Upper Amount <?php echo '(' . $_SESSION['currency'] . ')'; ?>:</label>
-                                    <span class="form-control"><?php echo $_SESSION['currency'] ." .". number_format($details['end'], 2); ?></span>
+                                    <label for="end">End/Upper Amount <?php echo '(' . $_SESSION['chapter_details']['currency'] . ')'; ?>:</label>
+                                    <span class="form-control"><?php echo $_SESSION['chapter_details']['currency'] ." .". number_format($details['end'], 2); ?></span>
                                 </div>
                                 <div class="form-group">
                                     <label for="amount_type">Amount Type:</label>
                                     <span class="form-control"><?php echo $details['amount_type']; ?></span>
                                 </div>
                                 <div class="form-group"> 
-                                    <label for="amount">Amount <?php echo '(' . $_SESSION['currency'] . ')'; ?>:</label>
-                                    <span class="form-control"><?php echo $_SESSION['currency'] ." .".number_format($details['amount'], 2); ?></span>
+                                    <label for="amount">Amount <?php echo '(' . $_SESSION['chapter_details']['currency'] . ')'; ?>:</label>
+                                    <span class="form-control"><?php echo $_SESSION['chapter_details']['currency'] ." .".number_format($details['amount'], 2); ?></span>
                                 </div>
                                 <div class="form-group"> 
                                     <label for="status">Status:</label>

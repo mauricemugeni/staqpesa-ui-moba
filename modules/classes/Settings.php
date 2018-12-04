@@ -1437,7 +1437,17 @@ class Settings extends Database {
         $info = $decoded_response['message'];
         return $info;
     }
-
+    
+    public function fetchIndividualLoanProcessingFeeDetails($code) {
+        $data['request_type'] = 'fetch_individual_loan_processing_fee_details';
+        $data['code'] = $code;
+        $data_string = http_build_query($data);
+        $process_request = $this->sendHttpRequestPost($data_string);
+        $decoded_response = json_decode($process_request, true);
+        $info = $decoded_response['message'];
+        return $info;
+    }
+    
     public function fetchLoanProcessingFeeDetails($code) {
         $data['request_type'] = 'fetch_loan_processing_fee_details';
         $data['code'] = $code;
@@ -1510,6 +1520,16 @@ class Settings extends Database {
 
     public function fetchBusinessFormDetails($code) {
         $data['request_type'] = 'fetch_business_form_details';
+        $data['code'] = $code;
+        $data_string = http_build_query($data);
+        $process_request = $this->sendHttpRequestPost($data_string);
+        $decoded_response = json_decode($process_request, true);
+        $info = $decoded_response['message'];
+        return $info;
+    }
+
+    public function fetchPartnerCountryDetails($code) {
+        $data['request_type'] = 'fetch_partner_country_details';
         $data['code'] = $code;
         $data_string = http_build_query($data);
         $process_request = $this->sendHttpRequestPost($data_string);

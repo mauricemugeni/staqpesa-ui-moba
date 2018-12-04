@@ -271,17 +271,17 @@ $reports = new Reports();
                         </div>
                     </a>
 
-                    <a href="?view_default_charge_rates" >
+<!--                    <a href="?view_default_charge_rates" >
                         <div class="col-md-3">
                             <div class="sm-st clearfix">
                                 <span class="sm-st-icon st-violet"><i class="fa fa-money"></i></span>
                                 <div class="sm-st-info">
-                                    <span><?php echo $reports->countAllSubjectAreaRecords("count_all_default_charge_rates"); ?></span>
+                                    <span><?php // echo $reports->countAllSubjectAreaRecords("count_all_default_charge_rates"); ?></span>
                                     <span>Default Charge Rates</span>
                                 </div>
                             </div>
                         </div>
-                    </a>
+                    </a>-->
 
                     <a href="?view_loan_processing_fees" >
                         <div class="col-md-3">

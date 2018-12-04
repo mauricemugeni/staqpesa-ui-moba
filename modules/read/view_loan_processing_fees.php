@@ -33,7 +33,7 @@ unset($_SESSION['search']);
                                     <td>Start</td>
                                     <td>End</td>
                                     <td>Amount Type</td>
-                                    <td>Amount <?php echo '(' . $_SESSION['currency'] . ')'; ?></td>
+                                    <td>Amount <?php echo '(' . $_SESSION['chapter_details']['currency'] . ')'; ?></td>
                                     <td>Status</td>
                                 </tr>
                                 <?php
