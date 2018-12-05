@@ -93,7 +93,7 @@ if (!empty($_POST)) {
                                     <th>Member Name</th>
                                     <th>Email</th>
                                     <th>Telephone</th>
-                                    <th>Amount <?php echo '(' . $_SESSION['chapter_details']['currency'] . ')'; ?></th>
+                                    <th>Amount <?php echo '(' . $_SESSION['currency'] . ')'; ?></th>
                                 </tr>
                                 <?php
                                 if (!empty($_POST)) {

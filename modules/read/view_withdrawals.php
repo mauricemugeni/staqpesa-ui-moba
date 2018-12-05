@@ -38,7 +38,7 @@ unset($_SESSION['search']);
                                     <?php if (!isset($_SESSION['account'])) { ?>
                                         <th>Account Number</th>
                                     <?php } ?>
-                                    <th>Amount <?php echo '(' . $_SESSION['chapter_details']['currency'] . ')'; ?></th>
+                                    <th>Amount <?php echo '(' . $_SESSION['currency'] . ')'; ?></th>
                                     <th>Date</th>
                                     <!--<th>Status</th>-->
                                 </tr>

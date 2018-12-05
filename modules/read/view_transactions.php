@@ -38,7 +38,7 @@ $transaction_type = "ALL";
                                     <th>Transaction ID</th>
                                     <th>Transaction Type</th>
                                     <th>Date</th>
-                                    <th>Amount <?php echo '(' . $_SESSION['chapter_details']['currency'] . ')'; ?></th>
+                                    <th>Amount <?php echo '(' . $_SESSION['currency'] . ')'; ?></th>
                                     <?php
                                     if (is_menu_set('view_transactions_individual_account') != "" OR $_SESSION['logged_in_user_type_details']['name'] == "ACCOUNT HOLDER") {
                                         echo "<th>Ledger Balance</th>";

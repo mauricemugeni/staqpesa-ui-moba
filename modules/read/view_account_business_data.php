@@ -41,7 +41,7 @@ unset($_SESSION['search']);
                                     <th>Account Number</th>
                                     <th>Business Type</th>
                                     <th>Business Form</th>
-                                    <th>Daily Sales <?php echo '(' . $_SESSION['chapter_details']['currency'] . ')'; ?></th>
+                                    <th>Daily Sales <?php echo '(' . $_SESSION['currency'] . ')'; ?></th>
                                     <th>Employees Number</th>
                                     <th>Location</th>
                                     <th>Is Licensed</th>

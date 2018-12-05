@@ -44,22 +44,22 @@ if ($update_type == "edit") {
                                 <input type="hidden" name="action" value="edit_loan_processing_fees"/>
                                 <input type="hidden" name="createdby" value="<?php echo $_SESSION['userid']; ?>">
                                 <div class="form-group">
-                                <label for="start">Start/Lower Amount <?php echo '(' . $_SESSION['chapter_details']['currency'] . ')'; ?></label>
+                                <label for="start">Start/Lower Amount <?php echo '(' . $_SESSION['currency'] . ')'; ?></label>
                                 <input type="number" class="form-control" id="start" name="start" placeholder="Start/Lower Amount" value="<?php echo $details['start']; ?>" required="yes"/>
                                 </div>
                                 <div class="form-group">
-                                <label for="end">End/Upper Amount <?php echo '(' . $_SESSION['chapter_details']['currency'] . ')'; ?></label>
+                                <label for="end">End/Upper Amount <?php echo '(' . $_SESSION['currency'] . ')'; ?></label>
                                 <input type="number" class="form-control" id="end" name="end" placeholder="End/Upper Amount" value="<?php echo $details['end']; ?>" required="yes"/>
                                 </div>
                                 <div class="form-group">
                                 <label for="amount_type">Amount Type</label>
                                 <select name="amount_type" class="form-control">
-                                        <option value="<?php echo '(' . $_SESSION['chapter_details']['currency'] . ')'; ?>">CURRENCY<?php echo '(' . $_SESSION['chapter_details']['currency'] . ')'; ?></option>
-                                        <option value="PERCENT">PERCENTAGE</option>
+                                        <option value="CASH">CURRENCY<?php echo '(' . $_SESSION['currency'] . ')'; ?></option>
+                                        <option value="PERCENT">PERCENTAGE(%)</option>
                                     </select> 
                                 </div>
                                 <div class="form-group">
-                                <label for="amount">Amount <?php echo '(' . $_SESSION['chapter_details']['currency'] . ')'; ?></label>
+                                <label for="amount">Amount <?php echo '(' . $_SESSION['currency'] . ')'; ?></label>
                                 <input type="number" class="form-control" id="amount" name="amount" placeholder="Amount" value="<?php echo $details['amount']; ?>" required="yes"/>
                                 </div>
 

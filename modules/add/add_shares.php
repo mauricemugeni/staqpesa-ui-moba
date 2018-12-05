@@ -56,7 +56,7 @@ if (!empty($_POST)) {
                                     <input type="text" class="form-control" name="account_name" id="account_name" placeholder="Account Name" value="<?php echo $account_details['account_name']; ?>" readonly="true" />
                                 </div>
                                 <div class="form-group">
-                                    <label for="amount">Amount <?php echo '(' . $_SESSION['chapter_details']['currency'] . ')'; ?></label>
+                                    <label for="amount">Amount <?php echo '(' . $_SESSION['currency'] . ')'; ?></label>
                                     <input type="number" class="form-control" id="amount" name="amount" placeholder="Amount" required="true"/>
                                 </div>
                                 <div class="form-group">

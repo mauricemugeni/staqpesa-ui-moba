@@ -23,7 +23,7 @@ unset($_SESSION['project']);
                         <th>Project</th>
                         <th>Number of Bids</th>
                         <th>Value of Bids</th>
-                        <th style='text-align:right;'>Balance<?php echo '(' . $_SESSION['chapter_details']['currency'] . ')'; ?></th>
+                        <th style='text-align:right;'>Balance<?php echo '(' . $_SESSION['currency'] . ')'; ?></th>
                     </tr>
                 </thead>
                 <tbody>

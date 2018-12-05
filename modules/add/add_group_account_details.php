@@ -275,7 +275,7 @@ if (!empty($_POST)) {
                                             <input type="text" class="form-control" id="description" name="description" placeholder="eg. Car Taxi Services" />
                                         </div>
                                         <div class="form-group">
-                                            <label for="source_amount">Monthly Income from External Source in <?php echo '(' . $_SESSION['chapter_details']['currency'] . ')'; ?></label>
+                                            <label for="source_amount">Monthly Income from External Source in <?php echo '(' . $_SESSION['currency'] . ')'; ?></label>
                                             <input type="number" class="form-control" id="source_amount" name="source_amount" placeholder="eg. 500000" />
                                         </div>
                                     </div>                                    

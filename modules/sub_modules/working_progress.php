@@ -23,7 +23,7 @@ $funding = new Funding();
                         <th>Funding Type</th>
                         <!-- <th>Price</th> -->
                         <th>Financing</th>
-                        <th style='text-align:right;'>Funding Completion<?php echo '(' . $_SESSION['chapter_details']['currency'] . ')'; ?></th>
+                        <th style='text-align:right;'>Funding Completion<?php echo '(' . $_SESSION['currency'] . ')'; ?></th>
                     </tr>
                 </thead>
                 <tbody>

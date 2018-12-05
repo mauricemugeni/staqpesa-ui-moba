@@ -2476,15 +2476,13 @@ class Users extends Database {
         return $info;
     }
 
-    public function fetchSoloChapterDetails($institution_code, $chapter_code) {
+    public function fetchSoloChapterDetails($institution_code) {
         $data['request_type'] = 'fetch_solo_chapter_details';
         $data['institution_code'] = $institution_code;
-        $data['chapter_code'] = $chapter_code;
         $data_string = http_build_query($data);
         $process_request = $this->sendHttpRequestPost($data_string);
         $decoded_response = json_decode($process_request, true);
         $info = $decoded_response['message'];
         return $info;
     }
-
 }

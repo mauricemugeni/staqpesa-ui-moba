@@ -67,7 +67,7 @@ if (!empty($_POST)) {
                                     </select> 
                                 </div>
                                 <div class="form-group">
-                                    <label for="principal_amount">Loan Amount <?php echo '(' . $_SESSION['chapter_details']['currency'] . ')'; ?></label>
+                                    <label for="principal_amount">Loan Amount <?php echo '(' . $_SESSION['currency'] . ')'; ?></label>
                                     <input type="number" class="form-control" id="principal_amount" name="principal_amount" value="<?php
                                     if (!empty($_POST['principal_amount'])) {
                                         echo $_POST['principal_amount'];
@@ -103,7 +103,7 @@ if (!empty($_POST)) {
 
                                 <?php if (isset($_SESSION['loan_check_success'])) { ?>
                                     <div class="form-group">
-                                        <label for="total_interest">Total Interest <?php echo '(' . $_SESSION['chapter_details']['currency'] . ')'; ?></label>
+                                        <label for="total_interest">Total Interest <?php echo '(' . $_SESSION['currency'] . ')'; ?></label>
                                         <input type="text" class="form-control" id="total_interest" name="total_interest" placeholder="0" value="<?php
                                         if (!empty($_POST)) {
                                             echo $success['interest'];
@@ -111,7 +111,7 @@ if (!empty($_POST)) {
                                         ?>" readonly="true" />
                                     </div>
                                     <div class="form-group">
-                                        <label for="total_repayment">Total Repayable Amount <?php echo '(' . $_SESSION['chapter_details']['currency'] . ')'; ?></label>
+                                        <label for="total_repayment">Total Repayable Amount <?php echo '(' . $_SESSION['currency'] . ')'; ?></label>
                                         <input type="text" class="form-control" id="total_repayment" name="total_repayment" placeholder="0" value="<?php
                                         if (!empty($_POST)) {
                                             echo $success['total_repayable_amount'];
@@ -119,7 +119,7 @@ if (!empty($_POST)) {
                                         ?>" readonly="true" />
                                     </div>
                                     <div class="form-group">
-                                        <label for="monthly_repayment">Monthly Repayment <?php echo '(' . $_SESSION['chapter_details']['currency'] . ')'; ?></label>
+                                        <label for="monthly_repayment">Monthly Repayment <?php echo '(' . $_SESSION['currency'] . ')'; ?></label>
                                         <input type="text" class="form-control" id="monthly_repayment" name="monthly_repayment" placeholder="0" value="<?php
                                         if (!empty($_POST)) {
                                             echo $success['monthly_repayment'];

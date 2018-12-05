@@ -17,7 +17,7 @@ unset($_SESSION['loan']);
                     <th>Transaction ID</th>
                     <th>Date Applied</th>
                     <th>Account Number</th>
-                    <th>Amount <?php echo '(' . $_SESSION['chapter_details']['currency'] . ')'; ?></th>
+                    <th>Amount <?php echo '(' . $_SESSION['currency'] . ')'; ?></th>
                 </tr>
             </thead>
             <tbody>

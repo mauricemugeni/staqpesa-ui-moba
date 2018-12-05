@@ -89,7 +89,7 @@ if (!empty($_POST)) {
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="amount">Amount <?php echo '(' . $_SESSION['chapter_details']['currency'] . ')'; ?></label>
+                                    <label for="amount">Amount <?php echo '(' . $_SESSION['currency'] . ')'; ?></label>
                                     <input type="number" class="form-control" id="amount" name="amount" placeholder="Amount" required="true"/>
                                 </div>
                                 <div class="form-group">

@@ -991,3 +991,92 @@ Deleted files:
 Null
 
 *********************************************************************************************************************************************************************************************
+05 December, 2018 - Maurice
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Summary
+1. Worked on making the currency displayed on the UI component dynamic depending on the host country of the institution/chapter in question.
+
+------------------------------------------------
+Website
+------------------------------------------------
+Edited files:
+Null
+
+Added files:
+Null
+
+Deleted files:
+Null
+
+------------------------------------------------
+Admin Portal
+------------------------------------------------
+Edited files:
+1. core/configs.ini
+2. modules/add/add_account.php
+3. modules/add/add_account_next_2.php
+4. modules/add/add_business_account_details.php
+5. modules/add/add_deposit.php
+6. modules/add/add_group_account_details.php
+7. modules/add/add_loan_guarantor.php
+8. modules/add/add_loan_next.php
+9. modules/add/add_loan_processing_fees.php
+10. modules/add/add_shares.php
+11. modules/add/add_withdrawal.php
+12. modules/add/engage_loan_calculator.php
+13. modules/borrowing_tac.php
+14. modules/classes/Users.php
+15. modules/dashboard/account_overview.php
+16. modules/dashboard/loan_calculator.php
+17. modules/dashboard/recent_transactions_institution_staff.php
+18. modules/dashboard/top_deposits.php
+19. modules/dashboard/top_loans.php
+20. modules/dashboard/top_projects.php
+21. modules/login.php
+22. modules/mailing/PHPMailerAutoload.php
+23. modules/read/view_account_business_data.php
+24. modules/read/view_account_to_account_transfers.php
+25. modules/read/view_bids_on_projects.php
+26. modules/read/view_deposits.php
+27. modules/read/view_loans.php
+28. modules/read/view_loans_individual.php
+29. modules/read/view_loan_guarantors.php
+30. modules/read/view_loan_processing_fees.php
+31. modules/read/view_loan_processing_fees_individual.php
+32. modules/read/view_loan_repayments.php
+33. modules/read/view_projects.php
+34. modules/read/view_projects_individual.php
+35. modules/read/view_project_bids.php
+36. modules/read/view_project_bids_individual.php
+37. modules/read/view_shares.php
+38. modules/read/view_transactions.php
+39. modules/read/view_unbidded_projects.php
+40. modules/read/view_withdrawals.php
+41. modules/read/view_withdrawals_individual.php
+42. modules/sub_modules/working_progress.php
+43. modules/update/update_account.php
+44. modules/update/update_loan_processing_fees.php
+
+Added files:
+Null
+
+Deleted files:
+Null
+
+------------------------------------------------
+API
+------------------------------------------------
+
+Edited files:
+
+1. modules/classes/Settings.php
+2. modules/index.php
+3. modules/phpmailer/PHPMailerAutoload.php
+
+Added files:
+Null
+
+Deleted files:
+Null
+
+*********************************************************************************************************************************************************************************************

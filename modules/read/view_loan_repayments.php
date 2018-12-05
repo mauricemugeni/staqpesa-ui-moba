@@ -43,8 +43,8 @@ unset($_SESSION['search']);
                             <table class="table table-striped">   
                                 <tr>
                                     <th>Transaction Number</th>
-                                    <th>Instalment Amount <?php echo '(' . $_SESSION['chapter_details']['currency'] . ')'; ?></th>
-                                    <th>Outstanding Bal. <?php echo '(' . $_SESSION['chapter_details']['currency'] . ')'; ?></th>
+                                    <th>Instalment Amount <?php echo '(' . $_SESSION['currency'] . ')'; ?></th>
+                                    <th>Outstanding Bal. <?php echo '(' . $_SESSION['currency'] . ')'; ?></th>
                                     <th>Date</th>
                                     <th>Next Date</th>
                                     <th>Loan Due Date</th>

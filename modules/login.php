@@ -2,6 +2,8 @@
 $configs = parse_ini_file(WPATH . "core/configs.ini");
 
 require_once WPATH . "modules/classes/Users.php";
+require_once WPATH . "modules/classes/Settings.php";
+$settings = new Settings();
 $users = new Users();
 
 $_SESSION['host_name'] = $configs["host_name"];
@@ -15,50 +17,35 @@ $_SESSION['facebook_page'] = $configs["facebook_page"];
 $_SESSION['twitter_handle'] = $configs["twitter_handle"];
 $_SESSION['application_email'] = $configs["application_email"];
 $_SESSION['application_phone'] = $configs["application_phone"];
-$_SESSION['institution_code'] = $configs["institution_code"];
-$_SESSION['institution_name'] = $configs["institution_name"];
-$_SESSION['institution_email'] = $configs["institution_email"];
-$_SESSION['institution_phone'] = $configs["institution_phone"];
 $_SESSION['institution_paybill_number'] = $configs["institution_paybill_number"];
 $_SESSION['reflex_paybill_number'] = $configs["reflex_paybill_number"];
-$_SESSION['solo_chapter_code'] = $configs["solo_chapter_code"];
 
+// Define institution_id
+if (isset($_GET['institution'])) {
+    $_SESSION['institution_code'] = $_GET['institution'];
+} else {
+    $_SESSION['institution_code'] = '3';
+}
 
-//if (!isset($_SESSION['chapter_details'])) {
-//    if (isset($_SESSION['chapter_code'])) {
-//        $_SESSION['chapter_details'] = $users->fetchChapterDetails($_SESSION['chapter_code']);
-//        $_SESSION['chapter_details'] = $users->fetchDetails($_SESSION['chapter_code']);
-//        $chapter_currency = $settings->fetchPartnerCountryDetails($_SESSION['chapter_details']['country']);
-//        $_SESSION['chapter_details']['currency'] = $chapter_currency;
-//    } 
-//    
-////    else if (isset($_GET['chapter_code'])) {
-////        $_SESSION['chapter_code'] = $_GET['chapter_code'];
-////        $_SESSION['chapter_details'] = $users->fetchChapterDetails($_SESSION['chapter_code']);
-////    } 
-//    
-//    else {
-//        $_SESSION['chapter_code'] = $_SESSION['solo_chapter_code'];
-//        $_SESSION['chapter_details'] = $users->fetchSoloChapterDetails($_SESSION['institution_code'], $_SESSION['solo_chapter_code']);
-//        $chapter_currency = $settings->fetchPartnerCountryDetails($_SESSION['chapter_details']['country']);
-//        $_SESSION['chapter_details']['currency'] = $chapter_currency;
-//    }
-//}
+// Define chapter_id
+if (isset($_GET['chapter'])) {
+    $_SESSION['chapter_code'] = $_GET['chapter'];
+}
 
+$institution_details = $settings->fetchInstitutionDetails($_SESSION['institution_code']);
+$_SESSION['institution_name'] = $institution_details["company_name"];
+$_SESSION['institution_email'] = $institution_details["email"];
+$_SESSION['institution_phone'] = $institution_details["phone_number"];
 
 if (!isset($_SESSION['chapter_details'])) {
     if (isset($_SESSION['chapter_code'])) {
-        $_SESSION['chapter_details'] = $users->fetchChapterDetails($_SESSION['chapter_code']);        
-    } 
-    
-//    else if (isset($_GET['chapter_code'])) {
-//        $_SESSION['chapter_code'] = $_GET['chapter_code'];
-//        $_SESSION['chapter_details'] = $users->fetchChapterDetails($_SESSION['chapter_code']);
-//    } 
-    
-    else {
-        $_SESSION['chapter_code'] = $_SESSION['solo_chapter_code'];
-        $_SESSION['chapter_details'] = $users->fetchSoloChapterDetails($_SESSION['institution_code'], $_SESSION['solo_chapter_code']);
+        $_SESSION['chapter_details'] = $users->fetchChapterDetails($_SESSION['chapter_code']);
+        $chapter_country_details = $settings->fetchPartnerCountryDetails($_SESSION['chapter_details']['country']);
+        $_SESSION['currency'] = $chapter_country_details['currency'];
+    } else {
+        $_SESSION['chapter_details'] = $users->fetchSoloChapterDetails($_SESSION['institution_code']);
+        $chapter_country_details = $settings->fetchPartnerCountryDetails($_SESSION['chapter_details']['country']);
+        $_SESSION['currency'] = $chapter_country_details['currency'];
     }
 }
 
@@ -72,6 +59,12 @@ if (!empty($_POST)) {
         if ($user_details['password_new'] == 0) {
             App::redirectTo("?update_password");
         }
+        
+//        argDump($_SESSION['logged_in_user_type_details']['name']);
+//        argDump($_SESSION['logged_in_user_type_details']['name']);
+//        argDump($_SESSION['logged_in_user_type_details']['name']);
+//        exit();
+        
         App::redirectTo("?dashboard");
     }
 }

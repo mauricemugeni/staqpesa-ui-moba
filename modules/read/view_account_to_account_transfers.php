@@ -43,7 +43,7 @@ unset($_SESSION['search']);
                                     <th>Transaction ID</th>
                                     <th>Account From</th>
                                     <th>Account To</th>
-                                    <th>Amount <?php echo '(' . $_SESSION['chapter_details']['currency'] . ')'; ?></th>
+                                    <th>Amount <?php echo '(' . $_SESSION['currency'] . ')'; ?></th>
                                     <th>Date</th>
                                     <!--<th>Status</th>-->
                                 </tr>

@@ -93,7 +93,7 @@ if (!empty($_POST)) {
                                 <input type="hidden" name="transaction_type" value="LOAN APPLICATION"/>
                                 <input type="hidden" name="createdby" value="<?php echo $_SESSION['userid']; ?>"/>
                                 <div class="form-group">
-                                    <label for="principal_amount">Principal Amount <?php echo '(' . $_SESSION['chapter_details']['currency'] . ')'; ?></label>
+                                    <label for="principal_amount">Principal Amount <?php echo '(' . $_SESSION['currency'] . ')'; ?></label>
                                     <input type="number" class="form-control" id="principal_amount" name="principal_amount" placeholder="eg. 50000" required="yes"/>
                                 </div>                                
                                 <div class="form-group">
@@ -120,11 +120,11 @@ if (!empty($_POST)) {
                                 </div>
 
                                 <!--                                <div class="form-group">
-                                                                    <label for="eunique_credit">Outstanding credit from us in <?php // echo '(' . $_SESSION['chapter_details']['currency'] . ')';       ?></label>   
+                                                                    <label for="eunique_credit">Outstanding credit from us in <?php // echo '(' . $_SESSION['currency'] . ')';       ?></label>   
                                                                     <input type="number" class="form-control" id="eunique_credit" name="eunique_credit" placeholder="eg. 500000" required="yes"/>
                                                                 </div>
                                                                 <div class="form-group">
-                                                                    <label for="other_credit">Credit from Other Sources in <?php // echo '(' . $_SESSION['chapter_details']['currency'] . ')';       ?></label>
+                                                                    <label for="other_credit">Credit from Other Sources in <?php // echo '(' . $_SESSION['currency'] . ')';       ?></label>
                                                                     <input type="number" class="form-control" id="other_credit" name="other_credit" placeholder="eg. 500000" required="yes"/>
                                                                 </div>-->
 
@@ -137,7 +137,7 @@ if (!empty($_POST)) {
                                 </div>
                                 <div class="YES boxed">
                                     <div class="form-group">
-                                        <label for="our_credit_amount">Loan Amount <?php echo '(' . $_SESSION['chapter_details']['currency'] . ')'; ?></label>
+                                        <label for="our_credit_amount">Loan Amount <?php echo '(' . $_SESSION['currency'] . ')'; ?></label>
                                         <input type="number" class="form-control" id="our_credit_amount" name="our_credit_amount" placeholder="eg. 500000" />
                                     </div>
                                     <div class="form-group">
@@ -176,7 +176,7 @@ if (!empty($_POST)) {
                                         <input type="text" class="form-control" id="other_credit_organization" name="other_credit_organization" placeholder="eg, Stima Sacco" />
                                     </div>
                                     <div class="form-group">
-                                        <label for="other_credit_amount">Loan Amount <?php echo '(' . $_SESSION['chapter_details']['currency'] . ')'; ?></label>
+                                        <label for="other_credit_amount">Loan Amount <?php echo '(' . $_SESSION['currency'] . ')'; ?></label>
                                         <input type="number" class="form-control" id="other_credit_amount" name="other_credit_amount" placeholder="eg. 500000" />
                                     </div>
                                     <div class="form-group">
