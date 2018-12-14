@@ -1,5 +1,6 @@
 <?php
-if (!App::isLoggedIn()) App::redirectTo("?");
+if (!App::isLoggedIn())
+    App::redirectTo("?");
 require_once WPATH . "modules/classes/Transactions.php";
 require_once WPATH . "modules/classes/Users.php";
 $users = new Users();
@@ -10,9 +11,14 @@ $recipient_account_details = $users->fetchAccountDetails($_SESSION['recipient_ac
 if (!empty($_POST)) {
     $success = $transactions->execute();
     if ($success['status'] == 200) {
+        $_SESSION['feedback_message'] = "<strong>Successful:</strong> The funds transfer has been effected successfully.";
         $_SESSION['add_success'] = true;
+        App::redirectTo("?view_account_to_account_transfers");
+    } else {
+        $_SESSION['add_fail'] = true;
+        $_SESSION['feedback_message'] = "<strong>Error!</strong> There was an error effecting the funds transfer. Please try again.";
+        App::redirectTo("?add_account_to_account_transfer");
     }
-    App::redirectTo("?view_accounts");
 }
 ?>
 
@@ -22,7 +28,7 @@ if (!empty($_POST)) {
     <aside class="right-side">
         <!-- Main content -->
         <section class="content">
-            <?php // require_once('modules/menus/sub_menu_fosa_transactions.php'); ?>
+            <?php // require_once('modules/menus/sub_menu_fosa_transactions.php');  ?>
             <div class="row">
                 <div class="col-lg-6">
                     <section class="panel">
@@ -40,7 +46,7 @@ if (!empty($_POST)) {
                                 </div>
                                 <div class="form-group">
                                     <label for="account_name">Account Name</label>
-                                    <input type="text" class="form-control" name="account_name" id="account_name" placeholder="Account Name" value="<?php echo $recipient_account_details['account_name'];   ?>" readonly="true" />
+                                    <input type="text" class="form-control" name="account_name" id="account_name" placeholder="Account Name" value="<?php echo $recipient_account_details['account_name']; ?>" readonly="true" />
                                 </div>
                                 <div class="form-group">
                                     <label for="amount">Amount</label>

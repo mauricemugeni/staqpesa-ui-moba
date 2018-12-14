@@ -235,6 +235,16 @@ class Users extends Database {
         }
     }
 
+    public function fetchSetAccountBankingDetails() {
+        $data['request_type'] = 'fetch_set_account_banking_details';
+        $data['account_number'] = $_SESSION['account'];
+        $data_string = http_build_query($data);
+        $process_request = $this->sendHttpRequestPost($data_string);
+        $decoded_response = json_decode($process_request, true);
+        $info = $decoded_response['message'];
+        return $info;
+    }
+    
     public function inboxMessagesStatement($start_time, $end_time) {
         $data['request_type'] = "fetch_inbox_messages_statement";
         $data['start_time'] = $start_time;
@@ -1222,7 +1232,6 @@ class Users extends Database {
     public function fetchAccountBankingDtlDetails($code) {
         $data['request_type'] = 'fetch_account_banking_dtl_details';
         $data['code'] = $code;
-//        $data['account_number'] = $_SESSION['account'];
         $data_string = http_build_query($data);
         $process_request = $this->sendHttpRequestPost($data_string);
         $decoded_response = json_decode($process_request, true);

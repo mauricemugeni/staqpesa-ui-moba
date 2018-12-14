@@ -39,6 +39,7 @@ if (!empty($_POST)) {
             $checkIfAccountHasBankingDetails = $users->checkIfAccountHasBankingDetails();
 
             if ($checkIfAccountHasBankingDetails == true) {
+                $_SESSION['set_account_banking_details'] =  $users->fetchSetAccountBankingDetails();
                 $_SESSION['has_banking_details'] = true;
             } else if ($checkIfAccountHasBankingDetails == false) {
                 $_SESSION['has_banking_details'] = false;

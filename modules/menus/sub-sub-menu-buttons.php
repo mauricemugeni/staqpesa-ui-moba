@@ -46,7 +46,7 @@ if (is_menu_set('?') != "") {
 //}
 else if ((is_menu_set('view_loans') != "") OR ( is_menu_set('view_loans_notifications') != "")) {
     $statement_type = "fetch_loans_statement";
-    if (isset($_SESSION['account'])) {
+    if (isset($_SESSION['account']) AND $_SESSION['logged_in_user_type_details']['name'] == "ACCOUNT HOLDER") {
         $request_url = "?add_loan";
         $action_holder = "Add Loan";
     } else {
@@ -353,7 +353,7 @@ if (is_menu_set('add_loan_guarantor') != "") {
             <div class="col-lg-4">
                 <div class="input-group">
                     <span class="input-group-addon">
-                        Guarantee Amount <?php echo '(' . $_SESSION['chapter_details']['currency'] . ')'; ?>
+                        Guarantee Amount <?php echo '(' . $_SESSION['currency'] . ')'; ?>
                     </span>
                     <input type="number" class="form-control" id="amount" name="amount" placeholder="<?php echo $_SESSION['outstanding_balance_to_be_guaranteed']; ?>" required="true"/>
                 </div>

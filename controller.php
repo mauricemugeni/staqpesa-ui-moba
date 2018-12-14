@@ -11,6 +11,12 @@ else if (is_menu_set('home') != "") {
 } else if (is_menu_set('generatepdf') != "") {
     $currentPage = WPATH . "modules/read/generatepdf.php";
     set_title("Sample PDF");
+} else if (is_menu_set('action_success') != "") {
+    $currentPage = WPATH . "modules/action_success.php";
+    set_title("Successful");
+} else if (is_menu_set('action_fail') != "") {
+    $currentPage = WPATH . "modules/action_fail.php";
+    set_title("Failed");
 }
 
 // Component 1

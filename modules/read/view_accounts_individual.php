@@ -94,7 +94,7 @@ if ($details['status'] == 1000) {
                                     ?>
                                     <!--<a class="edit-individual" href="?add_account_holder"> Add Account Holder </a>-->
                                     <?php // } ?>
-                                    <a class="edit-individual" href="?add_deposit">
+<!--                                    <a class="edit-individual" href="?add_deposit">
                                         Deposit
                                     </a>
                                     <a class="edit-individual" href="?add_shares">
@@ -108,7 +108,7 @@ if ($details['status'] == 1000) {
                                     </a>
                                     <a class="edit-individual" href="?add_loan">
                                         Request Loan
-                                    </a>
+                                    </a>-->
                                     <?php  } ?>
                                     <a class="edit-individual" href="?view_loans">
                                         Account Loans

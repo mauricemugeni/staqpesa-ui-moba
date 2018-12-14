@@ -1080,3 +1080,114 @@ Deleted files:
 Null
 
 *********************************************************************************************************************************************************************************************
+14 December, 2018 - Maurice
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Summary
+1. Updated 'institutions' table to include a 'setup_status'....should either be....'ADMIN SETUP IS PENDING' or 'ADMIN SETUP IS COMPLETED' but the default is 'ADMIN SETUP IS PENDING'
+2. Updated the auto-authorization bit to include the 'setup_status' field in the 'institutions' table creation.
+3. Worked on bulk loading of loan guarantors during loan application
+4. Updated 'status' table to include the two setup_status codes ('ADMIN SETUP IS PENDING' and 'ADMIN SETUP IS COMPLETED')
+5. Updated 'business_forms' table to only have....SAVINGS/INVESTMENTS GROUP; MICRO-FINANCE INSTITUTION; SACCO
+6. Updated 'business_forms' table to only have Sacco as active type
+7. Sacco registration flow:
+     - Included auto-authorization/approval
+	 - After registration page, if successful, goes to 'business_setup' page....but informs user that credentials have been sent to email (popup will do).
+	 - From 'business_setup' page, (based on the parameters input on 'business_setup' page) goes to 'setup_branches' then 'setup_positions' then 'setup_loan_types' then 'setup_loan_processing_fees' then finally submits values and redirects user to 'login' page (will help in email verification)
+	 - The 'institutions.setup_status' field is updated accordingly after successful setup submission
+8. Made the logo/institution name in the 'login' page dynamic so as to reflect the respective institution.
+9. Disabled automatic creation of subdomains for now during institution creation. Will be effected once CNAME is sorted.
+10. Streamlined the currency bit.....note the aspect of 'partner_countries'
+11. Worked on proposed guarantor's approval/rejection of guarantorship....email/system/SMS
+     - When loan is applied, guarantor details are populated with a default status of 1001
+	 - Communication is sent to prospected guarantor via email/SMS
+	 - Sent communication has response codes/links to accept/reject the guarantor role
+	 - If accepted/rejected, loan applicant is notified accordingly....via email/SMS
+	 - Once all selected guarantors (or those whose value meet the required threshold) respond, further loan processing can proceed. External interventions can be made in case of delays.
+	 ****- Loan applicant can select additional/replacement guarantors before loan is approved/rejected.
+	 - Loan applicant can deactivate/activate non-responsive guarantors if need be before approval.
+	 - Update the status column accordingly throughout the life cycle of the loan
+	 ....Probable status codes - 1001, 1010, 1011, 1020, 1021, 1041
+	 - Relooked 'update_loan_guarantor' file
+12. Disabled ability of a staff/admin initiating a transaction on behalf of an account_holder
+13. Created payment guides for various payment methods: airtel money, eazzypay, kcb, mpesa, paypal, pesalink, visa/mastercard
+14. Created development test environments for website, UI, API and DB. Check config file for details.
+
+------------------------------------------------
+Website
+------------------------------------------------
+Edited files:
+1. controller.php
+2. core/configs.ini
+3. modules/business_setup.php
+4. modules/business_setup_branches.php
+5. modules/business_setup_loan_processing_fees.php
+6. modules/business_setup_loan_types.php
+7. modules/business_setup_positions.php
+8. modules/business_setup_success.php
+9. modules/classes/System_Administration.php
+
+Added files:
+Null
+
+Deleted files:
+Null
+
+------------------------------------------------
+Admin Portal
+------------------------------------------------
+Edited files:
+1. controller.php
+2. core/configs.ini
+3. Folder...img/branding/chapter_logos/
+4. Folder...img/branding/institution_logos/
+5. modules/action_fail.php
+6. modules/action_success.php
+7. modules/add/add_account_banking.php
+8. modules/add/add_account_to_account_transfer_next.php
+9. modules/add/add_deposit.php
+10. modules/add/add_loan_guarantor.php
+11. modules/add/add_loan_next.php
+12. modules/add/add_loan_type.php
+13. modules/add/add_shares.php
+14. modules/add/add_withdrawal.php
+15. modules/classes/Loans.php
+16. modules/classes/Users.php
+17. modules/dashboard/loan_calculator.php
+18. modules/login.php
+19. modules/menus/sub-sub-menu-buttons.php
+20. modules/payments/airtel_payment_guide.php
+21. modules/payments/eazzypay_payment_guide.php
+22. modules/payments/kcb_payment_guide.php
+23. modules/payments/mpesa_payment_guide.php
+24. modules/payments/paypal_payment_guide.php
+25. modules/payments/pesalink_payment_guide.php
+26. modules/payments/visa_mastercard_payment_guide.php
+27. modules/read/view_accounts_individual.php
+28. modules/read/view_loan_guarantors.php
+29. modules/update/update_loan_guarantor.php
+
+Added files:
+Null
+
+Deleted files:
+Null
+
+------------------------------------------------
+API
+------------------------------------------------
+
+Edited files:
+
+1. core/configs.ini
+2. modules/classes/Loans.php
+3. modules/classes/Settings.php
+4. modules/classes/Users.php
+5. modules/index.php
+
+Added files:
+Null
+
+Deleted files:
+Null
+
+*********************************************************************************************************************************************************************************************

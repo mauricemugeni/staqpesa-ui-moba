@@ -22,7 +22,6 @@ if (!empty($_POST)) {
 }
 ?>
 
-
 <div class="wrapper row-offcanvas row-offcanvas-left">
     <?php require_once('modules/menus/main_sidebar.php'); ?>
     <aside class="right-side">
@@ -47,6 +46,8 @@ if (!empty($_POST)) {
                                 <input type="hidden" name="action" value="add_shares"/>
                                 <input type="hidden" name="createdby" value="<?php echo $_SESSION['userid']; ?>"/>
                                 <input type="hidden" name="transaction_type" value="SHARES DEPOSIT"/>
+                                <input type="hidden" name="transactedby" value="<?php echo $_SESSION['user_details']['firstname'] . " " . $_SESSION['user_details']['lastname']; ?>"/>
+
                                 <div class="form-group">
                                     <label for="account_number">Account Number</label>
                                     <input type="text" class="form-control" id="account_number" name="account_number" placeholder="Account Number" value="<?php echo $_SESSION['account']; ?>" readonly="true" />
@@ -70,22 +71,43 @@ if (!empty($_POST)) {
                                     <label for="payment_ref_number">Payment Reference Number</label>
                                     <input type="text" class="form-control" id="payment_ref_number" name="payment_ref_number" placeholder="Payment Reference Number" required="true" />
                                 </div>
-                                <div class="form-group">
-                                    <label for="transactedby">Transacted By</label>
-                                    <input type="text" class="form-control" id="transactedby" name="transactedby" placeholder="Deposited By" required="true"/>
-                                </div>
+                                <!--                                <div class="form-group">
+                                                                    <label for="transactedby">Transacted By</label>
+                                                                    <input type="text" class="form-control" id="transactedby" name="transactedby" placeholder="Deposited By" required="true"/>
+                                                                </div>-->
                                 <div class="form-group checkbox">
                                     <label>
                                         <input type="checkbox" name="terms_and_conditions" value="" required="true"> I accept <?php echo $_SESSION['chapter_details']['chapter_name']; ?> <a href="?website_tac">terms and conditions</a>
                                     </label>
                                 </div>
-                                
+
                                 <button type="submit" class="btn btn-info">Submit</button>
                             </form>
 
                         </div>
                     </section>
-                </div>        
+                </div>       
+                <div class="col-lg-3">
+                    <?php require_once('modules/payments/mpesa_payment_guide.php'); ?>
+                </div>
+                <div class="col-lg-3">
+                    <?php require_once('modules/payments/kcb_payment_guide.php'); ?>
+                </div>
+                <div class="col-lg-3">
+                    <?php require_once('modules/payments/airtel_payment_guide.php'); ?>
+                </div>
+                <div class="col-lg-3">
+                    <?php require_once('modules/payments/eazzypay_payment_guide.php'); ?>
+                </div>
+                <div class="col-lg-3">
+                    <?php require_once('modules/payments/pesalink_payment_guide.php'); ?>
+                </div>
+                <div class="col-lg-3">
+                    <?php require_once('modules/payments/paypal_payment_guide.php'); ?>
+                </div>
+                <div class="col-lg-3">
+                    <?php require_once('modules/payments/visa_mastercard_payment_guide.php'); ?>
+                </div>
             </div><!--row1-->
         </section><!-- /.content -->
     </aside><!-- /.right-side -->

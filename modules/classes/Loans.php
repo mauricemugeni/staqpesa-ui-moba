@@ -176,7 +176,6 @@ class Loans extends Database {
         $data['request_type'] = 'update_loan_guarantors';
         $data['code'] = $code;
         $data['update_type'] = $update_type;
-        $data['userid'] = $_SESSION['userid'];
         $data_string = http_build_query($data);
         $process_request = $this->sendHttpRequestPut($data_string);
         $decoded_response = json_decode($process_request, true);

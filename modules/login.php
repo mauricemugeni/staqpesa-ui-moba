@@ -37,35 +37,33 @@ $_SESSION['institution_name'] = $institution_details["company_name"];
 $_SESSION['institution_email'] = $institution_details["email"];
 $_SESSION['institution_phone'] = $institution_details["phone_number"];
 
-if (!isset($_SESSION['chapter_details'])) {
-    if (isset($_SESSION['chapter_code'])) {
-        $_SESSION['chapter_details'] = $users->fetchChapterDetails($_SESSION['chapter_code']);
-        $chapter_country_details = $settings->fetchPartnerCountryDetails($_SESSION['chapter_details']['country']);
-        $_SESSION['currency'] = $chapter_country_details['currency'];
-    } else {
-        $_SESSION['chapter_details'] = $users->fetchSoloChapterDetails($_SESSION['institution_code']);
-        $chapter_country_details = $settings->fetchPartnerCountryDetails($_SESSION['chapter_details']['country']);
-        $_SESSION['currency'] = $chapter_country_details['currency'];
+if ($institution_details["setup_status"] == 1050) {
+    App::redirectTo("{$_SESSION['website_url']}/?business_setup&institution={$_SESSION['institution_code']}");
+} else if ($institution_details["setup_status"] == 1051) {
+    if (!isset($_SESSION['chapter_details'])) {
+        if (isset($_SESSION['chapter_code'])) {
+            $_SESSION['chapter_details'] = $users->fetchChapterDetails($_SESSION['chapter_code']);
+            $chapter_country_details = $settings->fetchPartnerCountryDetails($_SESSION['chapter_details']['country']);
+            $_SESSION['currency'] = $chapter_country_details['currency'];
+        } else {
+            $_SESSION['chapter_details'] = $users->fetchSoloChapterDetails($_SESSION['institution_code']);
+            $chapter_country_details = $settings->fetchPartnerCountryDetails($_SESSION['chapter_details']['country']);
+            $_SESSION['currency'] = $chapter_country_details['currency'];
+        }
     }
-}
 
-if (!empty($_POST)) {
-    $success = $users->execute();
-    if (is_bool($success) && $success == true) {
-        $user_details = $users->fetchLoggedInUserDetails($_SESSION['login_user_type'], $_SESSION['userid']);
-        if ($user_details['status'] == 1) {
-            $_SESSION['account_blocked'] = true;
+    if (!empty($_POST)) {
+        $success = $users->execute();
+        if (is_bool($success) && $success == true) {
+            $user_details = $users->fetchLoggedInUserDetails($_SESSION['login_user_type'], $_SESSION['userid']);
+            if ($user_details['status'] == 1) {
+                $_SESSION['account_blocked'] = true;
+            }
+            if ($user_details['password_new'] == 0) {
+                App::redirectTo("?update_password");
+            }
+            App::redirectTo("?dashboard");
         }
-        if ($user_details['password_new'] == 0) {
-            App::redirectTo("?update_password");
-        }
-        
-//        argDump($_SESSION['logged_in_user_type_details']['name']);
-//        argDump($_SESSION['logged_in_user_type_details']['name']);
-//        argDump($_SESSION['logged_in_user_type_details']['name']);
-//        exit();
-        
-        App::redirectTo("?dashboard");
     }
 }
 ?>
@@ -75,13 +73,31 @@ if (!empty($_POST)) {
 
 <div class="templatemo-content-widget templatemo-login-widget white-bg">
     <header class="text-center">
-        <h1><a href="<?php echo $_SESSION['website_url']; ?>" title="MOBA Sacco" class="logo">
-                <img style="margin-top: 30px;" src="img/branding/svg/moba.svg" width="160">
-            </a></h1>
-        <h5>Realize Your Dreams</h5>
+        <?php if (isset($_SESSION['chapter_details'])) { ?>
+            <h1><a href="<?php echo $_SESSION['website_url']; ?>" title="<?php echo $_SESSION['institution_name']; ?>" class="logo">
+                    <?php if (!is_null($_SESSION['chapter_details']['chapter_logo'])) { ?>
+                        <img style="margin-top: 30px;" src="img/branding/chapter_logos/<?php echo $_SESSION['chapter_details']['chapter_logo']; ?>" width="240">
+                    <?php } else { ?>
+                        <img style="margin-top: 30px;" src="img/branding/institution_logos/staqpesa-normal.png" width="240">
+                    <?php } ?>
+                </a></h1>
+            <div> 
+                <br />
+            </div>
+            <?php if (is_null($_SESSION['chapter_details']['chapter_logo'])) { ?>
+                <h2><?php echo $_SESSION['institution_name']; ?></h2>
+            <?php } ?>
+            <?php if (!is_null($_SESSION['chapter_details']['tagline'])) { ?>
+                <h5><?php echo "..." . ucwords(strtolower($_SESSION['chapter_details']['tagline'])) . "..."; ?></h5>
+            <?php } else { ?>
+                <h5>...Growing With You...</h5>
+            <?php
+            }
+        }
+        ?>
     </header>
 
-    <?php if (isset($_SESSION['login_error'])) { ?>
+<?php if (isset($_SESSION['login_error'])) { ?>
         <div class="alert alert-error">
             <h4>Login Error:</h4>
             <p>Wrong username/password combination</p>
