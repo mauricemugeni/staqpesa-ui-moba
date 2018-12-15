@@ -39,6 +39,7 @@ if (!empty($_POST)) {
             $checkIfAccountHasBankingDetails = $users->checkIfAccountHasBankingDetails();
 
             if ($checkIfAccountHasBankingDetails == true) {
+                $_SESSION['set_account_banking_details'] =  $users->fetchSetAccountBankingDetails();
                 $_SESSION['has_banking_details'] = true;
             } else if ($checkIfAccountHasBankingDetails == false) {
                 $_SESSION['has_banking_details'] = false;
@@ -93,7 +94,7 @@ if (!empty($_POST)) {
                                     <th>Member Name</th>
                                     <th>Email</th>
                                     <th>Telephone</th>
-                                    <th>Amount <?php echo '(' . $_SESSION['chapter_details']['currency'] . ')'; ?></th>
+                                    <th>Amount <?php echo '(' . $_SESSION['currency'] . ')'; ?></th>
                                 </tr>
                                 <?php
                                 if (!empty($_POST)) {

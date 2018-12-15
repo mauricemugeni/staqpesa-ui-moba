@@ -76,7 +76,7 @@ if ($update_type == "edit") {
                                     </div>                                
                                 <?php } ?> 
                                 <div class="form-group">
-                                    <label for="contribution_amount">Monthly contribution amount(<?php echo $_SESSION['chapter_details']['currency']; ?>):</label>
+                                    <label for="contribution_amount">Monthly contribution amount(<?php echo $_SESSION['currency']; ?>):</label>
                                     <input type="number" class="form-control" id="contribution_amount" name="contribution_amount" placeholder="eg. 1000" value="<?php echo $details['contribution_amount']; ?>" required="yes"/>
                                 </div>
                                 <div class="form-group">

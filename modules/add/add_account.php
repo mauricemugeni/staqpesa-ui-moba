@@ -115,11 +115,11 @@ if (!empty($_POST)) {
                                     <input type="number" class="form-control" id="number_of_shares" name="number_of_shares" value="100" readonly="yes" required="yes"/>
                                 </div>
                                 <div class="form-group">
-                                    <label for="value_of_shares">Value of shares applied for(<?php echo $_SESSION['chapter_details']['currency']; ?>):</label>
+                                    <label for="value_of_shares">Value of shares applied for(<?php echo $_SESSION['currency']; ?>):</label>
                                     <input type="number" class="form-control" id="value_of_shares" name="value_of_shares" value="10000" readonly="yes" required="yes"/>
                                 </div>
                                 <div class="form-group">
-                                    <label for="contribution_amount">Monthly contribution amount(<?php echo $_SESSION['chapter_details']['currency']; ?>):</label>
+                                    <label for="contribution_amount">Monthly contribution amount(<?php echo $_SESSION['currency']; ?>):</label>
                                     <input type="number" class="form-control" id="contribution_amount" name="contribution_amount" placeholder="eg. 1000" required="yes"/>
                                 </div>
                                 <div class="form-group">

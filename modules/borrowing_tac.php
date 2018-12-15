@@ -107,10 +107,10 @@
                                 </ul>
 
                                 <p>Late payment fee - If your payment is more than 20 days late, we may charge a late payment fee to compensate for the delay. The late payment 
-                                    fee is 5.00% of your unpaid payment or <?php echo $_SESSION['chapter_details']['currency'] . " "; ?> 50,000, whichever is greater. We charge this fee once for each late payment.</p>
+                                    fee is 5.00% of your unpaid payment or <?php echo $_SESSION['currency'] . " "; ?> 50,000, whichever is greater. We charge this fee once for each late payment.</p>
 
                                 <p>Check processing fee - Processing loan payments automatically helps us keep rates low, and there’s no fee for making payments automatically 
-                                    by society from your bank account. Handling checks costs more, so we charge a <?php echo $_SESSION['chapter_details']['currency'] . " "; ?>10, 000/= processing fee for each monthly payment made by check. However, 
+                                    by society from your bank account. Handling checks costs more, so we charge a <?php echo $_SESSION['currency'] . " "; ?>10, 000/= processing fee for each monthly payment made by check. However, 
                                     there is never a fee for paying your loan off early, even if you pay by check.</p>
 
                             </div>

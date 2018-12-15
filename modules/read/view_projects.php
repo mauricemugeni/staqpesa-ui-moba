@@ -33,8 +33,8 @@ unset($_SESSION['project']);
                                     <th>Title</th>
                                     <th>Funding Type</th>
                                     <th>Financing Method</th>
-                                    <th>Investment Amount <?php echo '(' . $_SESSION['chapter_details']['currency'] . ')'; ?></th>
-                                    <th>Outstanding Balance <?php echo '(' . $_SESSION['chapter_details']['currency'] . ')'; ?></th>
+                                    <th>Investment Amount <?php echo '(' . $_SESSION['currency'] . ')'; ?></th>
+                                    <th>Outstanding Balance <?php echo '(' . $_SESSION['currency'] . ')'; ?></th>
                                     <th>Created By</th>
                                     <th>Status</th>
                                 </tr> 

@@ -88,12 +88,12 @@ if ($details['status'] == 1000) {
                                     <span class="form-control"><?php echo $investor_details_biddedby['firstname'] . " " . $investor_details_biddedby['middlename'] . " " . $investor_details_biddedby['lastname']; ?></span>
                                 </div>
                                 <div class="form-group">
-                                    <label for="bid_amount">Bid Amount <?php echo '(' . $_SESSION['chapter_details']['currency'] . ')'; ?>:</label>
-                                    <span class="form-control"><?php echo $_SESSION['chapter_details']['currency'] . " ." . number_format($details['bid_amount'], 2); ?></span>
+                                    <label for="bid_amount">Bid Amount <?php echo '(' . $_SESSION['currency'] . ')'; ?>:</label>
+                                    <span class="form-control"><?php echo $_SESSION['currency'] . " ." . number_format($details['bid_amount'], 2); ?></span>
                                 </div>
                                 <div class="form-group">
-                                    <label for="bid_balance">Bid Balance <?php echo '(' . $_SESSION['chapter_details']['currency'] . ')'; ?>:</label>
-                                    <span class="form-control"><?php echo $_SESSION['chapter_details']['currency'] . " ." . number_format($details['bid_balance'], 2); ?></span>
+                                    <label for="bid_balance">Bid Balance <?php echo '(' . $_SESSION['currency'] . ')'; ?>:</label>
+                                    <span class="form-control"><?php echo $_SESSION['currency'] . " ." . number_format($details['bid_balance'], 2); ?></span>
                                 </div>
                                 <div class="form-group">
                                     <label for="createdat">Created At:</label>

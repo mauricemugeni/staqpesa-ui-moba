@@ -108,8 +108,8 @@ if ($details['status'] == 1000) {
                                     <span class="form-control"><?php echo $financing_method_details['name']; ?></span>
                                 </div>
                                 <div class="form-group">
-                                    <label for="investment_amount">Investment Amount <?php echo '(' . $_SESSION['chapter_details']['currency'] . ')'; ?>:</label>
-                                    <span class="form-control"><?php echo $_SESSION['chapter_details']['currency'] . " ." . number_format($details['investment_amount'], 2); ?></span>
+                                    <label for="investment_amount">Investment Amount <?php echo '(' . $_SESSION['currency'] . ')'; ?>:</label>
+                                    <span class="form-control"><?php echo $_SESSION['currency'] . " ." . number_format($details['investment_amount'], 2); ?></span>
                                 </div>
                                 <div class="form-group">
                                     <label for="createdat">Created At:</label>

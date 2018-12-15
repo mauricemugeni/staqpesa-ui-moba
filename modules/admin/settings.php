@@ -173,56 +173,7 @@ $reports = new Reports();
                             </div>
                         </div>
                     </a>
-
-                <?php } else if (isset($_SESSION['institution_admin']) AND $_SESSION['institution_admin'] == true) { ?>
-                    <a href="?view_branches" >
-                        <div class="col-md-3">
-                            <div class="sm-st clearfix">
-                                <span class="sm-st-icon st-blue"><i class="fa fa-btc"></i></span>
-                                <div class="sm-st-info">
-                                    <span><?php echo $reports->countAllSubjectAreaRecords("count_all_branches"); ?></span>
-                                    <span>Branches</span>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-
-                    <a href="?view_loan_types" >
-                        <div class="col-md-3">
-                            <div class="sm-st clearfix">
-                                <span class="sm-st-icon st-green"><i class="fa fa-bitbucket"></i></span>
-                                <div class="sm-st-info">
-                                    <span><?php echo $reports->countAllSubjectAreaRecords("count_all_loan_types"); ?></span>
-                                    <span>Loan Types</span>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-
-                    <a href="?view_default_charge_rates" >
-                        <div class="col-md-3">
-                            <div class="sm-st clearfix">
-                                <span class="sm-st-icon st-violet"><i class="fa fa-money"></i></span>
-                                <div class="sm-st-info">
-                                    <span><?php echo $reports->countAllSubjectAreaRecords("count_all_default_charge_rates"); ?></span>
-                                    <span>Default Charge Rates</span>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-
-                    <a href="?view_loan_processing_fees" >
-                        <div class="col-md-3">
-                            <div class="sm-st clearfix">
-                                <span class="sm-st-icon st-red"><i class="fa fa-magnet"></i></span>
-                                <div class="sm-st-info">
-                                    <span><?php echo $reports->countAllSubjectAreaRecords("count_all_loan_processing_fees"); ?></span>
-                                    <span>Loan Processing Fees</span>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-
+                                
                     <a href="?view_account_types" >
                         <div class="col-md-3">
                             <div class="sm-st clearfix">
@@ -242,18 +193,6 @@ $reports = new Reports();
                                 <div class="sm-st-info">
                                     <span><?php echo $reports->countAllSubjectAreaRecords("count_all_responses"); ?></span>
                                     <span>Responses</span>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-
-                    <a href="?view_positions" >
-                        <div class="col-md-3">
-                            <div class="sm-st clearfix">
-                                <span class="sm-st-icon st-red"><i class="fa fa-random"></i></span>
-                                <div class="sm-st-info">
-                                    <span><?php echo $reports->countAllSubjectAreaRecords("count_all_positions"); ?></span>
-                                    <span>Positions</span>
                                 </div>
                             </div>
                         </div>
@@ -302,6 +241,67 @@ $reports = new Reports();
                                 <div class="sm-st-info">
                                     <span><?php echo $reports->countAllSubjectAreaRecords("count_all_sectors"); ?></span>
                                     <span>Sectors</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+
+                <?php } else if (isset($_SESSION['institution_admin']) AND $_SESSION['institution_admin'] == true) { ?>
+                    <a href="?view_branches" >
+                        <div class="col-md-3">
+                            <div class="sm-st clearfix">
+                                <span class="sm-st-icon st-blue"><i class="fa fa-btc"></i></span>
+                                <div class="sm-st-info">
+                                    <span><?php echo $reports->countAllSubjectAreaRecords("count_all_branches"); ?></span>
+                                    <span>Branches</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+
+                    <a href="?view_loan_types" >
+                        <div class="col-md-3">
+                            <div class="sm-st clearfix">
+                                <span class="sm-st-icon st-green"><i class="fa fa-bitbucket"></i></span>
+                                <div class="sm-st-info">
+                                    <span><?php echo $reports->countAllSubjectAreaRecords("count_all_loan_types"); ?></span>
+                                    <span>Loan Types</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+
+<!--                    <a href="?view_default_charge_rates" >
+                        <div class="col-md-3">
+                            <div class="sm-st clearfix">
+                                <span class="sm-st-icon st-violet"><i class="fa fa-money"></i></span>
+                                <div class="sm-st-info">
+                                    <span><?php // echo $reports->countAllSubjectAreaRecords("count_all_default_charge_rates"); ?></span>
+                                    <span>Default Charge Rates</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>-->
+
+                    <a href="?view_loan_processing_fees" >
+                        <div class="col-md-3">
+                            <div class="sm-st clearfix">
+                                <span class="sm-st-icon st-red"><i class="fa fa-magnet"></i></span>
+                                <div class="sm-st-info">
+                                    <span><?php echo $reports->countAllSubjectAreaRecords("count_all_loan_processing_fees"); ?></span>
+                                    <span>Loan Processing Fees</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                
+                    <a href="?view_positions" >
+                        <div class="col-md-3">
+                            <div class="sm-st clearfix">
+                                <span class="sm-st-icon st-red"><i class="fa fa-random"></i></span>
+                                <div class="sm-st-info">
+                                    <span><?php echo $reports->countAllSubjectAreaRecords("count_all_positions"); ?></span>
+                                    <span>Positions</span>
                                 </div>
                             </div>
                         </div>

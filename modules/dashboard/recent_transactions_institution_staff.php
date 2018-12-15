@@ -20,7 +20,7 @@ unset($_SESSION['transaction']);
                         <th>Transaction ID</th>
                         <th>Transaction Type</th>
                         <th>Date/Time</th>
-                        <th>Amount <?php echo '(' . $_SESSION['chapter_details']['currency'] . ')'; ?></th>
+                        <th>Amount <?php echo '(' . $_SESSION['currency'] . ')'; ?></th>
                         <th>Account Number</th>
                     </tr>
                 </thead>

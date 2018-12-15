@@ -8,7 +8,7 @@ $users = new Users();
 $code = $_GET['code'];
 $_SESSION['loan_processing_fee'] = $code;
 
-$details = $settings->fetchLoanProcessingFeeDetails($code);
+$details = $settings->fetchIndividualLoanProcessingFeeDetails($code);
 $staff_details_createdby = $users->fetchStaffDetails($details['createdby']);
 
 if ($details['status'] == 1000) {

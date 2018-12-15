@@ -54,8 +54,8 @@ if ($update_type == "edit") {
                                 <div class="form-group">
                                 <label for="amount_type">Amount Type</label>
                                 <select name="amount_type" class="form-control">
-                                        <option value="<?php echo '(' . $_SESSION['currency'] . ')'; ?>">CURRENCY(<?php echo '(' . $_SESSION['currency'] . ')'; ?>)</option>
-                                        <option value="PERCENT">PERCENTAGE</option>
+                                        <option value="CASH">CURRENCY<?php echo '(' . $_SESSION['currency'] . ')'; ?></option>
+                                        <option value="PERCENT">PERCENTAGE(%)</option>
                                     </select> 
                                 </div>
                                 <div class="form-group">

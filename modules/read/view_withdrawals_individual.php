@@ -66,8 +66,8 @@ if ($details['status'] == 1000) {
                                     <span class="form-control"><?php echo $details['account_number']; ?></span> 
                                 </div>
                                 <div class="form-group">   
-                                    <label for="amount">Amount <?php echo '(' . $_SESSION['chapter_details']['currency'] . ')'; ?>:</label>
-                                    <span class="form-control"><?php echo $_SESSION['chapter_details']['currency'] . " ." . number_format($details['amount'], 2); ?></span> 
+                                    <label for="amount">Amount <?php echo '(' . $_SESSION['currency'] . ')'; ?>:</label>
+                                    <span class="form-control"><?php echo $_SESSION['currency'] . " ." . number_format($details['amount'], 2); ?></span> 
                                 </div>
                                 <div class="form-group">     
                                     <label for="transactedby">Transacted By:</label>

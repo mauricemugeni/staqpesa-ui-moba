@@ -30,8 +30,8 @@ $code = $_GET['code'];
                                     <th>Bid ID</th>
                                     <th>Project Name</th>
                                     <th>Was Bid By</th>
-                                    <th>Bid Amount <?php echo '(' . $_SESSION['chapter_details']['currency'] . ')'; ?></th>
-                                    <th>Bid Balance <?php echo '(' . $_SESSION['chapter_details']['currency'] . ')'; ?></th>
+                                    <th>Bid Amount <?php echo '(' . $_SESSION['currency'] . ')'; ?></th>
+                                    <th>Bid Balance <?php echo '(' . $_SESSION['currency'] . ')'; ?></th>
                                     <th>Created At</th>
                                     <th>Status</th>
                                 </tr> 

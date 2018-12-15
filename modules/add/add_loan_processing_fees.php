@@ -49,7 +49,7 @@ if (!empty($_POST)) {
                                 <div class="form-group">
                                     <label for="amount_type">Amount Type</label>
                                     <select name="amount_type" class="form-control m-b-10">
-                                        <option value="<?php echo $configs["currency"]; ?>">CURRENCY(<?php echo $configs["currency"]; ?>)</option>
+                                        <option value="CASH">CASH(<?php echo $_SESSION['currency']; ?>)</option>
                                         <option value="PERCENT">PERCENTAGE(%)</option>
                                     </select>
                                 </div>

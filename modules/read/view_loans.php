@@ -44,7 +44,7 @@ unset($_SESSION["guarantors_list"]);
                                     <?php if (!isset($_SESSION['account'])) { ?>
                                         <th>Account Name</th>
                                     <?php } ?>
-                                    <th>Amount <?php echo '(' . $_SESSION['chapter_details']['currency'] . ')'; ?></th>
+                                    <th>Amount <?php echo '(' . $_SESSION['currency'] . ')'; ?></th>
                                     <!--<th>Duration(Months)</th>-->
                                     <th>Created At</th>
                                     <th>Approval Status</th>

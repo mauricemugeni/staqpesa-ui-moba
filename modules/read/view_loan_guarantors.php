@@ -7,6 +7,15 @@ $users = new Users();
 $loans = new Loans();
 unset($_SESSION['loan_guarantor']);
 unset($_SESSION['search']);
+
+if (isset($_SESSION['loan'])) {
+    $loan_status_details = $loans->fetchLoanStatusDetails($_SESSION['loan']);
+
+//    argDump($loan_status_details);
+//    argDump($loan_status_details);
+//    argDump($loan_status_details);
+//    exit();
+}
 ?>
 
 <div class="wrapper row-offcanvas row-offcanvas-left">
@@ -43,8 +52,11 @@ unset($_SESSION['search']);
                                     <th>Member Name</th>
                                     <th>Email</th>
                                     <th>Telephone</th>
-                                    <th>Amount <?php echo '(' . $_SESSION['chapter_details']['currency'] . ')'; ?></th>
+                                    <th>Amount <?php echo '(' . $_SESSION['currency'] . ')'; ?></th>
                                     <th>Status</th>
+                                    <?php if (isset($_SESSION['account']) AND ( isset($_SESSION['loan']) AND $loan_status_details['status'] == 1001)) { ?>
+                                        <th>Action</th>
+                                    <?php } ?>
                                 </tr>
                                 <?php
                                 if (!empty($_POST) AND ! isset($_POST['create_pdf'])) {
@@ -81,6 +93,9 @@ unset($_SESSION['search']);
                                     echo "<td> </td>";
                                     echo "<td> </td>";
                                     echo "<td> </td>";
+                                    if (isset($_SESSION['account']) AND ( isset($_SESSION['loan']) AND $loan_status_details['status'] == 1001)) {
+                                        echo "<td> </td>";
+                                    }
                                     echo "</tr>";
                                 } else {
                                     foreach ($info as $data) {
@@ -108,13 +123,20 @@ unset($_SESSION['search']);
                                         echo '<td>' . $proposed_guarantor_contact_details['phone_number1'] . '</td>';
                                         echo '<td>' . $data["amount"] . '</td>';
                                         echo '<td>' . $status . '</td>';
+                                        if (isset($_SESSION['account']) AND ( isset($_SESSION['loan']) AND $loan_status_details['status'] == 1001)) {
+                                            if ($data['status'] == 1020) {
+                                                echo "<td> <a href='?update_loan_guarantor&update_type=activate&code={$data['id']}'> ACTIVATE</td>";
+                                            } else if ($data['status'] == 1001 OR $data['status'] == 1021) {
+                                                echo "<td> <a href='?update_loan_guarantor&update_type=deactivate&code={$data['id']}'> DEACTIVATE</td>";
+                                            }
+                                        }
                                         echo '</tr>';
                                     }
                                 }
                                 ?>
                             </table>
                         </div><!-- /.panel-body -->
-                        <?php // echo $_SESSION['pagination'];  ?>
+                        <?php // echo $_SESSION['pagination'];   ?>
                     </div><!-- /.panel -->
                 </div>        
             </div><!--row1-->

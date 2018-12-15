@@ -56,7 +56,7 @@ if (!empty($_POST)) {
                                 </div>
                                 <div class="form-group">
                                     <label for="maximum_duration">Maximum Duration (Months)</label>
-                                    <input type="tel" class="form-control" id="maximum_duration" name="maximum_duration" placeholder="eg. 72" required="yes"/>
+                                    <input type="text" class="form-control" id="maximum_duration" name="maximum_duration" placeholder="eg. 72" required="yes"/>
                                 </div>                        
                                 <div class="form-group">
                                     <label for="instalment_frequency">Instalment Frequency</label>

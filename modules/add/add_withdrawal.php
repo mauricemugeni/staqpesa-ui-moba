@@ -61,6 +61,7 @@ if (!empty($_POST)) {
                                 <input type="hidden" name="action" value="add_withdrawal"/>
                                 <input type="hidden" name="createdby" value="<?php echo $_SESSION['userid']; ?>"/>                        
                                 <input type="hidden" name="transaction_type" value="WITHDRAWAL"/>
+                                <input type="hidden" name="transactedby" value="<?php echo $_SESSION['user_details']['firstname'] . " " . $_SESSION['user_details']['lastname']; ?>"/>
 
                                 <div class="form-group">
                                     <label for="account_number">Account Number</label>
@@ -73,23 +74,23 @@ if (!empty($_POST)) {
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="account_balance">Account Balance <?php echo '(' . $_SESSION['chapter_details']['currency'] . ')'; ?></label>
+                                    <label for="account_balance">Account Balance <?php echo '(' . $_SESSION['currency'] . ')'; ?></label>
                                     <input type="text" class="form-control" id="account_balance" name="account_balance" placeholder="Account Balance" value="<?php echo "KES. " . $ledger_balance; ?>" readonly="true" />
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="minimum_balance">Minimum Balance <?php echo '(' . $_SESSION['chapter_details']['currency'] . ')'; ?></label>
+                                    <label for="minimum_balance">Minimum Balance <?php echo '(' . $_SESSION['currency'] . ')'; ?></label>
                                     <input type="text" class="form-control" id="minimum_balance" name="minimum_balance" placeholder="Minimum Balance" value="<?php echo "KES. " . $account_type_details['minimum_balance']; ?>" readonly="true" />
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="amount">Amount <?php echo '(' . $_SESSION['chapter_details']['currency'] . ')'; ?></label>
+                                    <label for="amount">Amount <?php echo '(' . $_SESSION['currency'] . ')'; ?></label>
                                     <input type="number" class="form-control" id="amount" name="amount" placeholder="Amount"/>
                                 </div>
-                                <div class="form-group">
+<!--                                <div class="form-group">
                                     <label for="transactedby">Withdrawn By</label>
                                     <input type="text" class="form-control" id="transactedby" name="transactedby" placeholder="Withdrawn By"/>
-                                </div>
+                                </div>-->
                                 <div class="form-group checkbox">
                                     <label>
                                         <input type="checkbox" name="terms_and_conditions" value="" required="true"> I accept <?php echo $_SESSION['chapter_details']['chapter_name']; ?> <a href="?website_tac">terms and conditions</a>

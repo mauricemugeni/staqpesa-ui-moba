@@ -39,7 +39,7 @@ unset($_SESSION['search']);
                                     <?php if (!isset($_SESSION['account'])) { ?>
                                         <th>Account Number</th>
                                     <?php } ?>
-                                    <th>Amount <?php echo '(' . $_SESSION['chapter_details']['currency'] . ')'; ?></th>
+                                    <th>Amount <?php echo '(' . $_SESSION['currency'] . ')'; ?></th>
                                     <th>Deposited By</th>                                    
                                     <?php if (isset($_SESSION['institution_admin']) OR isset($_SESSION['staqpesa_staff']) OR isset($_SESSION['staqpesa_admin'])) { ?>
                                         <th>Staff</th>

@@ -13,7 +13,7 @@ $reports = new Reports();
         <div class="sm-st clearfix">
             <span class="sm-st-icon st-blue"><i class="fa fa-stack-overflow"></i></span>
             <div class="sm-st-info">
-                <span><?php echo $_SESSION['chapter_details']['currency'] . ". " . $transactions->fetchLedgerBalance($_SESSION['account']); ?></span>
+                <span><?php echo $_SESSION['currency'] . ". " . $transactions->fetchLedgerBalance($_SESSION['account']); ?></span>
                 Account Balance
             </div>
         </div>

@@ -176,16 +176,16 @@ if ($loan_status_details['account_status'] == 1000) {
                                     <span class="form-control"><?php echo $account_number; ?></span>
                                 </div>
                                 <div class="form-group">
-                                    <label for="principal_amount">Principal Amount <?php echo '(' . $_SESSION['chapter_details']['currency'] . ')'; ?>:</label>
-                                    <span class="form-control"><?php echo $_SESSION['chapter_details']['currency'] . " ." . number_format($loan_principal_amount, 2); ?></span>
+                                    <label for="principal_amount">Principal Amount <?php echo '(' . $_SESSION['currency'] . ')'; ?>:</label>
+                                    <span class="form-control"><?php echo $_SESSION['currency'] . " ." . number_format($loan_principal_amount, 2); ?></span>
                                 </div>
                                 <div class="form-group">
-                                    <label for="interest">Cumulative Interest <?php echo '(' . $_SESSION['chapter_details']['currency'] . ')'; ?>:</label>
-                                    <span class="form-control"><?php echo $_SESSION['chapter_details']['currency'] . " ." . number_format($loan_details['interest'], 2); ?></span> 
+                                    <label for="interest">Cumulative Interest <?php echo '(' . $_SESSION['currency'] . ')'; ?>:</label>
+                                    <span class="form-control"><?php echo $_SESSION['currency'] . " ." . number_format($loan_details['interest'], 2); ?></span> 
                                 </div>
                                 <div class="form-group">
-                                    <label for="repayable_amount">Total Repayable Amount <?php echo '(' . $_SESSION['chapter_details']['currency'] . ')'; ?>:</label>
-                                    <span class="form-control"><?php echo $_SESSION['chapter_details']['currency'] . " ." . number_format($repayable_amount, 2); ?></span> 
+                                    <label for="repayable_amount">Total Repayable Amount <?php echo '(' . $_SESSION['currency'] . ')'; ?>:</label>
+                                    <span class="form-control"><?php echo $_SESSION['currency'] . " ." . number_format($repayable_amount, 2); ?></span> 
                                 </div>
                                 <div class="form-group">
                                     <label for="duration">Duration:</label>
@@ -196,8 +196,8 @@ if ($loan_status_details['account_status'] == 1000) {
                                     <span class="form-control"><?php echo $loan_details['due_date']; ?></span> 
                                 </div>
                                 <div class="form-group">
-                                    <label for="instalment_amount">Instalment Amount <?php echo '(' . $_SESSION['chapter_details']['currency'] . ')'; ?>:</label>
-                                    <span class="form-control"><?php echo $_SESSION['chapter_details']['currency'] . " ." . number_format($loan_details['instalment_amount'], 2); ?></span> 
+                                    <label for="instalment_amount">Instalment Amount <?php echo '(' . $_SESSION['currency'] . ')'; ?>:</label>
+                                    <span class="form-control"><?php echo $_SESSION['currency'] . " ." . number_format($loan_details['instalment_amount'], 2); ?></span> 
                                 </div>
                                 <div class="form-group">
                                     <label for="createdat">Created At:</label>

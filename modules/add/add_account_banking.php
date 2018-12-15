@@ -7,15 +7,16 @@ $loans = new Loans();
 $users = new Users();
 
 if (isset($_SESSION['has_banking_details']) AND $_SESSION['has_banking_details'] == true) {
-    $banking_details = $users->fetchAccountBankingDtlDetails();
+    $banking_details = $users->fetchAccountBankingDtlDetails($_SESSION['set_account_banking_details']['id']);
 }
 
 if (!empty($_POST)) {
     if (isset($_SESSION['has_banking_details']) AND $_SESSION['has_banking_details'] == false) {
         $add_account_banking_details = $users->addAccountBankingDetails();
-        
+
         if ($add_account_banking_details['status'] == 200) {
-            $banking_details = $users->fetchAccountBankingDtlDetails();
+            $_SESSION['set_account_banking_details'] = $users->fetchSetAccountBankingDetails();
+            $banking_details = $users->fetchAccountBankingDtlDetails($_SESSION['set_account_banking_details']['id']);
         } else {
             $_SESSION['add_banking_details_fail'] = true;
             $_SESSION['feedback_message'] = "<strong>Error!</strong> There was an error creating the banking details entered. Please try again.";
